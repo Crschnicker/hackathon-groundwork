@@ -147,6 +147,7 @@ export function Catalog() {
   else if (found !== null && !failed) {
     if (found.more) status = `Showing ${countLine(shown, found.total)}${within}.`;
     else if (found.total === null) status = found.term ? `The first ${plural(shown, "item")} that match ${found.term}${within}.` : "";
+    else if (found.total === 0) status = `No items${found.term ? ` match ${found.term}` : ""}${within}.`;
     else if (found.term) status = `${plural(found.total, "item")} ${found.total === 1 ? "matches" : "match"} ${found.term}${within}.`;
     else status = `${plural(found.total, "item")} in ${found.type ? labelOf(found.type) : "the catalog"}.`;
   }
@@ -207,7 +208,7 @@ export function Catalog() {
             </Button>
           }
         >
-          {found === null ? "Nothing is wrong with the catalog itself." : "The items below are from the search before it."}
+          {found === null ? "Nothing is wrong with the catalog itself." : "What is shown below is from the search before it."}
         </Notice>
       )}
 

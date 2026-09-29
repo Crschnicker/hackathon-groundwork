@@ -176,10 +176,12 @@ edit('project.yml', [
       `        PlaudApiKey: $(PLAUD_API_KEY)\n` +
       `        CFBundleDisplayName: Groundwork Walk\n` +
       `        UIRequiresFullScreen: true\n` +
-      // Plaud's library contains camera, photo and microphone code. Apple invalidates a build
-      // that references those APIs without a purpose string, whether or not they are called.
-      `        NSCameraUsageDescription: Not used by this app. Plaud's device library includes camera features that Groundwork Walk never opens.\n` +
-      `        NSPhotoLibraryUsageDescription: Not used by this app. Plaud's device library includes photo features that Groundwork Walk never opens.\n` +
+      // The Walk tab takes site photos with the camera, and falls back to the photo library
+      // where there is no camera. Adding to the library and the microphone are only here because
+      // Plaud's library contains that code: Apple invalidates a build that references those APIs
+      // without a purpose string, whether or not they are called.
+      `        NSCameraUsageDescription: Groundwork Walk uses the camera to take site photos during a walk. They are added to the walk and its proposal.\n` +
+      `        NSPhotoLibraryUsageDescription: Groundwork Walk can add a site photo from your library to a walk.\n` +
       `        NSPhotoLibraryAddUsageDescription: Not used by this app. Plaud's device library includes photo features that Groundwork Walk never opens.\n` +
       `        NSMicrophoneUsageDescription: Not used by this app. Audio is recorded by the Plaud device, not by the phone.\n` +
       `        GroundworkApiURL: $(GROUNDWORK_API_URL)\n` +

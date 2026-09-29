@@ -1,12 +1,27 @@
 // Walk endpoints: a walkthrough recorded in short chunks, transcribed and extracted as it goes.
 // The recorder (mobile app or scripts/simulate-walk.ts) creates a walk, posts each chunk as the
 // device closes it, and anyone can poll the walk for the transcript and site model so far.
+// Site photos taken on the walk are posted here too, and matched to the site model's areas.
 import { timingSafeEqual } from 'node:crypto';
 import express, { Router, type NextFunction, type Request, type Response } from 'express';
 import { z } from 'zod';
 import { env } from '../env.ts';
 import { HttpError, parse } from '../http.ts';
 import { plaudConfigured, plaudTranscriptionConfigured } from '../plaud/client.ts';
+import { removePhotoFromProposals } from '../proposals/store.ts';
+import { guideView } from '../walks/guide.ts';
+import {
+  MAX_AREA_CHARS,
+  MAX_CAPTION_CHARS,
+  acceptedContentType,
+  addPhoto,
+  deletePhoto,
+  readPhoto,
+  requirePhoto,
+  schedulePhotoMapping,
+  sortedPhotos,
+  updatePhoto,
+} from '../walks/photos.ts';
 import { extractIfComplete, isExtracting, processChunk } from '../walks/pipeline.ts';
 import {
   DEFAULT_CUT_SECONDS,
@@ -81,7 +96,11 @@ function walkView(walk: Walk, withSegments = false) {
       !isExtracting(walk.id) &&
       siteModelCovers(walk, chunkKeys) &&
       !(walk.status === 'finished' && inFlight === 0 && walk.siteModelPass === 'live'),
+    /** Sections to photograph and what to ask in each; null until the first recording is transcribed. */
+    guide: guideView(walk, chunkKeys),
     chunks: chunks.map((c) => chunkView(c, withSegments)),
+    /** Oldest first. */
+    photos: sortedPhotos(walk),
   };
 }
 
@@ -111,6 +130,7 @@ walksRouter.get('/walks', (_req, res) => {
       status: walk.status,
       createdAt: walk.createdAt,
       chunks: walk.chunks.length,
+      photos: walk.photos?.length ?? 0,
     })),
   );
 });
@@ -178,4 +198,78 @@ walksRouter.post('/walks/:id/finish', (req, res) => {
     extractIfComplete(walk);
   }
   res.json(walkView(walk));
+});
+
+/**
+ * One site photo. Raw JPEG, PNG or WebP bytes in the body; ?key= identifies it (re-sending it
+ * returns the stored photo), ?takenAt= is the epoch ms it was taken, ?sectionId=&promptId= the
+ * walk guide prompt it answers. May arrive after the walk is finished. Matching the photo to an
+ * area happens afterwards in the background.
+ */
+walksRouter.post('/walks/:id/photos', express.raw({ type: () => true, limit: '25mb' }), (req, res) => {
+  const walk = requireWalk(req.params.id);
+  const optionalId = z
+    .string()
+    .trim()
+    .max(100)
+    .optional()
+    .transform((s) => s || null);
+  const query = parse(
+    z.object({
+      key: z.string().trim().min(1).max(100),
+      takenAt: z.coerce.number().int().positive().optional(),
+      source: z.enum(['phone', 'web']).default('phone'),
+      sectionId: optionalId,
+      promptId: optionalId,
+    }),
+    req.query,
+  );
+  if (!acceptedContentType(req.headers['content-type'])) {
+    throw new HttpError(415, 'Send the photo as image/jpeg, image/png or image/webp');
+  }
+  if (!Buffer.isBuffer(req.body) || req.body.length === 0) throw new HttpError(400, 'Request body must be the raw image file');
+
+  const { photo, created } = addPhoto(
+    walk,
+    {
+      key: query.key,
+      takenAt: query.takenAt ?? Date.now(),
+      source: query.source,
+      sectionId: query.sectionId,
+      promptId: query.promptId,
+    },
+    req.body,
+  );
+  if (created && walk.siteModel) schedulePhotoMapping(walk);
+  res.status(created ? 201 : 200).json(photo);
+});
+
+walksRouter.get('/walks/:id/photos/:photoId', async (req, res) => {
+  const walk = requireWalk(req.params.id);
+  const photo = requirePhoto(walk, req.params.photoId);
+  const bytes = await readPhoto(walk.id, photo);
+  // A photo's bytes never change under its id.
+  res.set('Cache-Control', 'private, max-age=31536000, immutable').type(photo.contentType).send(bytes);
+});
+
+/** The architect's caption or area. Either one makes the photo theirs: the mapper leaves it alone. */
+walksRouter.patch('/walks/:id/photos/:photoId', (req, res) => {
+  const walk = requireWalk(req.params.id);
+  const photo = requirePhoto(walk, req.params.photoId);
+  const change = parse(
+    z.object({
+      caption: z.string().trim().max(MAX_CAPTION_CHARS).nullable().optional(),
+      area: z.string().trim().max(MAX_AREA_CHARS).nullable().optional(),
+    }),
+    req.body ?? {},
+  );
+  res.json(updatePhoto(photo, change));
+});
+
+walksRouter.delete('/walks/:id/photos/:photoId', (req, res) => {
+  const walk = requireWalk(req.params.id);
+  const photo = requirePhoto(walk, req.params.photoId);
+  deletePhoto(walk, photo);
+  removePhotoFromProposals(walk.id, photo.id);
+  res.json({ deleted: true });
 });

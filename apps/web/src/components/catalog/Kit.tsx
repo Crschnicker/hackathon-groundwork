@@ -125,12 +125,12 @@ function MaterialsList({ kit, total }: { kit: FactorCodeKit; total: number }) {
   );
 }
 
-/** Reserves about the height of a kit of eight materials, so the page moves once, not twice. */
-function MaterialsSkeleton() {
+/** Reserves about the height of a kit of ten materials, so the page moves once, not twice. */
+function MaterialsSkeleton({ wide }: { wide: boolean }) {
   return (
     <div aria-hidden className="divide-y divide-line border-t border-line-strong">
-      {Array.from({ length: 8 }, (_, i) => (
-        <div key={i} className="flex items-center justify-between gap-4 py-3">
+      {Array.from({ length: 10 }, (_, i) => (
+        <div key={i} className={`flex items-center justify-between gap-4 ${wide ? "h-10" : "h-16"}`}>
           <div className={`skeleton h-4 ${i % 3 === 0 ? "w-3/5" : i % 3 === 1 ? "w-2/5" : "w-1/2"}`} />
           <div className="skeleton h-4 w-16" />
         </div>
@@ -220,7 +220,7 @@ export function Kit({
       </div>
 
       <div className="mt-3">
-        {state.status === "loading" && <MaterialsSkeleton />}
+        {state.status === "loading" && <MaterialsSkeleton wide={wide} />}
         {state.status === "failed" &&
           (state.missing ? (
             <Notice tone="neutral" title={`Kit ${code} has no materials listed.`}>

@@ -9,6 +9,9 @@ import { HttpError, sendError } from './http.ts';
 import { describeProviders } from './llm/providers.ts';
 import { logger } from './logger.ts';
 import { plaudConfigured } from './plaud/client.ts';
+import { clientProposalsRouter } from './proposals/client.ts';
+import { proposalsRouter } from './proposals/routes.ts';
+import { guideRouter } from './routes/guide.ts';
 import { itemsRouter } from './routes/items.ts';
 import { llmRouter } from './routes/llm.ts';
 import { plaudRouter } from './routes/plaud.ts';
@@ -37,7 +40,7 @@ app.get('/health', async (_req, res) => {
   }
 });
 
-app.use('/api', itemsRouter, llmRouter, siteModelRouter, plaudRouter, walksRouter);
+app.use('/api', itemsRouter, llmRouter, siteModelRouter, guideRouter, plaudRouter, walksRouter, proposalsRouter, clientProposalsRouter);
 
 app.use((_req, res) => sendError(res, 404, 'Not found'));
 

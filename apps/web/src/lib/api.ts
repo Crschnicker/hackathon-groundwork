@@ -182,6 +182,10 @@ export interface Walk {
   /** False while newer transcripts exist than the ones the site model was built from. */
   siteModelCurrent: boolean;
   chunks: WalkRecording[];
+  /** Site photos taken on the walk, oldest first. Absent from the scripted sample walk. */
+  photos?: WalkPhoto[];
+  /** What to photograph, measure and ask on this walk; null until the first recording is read. */
+  guide?: WalkGuide | null;
 }
 
 /** The server puts this in a transcript where a recording has not been transcribed yet. */
@@ -232,4 +236,275 @@ export const api = {
   walks: (signal?: AbortSignal) => request<WalkSummary[]>("/api/walks", { headers: walkHeaders(), signal }),
   walk: (id: string, signal?: AbortSignal) =>
     request<Walk>(`/api/walks/${encodeURIComponent(id)}`, { headers: walkHeaders(), signal }),
+
+  // Walk photos. The image bytes need the walk token too, so an <img> cannot load them by URL:
+  // photoBlob fetches one and the caller shows it through URL.createObjectURL.
+  uploadPhoto: (
+    walkId: string,
+    image: Blob,
+    opts: { key: string; takenAt: number; sectionId?: string; promptId?: string },
+    signal?: AbortSignal,
+  ) => {
+    const query = new URLSearchParams({ key: opts.key, takenAt: String(Math.round(opts.takenAt)), source: "web" });
+    if (opts.sectionId) query.set("sectionId", opts.sectionId);
+    if (opts.promptId) query.set("promptId", opts.promptId);
+    return request<WalkPhoto>(`/api/walks/${encodeURIComponent(walkId)}/photos?${query}`, {
+      method: "POST",
+      headers: { ...walkHeaders(), "Content-Type": image.type || "image/jpeg" },
+      body: image,
+      signal,
+    });
+  },
+  photoBlob: (walkId: string, photoId: string, signal?: AbortSignal) =>
+    requestBlob(`/api/walks/${encodeURIComponent(walkId)}/photos/${encodeURIComponent(photoId)}`, {
+      headers: walkHeaders(),
+      signal,
+    }),
+  updatePhoto: (walkId: string, photoId: string, change: { caption?: string | null; area?: string | null }) =>
+    request<WalkPhoto>(`/api/walks/${encodeURIComponent(walkId)}/photos/${encodeURIComponent(photoId)}`, {
+      method: "PATCH",
+      headers: walkHeaders(),
+      body: JSON.stringify(change),
+    }),
+  deletePhoto: (walkId: string, photoId: string) =>
+    request<{ deleted: true }>(`/api/walks/${encodeURIComponent(walkId)}/photos/${encodeURIComponent(photoId)}`, {
+      method: "DELETE",
+      headers: walkHeaders(),
+    }),
+
+  // Proposals, for the architect. They take the walk token like the walks they are made from.
+  generateProposal: (walkId: string, signal?: AbortSignal) =>
+    request<Proposal>(`/api/walks/${encodeURIComponent(walkId)}/proposals`, {
+      method: "POST",
+      headers: walkHeaders(),
+      body: "{}",
+      signal,
+    }),
+  proposals: (signal?: AbortSignal) =>
+    request<ProposalSummary[]>("/api/proposals", { headers: walkHeaders(), signal }),
+  proposal: (id: string, signal?: AbortSignal) =>
+    request<Proposal>(`/api/proposals/${encodeURIComponent(id)}`, { headers: walkHeaders(), signal }),
+  saveProposal: (id: string, edit: ProposalEdit, signal?: AbortSignal) =>
+    request<Proposal>(`/api/proposals/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      headers: walkHeaders(),
+      body: JSON.stringify(edit),
+      signal,
+    }),
+  setProposalStatus: (id: string, status: ProposalStatus) =>
+    request<Proposal>(`/api/proposals/${encodeURIComponent(id)}/status`, {
+      method: "POST",
+      headers: walkHeaders(),
+      body: JSON.stringify({ status }),
+    }),
+  deleteProposal: (id: string) =>
+    request<{ deleted: true }>(`/api/proposals/${encodeURIComponent(id)}`, { method: "DELETE", headers: walkHeaders() }),
+
+  // The client's side: no walk token, the share token in the link is the key.
+  clientProposal: (token: string, signal?: AbortSignal) =>
+    request<ClientProposal>(`/api/p/${encodeURIComponent(token)}`, { signal }),
+  acceptProposal: (token: string, name: string) =>
+    request<ClientProposal>(`/api/p/${encodeURIComponent(token)}/accept`, {
+      method: "POST",
+      body: JSON.stringify({ name }),
+    }),
+
+  // The walk guide for a pasted walkthrough, without a walk behind it.
+  guidePreview: (transcript: string, signal?: AbortSignal) =>
+    request<{ guide: WalkGuide }>("/api/guide", {
+      method: "POST",
+      body: JSON.stringify({ transcript }),
+      signal,
+    }),
 };
+
+/** The client's copy of a photo: an ordinary URL, because the share token is in it. */
+export const clientPhotoUrl = (token: string, photoId: string) =>
+  `/api/p/${encodeURIComponent(token)}/photos/${encodeURIComponent(photoId)}`;
+
+/** Like request, for an answer that is a file rather than JSON. */
+async function requestBlob(path: string, init?: RequestInit): Promise<Blob> {
+  let res: Response;
+  try {
+    res = await fetch(path, init);
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") throw err;
+    throw new ApiError(0, UNREACHABLE_MESSAGE, undefined, true);
+  }
+  if (!res.ok) {
+    const err = (await res.json().catch(() => null)) as { error?: string } | null;
+    if (err?.error) throw new ApiError(res.status, err.error);
+    if (res.status >= 500) throw new ApiError(res.status, UNREACHABLE_MESSAGE, undefined, true);
+    throw new ApiError(res.status, `The server refused the request (${res.status}).`);
+  }
+  return res.blob();
+}
+
+// Walk photos: taken on the phone during the walk (or added here), each tied to an area.
+
+export interface WalkPhoto {
+  id: string;
+  key: string;
+  /** Epoch ms the photo was taken. */
+  takenAt: number;
+  receivedAt: number;
+  source: "phone" | "web";
+  contentType: "image/jpeg" | "image/png" | "image/webp";
+  bytes: number;
+  caption: string | null;
+  /** Name of the site model area the photo shows; null until it is known. */
+  area: string | null;
+  /** "auto" when Groundwork matched it from what was being said; "architect" once set by hand. */
+  areaSource: "auto" | "architect" | null;
+  /** What the architect was saying when the photo was taken, once that is transcribed. */
+  spokenContext: string | null;
+  /** The walk guide's section and photo prompt this photo answers; null for a free photo. */
+  sectionId: string | null;
+  promptId: string | null;
+}
+
+// Proposals: generated from a walk, reviewed by the architect, sent to the client. The shapes
+// mirror apps/api/src/proposals/types.ts; the API's zod schemas decide what may be saved.
+
+export type ProposalStatus = "draft" | "pending" | "won" | "lost";
+export type LineCategory = ChangeCategory;
+
+export interface ProposalLine {
+  id: string;
+  kind: "material" | "labor" | "custom";
+  category: LineCategory;
+  partNumber: string | null;
+  description: string;
+  quantity: number | null;
+  unit: string | null;
+  /** Dollars per unit to the client; null until known. */
+  unitPrice: number | null;
+  priceSource: "catalog" | "labor_rate" | "architect" | null;
+  /** How the quantity was arrived at. Architect only. */
+  basis: string | null;
+  /** What to check before sending. Architect only. */
+  toConfirm: string | null;
+}
+
+export interface ProposalSection {
+  id: string;
+  area: string;
+  summary: string;
+  photoIds: string[];
+  lines: ProposalLine[];
+}
+
+export interface ProposalEdit {
+  title: string;
+  client: { name: string; email: string; address: string };
+  intro: string;
+  sections: ProposalSection[];
+  /** Sales tax on material lines as a fraction; null for none. */
+  taxRate: number | null;
+  terms: string;
+  openQuestions: OpenQuestion[];
+}
+
+export interface ProposalTotals {
+  sections: Record<string, number>;
+  materials: number;
+  labor: number;
+  other: number;
+  subtotal: number;
+  tax: number;
+  total: number;
+  /** Lines left out of the sums for want of a quantity or a price. */
+  unpriced: number;
+}
+
+export interface Proposal extends ProposalEdit {
+  id: string;
+  walkId: string;
+  status: ProposalStatus;
+  shareToken: string;
+  createdAt: number;
+  updatedAt: number;
+  sentAt: number | null;
+  decidedAt: number | null;
+  decidedBy: "client" | "architect" | null;
+  acceptedName: string | null;
+  generatedBy: { provider: string; model: string; latencyMs: number } | null;
+  totals: ProposalTotals;
+  /** The walk's photos, so the review screen can offer the ones not yet in a section. */
+  photos: WalkPhoto[];
+}
+
+export interface ProposalSummary {
+  id: string;
+  walkId: string;
+  title: string;
+  clientName: string;
+  status: ProposalStatus;
+  total: number;
+  createdAt: number;
+  updatedAt: number;
+  sentAt: number | null;
+  decidedAt: number | null;
+}
+
+/** What the client sees: no part numbers, cost basis, notes to self or open questions. */
+export interface ClientProposal {
+  title: string;
+  client: { name: string; address: string };
+  intro: string;
+  status: Exclude<ProposalStatus, "draft">;
+  sentAt: number | null;
+  decidedAt: number | null;
+  decidedBy: "client" | "architect" | null;
+  acceptedName: string | null;
+  sections: {
+    id: string;
+    area: string;
+    summary: string;
+    photos: { id: string; caption: string | null }[];
+    lines: { id: string; description: string; quantity: number | null; unit: string | null; unitPrice: number | null; amount: number | null }[];
+    subtotal: number;
+  }[];
+  totals: Pick<ProposalTotals, "subtotal" | "tax" | "total">;
+  taxRate: number | null;
+  terms: string;
+}
+
+// The walk guide: what kind of job this walk is, and section by section what to photograph,
+// measure and ask. It is rewritten after each recording; sections keep their ids and order.
+
+export interface GuidePhoto {
+  /** Unique within its section, and stable. */
+  id: string;
+  /** What to photograph. */
+  prompt: string;
+  /** What the photo is for. */
+  reason: string | null;
+}
+
+export interface GuideSection {
+  /** Never changes once issued for a walk. */
+  id: string;
+  title: string;
+  /** "heard" when the architect talked about it; "suggested" when this kind of job usually needs it. */
+  source: "heard" | "suggested";
+  /** Why the job needs a suggested section; null for a heard one. */
+  why: string | null;
+  photos: GuidePhoto[];
+  /** Things to measure or ask while standing there. */
+  ask: string[];
+}
+
+export interface WalkGuide {
+  /** "Backyard remodel", "New front yard". */
+  projectType: string;
+  /** One sentence on what this walk is about. */
+  headline: string;
+  /** "rules" when it was derived from the site model because the language model call failed. */
+  basis: "model" | "rules";
+  /** Epoch milliseconds. */
+  updatedAt: number;
+  /** False while newer transcripts exist than the ones this guide was written from. */
+  current: boolean;
+  sections: GuideSection[];
+}

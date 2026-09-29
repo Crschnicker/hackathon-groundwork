@@ -13,6 +13,8 @@ enum WalkSettings {
 
     static let defaultCutSeconds = 90
     static let minimumCutSeconds = 15
+    /// The server refuses a walk that asks for anything longer.
+    static let maximumCutSeconds = 3600
 
     private static func plist(_ key: String) -> String {
         let value = (Bundle.main.object(forInfoDictionaryKey: key) as? String) ?? ""
@@ -32,9 +34,26 @@ enum WalkSettings {
             var url = stored(Keys.apiURL) ?? plist("GroundworkApiURL")
             while url.hasSuffix("/") { url.removeLast() }
             if url.hasSuffix("/api") { url.removeLast(4) }
+            // A bare host name typed into the field means the tunnel, which is https.
+            if !url.isEmpty, !url.contains("://") { url = "https://" + url }
             return url
         }
         set { UserDefaults.standard.set(newValue, forKey: Keys.apiURL) }
+    }
+
+    /// The host name in the address; nil when no address is set or it is not a web address.
+    static var apiHost: String? {
+        guard let components = URLComponents(string: apiURL),
+              let scheme = components.scheme?.lowercased(), scheme == "http" || scheme == "https",
+              let host = components.host, !host.isEmpty else { return nil }
+        return host
+    }
+
+    /// The walk's page in the web app. Only right when the address is the web app's own
+    /// (the tunnel or the web address), because the API port serves no pages.
+    static func webURL(forWalk walkId: String) -> URL? {
+        guard apiHost != nil else { return nil }
+        return URL(string: apiURL + "/walks/" + walkId)
     }
 
     static var apiToken: String {
@@ -46,7 +65,7 @@ enum WalkSettings {
         get {
             let saved = UserDefaults.standard.integer(forKey: Keys.cutSeconds)
             let value = saved > 0 ? saved : (Int(plist("GroundworkCutSeconds")) ?? defaultCutSeconds)
-            return max(minimumCutSeconds, value)
+            return min(maximumCutSeconds, max(minimumCutSeconds, value))
         }
         set { UserDefaults.standard.set(newValue, forKey: Keys.cutSeconds) }
     }
@@ -56,6 +75,8 @@ enum WalkBackendError: LocalizedError {
     case notConfigured
     case badResponse(Int, String)
     case unreadable(String)
+    /// The Plaud token in use names no user, so the server cannot be asked for a new one.
+    case noPlaudUser
 
     var errorDescription: String? {
         switch self {
@@ -65,6 +86,8 @@ enum WalkBackendError: LocalizedError {
             return "Server answered \(status): \(body)"
         case .unreadable(let what):
             return "Could not read \(what) from the server's answer."
+        case .noPlaudUser:
+            return "Could not read the user in the current Plaud token."
         }
     }
 }
@@ -86,15 +109,43 @@ struct WalkProgress {
 final class WalkBackend {
 
     static let shared = WalkBackend()
-    private init() {}
 
-    private let session: URLSession = {
+    /// Called on the main queue when a recording is being held back because the phone has no
+    /// connection. The recording is sent by itself once the connection returns.
+    var onWaitingForConnection: (() -> Void)?
+
+    private final class UploadWatcher: NSObject, URLSessionTaskDelegate {
+        var waiting: (() -> Void)?
+
+        func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+            DispatchQueue.main.async { [weak self] in self?.waiting?() }
+        }
+    }
+
+    private let uploadWatcher = UploadWatcher()
+
+    /// Short calls. They fail quickly, so the screen can say what is wrong instead of waiting.
+    private let quickSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 20
+        config.timeoutIntervalForResource = 40
+        config.waitsForConnectivity = false
+        return URLSession(configuration: config)
+    }()
+
+    /// Recordings. A walk passes through places with no signal, so these wait for the
+    /// connection to come back before giving up.
+    private lazy var uploadSession: URLSession = {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 60
         config.timeoutIntervalForResource = 300
         config.waitsForConnectivity = true
-        return URLSession(configuration: config)
+        return URLSession(configuration: config, delegate: self.uploadWatcher, delegateQueue: nil)
     }()
+
+    private init() {
+        uploadWatcher.waiting = { [weak self] in self?.onWaitingForConnection?() }
+    }
 
     private func request(_ method: String, _ path: String, query: [URLQueryItem] = []) throws -> URLRequest {
         let base = WalkSettings.apiURL
@@ -134,11 +185,11 @@ final class WalkBackend {
             DispatchQueue.main.async { completion(result) }
         }
         if let file = file {
-            session.uploadTask(with: req, fromFile: file, completionHandler: handler).resume()
+            uploadSession.uploadTask(with: req, fromFile: file, completionHandler: handler).resume()
         } else {
             var req = req
             req.httpBody = body
-            session.dataTask(with: req, completionHandler: handler).resume()
+            quickSession.dataTask(with: req, completionHandler: handler).resume()
         }
     }
 
@@ -223,7 +274,7 @@ final class WalkBackend {
     /// a day. This fetches a fresh one for the same user and hands it to the SDK.
     func refreshPlaudToken(completion: @escaping (Result<Date, Error>) -> Void) {
         guard let current = JwtUtils.parse(DeviceManager.shared.userAccessToken) else {
-            completion(.failure(WalkBackendError.unreadable("the user in the current Plaud token")))
+            completion(.failure(WalkBackendError.noPlaudUser))
             return
         }
         do {
@@ -249,5 +300,78 @@ final class WalkBackend {
     var plaudTokenExpiry: Date? {
         guard let info = JwtUtils.parse(DeviceManager.shared.userAccessToken), info.expSeconds > 0 else { return nil }
         return Date(timeIntervalSince1970: info.expSeconds)
+    }
+
+    // MARK: - Plain words for failures
+
+    /// What went wrong, as one plain sentence for the screen. It says what happened; the caller
+    /// adds what that means for the walk. The raw error text belongs in the log.
+    static func plainReason(for error: Error) -> String {
+        if let backendError = error as? WalkBackendError {
+            switch backendError {
+            case .notConfigured:
+                return "The server address is not set, or is not a web address."
+            case .noPlaudUser:
+                return "This build has no Plaud sign-in that can be read."
+            case .unreadable:
+                return "The server's answer could not be read. The address may belong to something other than Groundwork."
+            case .badResponse(let status, let body):
+                if status == 503, body.contains("Plaud") {
+                    return "The server is missing its Plaud keys, so it cannot transcribe."
+                }
+                switch status {
+                case 200...299:
+                    return "The server's answer could not be read. The address may belong to something other than Groundwork."
+                case 401, 403:
+                    return "The server did not accept the server token."
+                case 404:
+                    return "The server did not find what was asked for. The server address may be wrong."
+                case 413:
+                    return "The recording is too large for the server."
+                case 502, 503, 504, 530:
+                    return "Nothing is answering behind the server address."
+                case 500...599:
+                    return "The server had a problem of its own."
+                default:
+                    return "The server did not accept the request."
+                }
+            }
+        }
+        let nsError = error as NSError
+        guard nsError.domain == NSURLErrorDomain else { return "The server could not be reached." }
+        switch nsError.code {
+        case NSURLErrorNotConnectedToInternet, NSURLErrorNetworkConnectionLost, NSURLErrorDataNotAllowed,
+             NSURLErrorInternationalRoamingOff, NSURLErrorCallIsActive:
+            return "The phone has no connection to the internet."
+        case NSURLErrorTimedOut:
+            return "The server took too long to answer."
+        case NSURLErrorCannotFindHost, NSURLErrorDNSLookupFailed, NSURLErrorCannotConnectToHost:
+            return "Nothing answers at the server address. If the tunnel was restarted, its address has changed."
+        case NSURLErrorSecureConnectionFailed, NSURLErrorServerCertificateUntrusted,
+             NSURLErrorServerCertificateHasBadDate, NSURLErrorServerCertificateNotYetValid,
+             NSURLErrorServerCertificateHasUnknownRoot, NSURLErrorAppTransportSecurityRequiresSecureConnection:
+            return "A secure connection to the server could not be made. The address should start with https."
+        case NSURLErrorBadURL, NSURLErrorUnsupportedURL:
+            return "The server address is not a web address."
+        default:
+            return "The server could not be reached."
+        }
+    }
+
+    /// False when sending the same thing again cannot succeed until a setting is changed.
+    static func isWorthRetrying(_ error: Error) -> Bool {
+        if let backendError = error as? WalkBackendError {
+            switch backendError {
+            case .notConfigured, .unreadable, .noPlaudUser:
+                return false
+            case .badResponse(let status, _):
+                return status == 408 || status == 429 || status >= 500
+            }
+        }
+        let nsError = error as NSError
+        if nsError.domain == NSURLErrorDomain {
+            return nsError.code != NSURLErrorBadURL && nsError.code != NSURLErrorUnsupportedURL
+        }
+        return true
     }
 }

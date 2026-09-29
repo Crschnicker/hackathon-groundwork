@@ -5,6 +5,8 @@ import type { ProviderName } from '../llm/providers.ts';
 import { logger } from '../logger.ts';
 import { getTranscription, isTerminalFailure, submitTranscription, uploadAudio } from '../plaud/client.ts';
 import { extractSiteModel } from '../site-model/extract.ts';
+import { scheduleGuide } from './guide.ts';
+import { schedulePhotoMapping } from './photos.ts';
 import { listWalks, save, siteModelCovers, stitchTranscript, type SiteModelPass, type Walk, type WalkChunk } from './store.ts';
 
 const POLL_INTERVAL_MS = 5_000;
@@ -152,12 +154,16 @@ export function scheduleExtraction(walk: Walk): void {
             { walkId: walk.id, pass, provider: meta.provider, chunks: chunkKeys.length, areas: siteModel.areas.length, ms: meta.latencyMs },
             'Walk site model updated',
           );
+          // The areas may have changed; photos are matched to them again (skipped when nothing did).
+          schedulePhotoMapping(walk);
         } catch (err) {
           // Keep the previous model: a stale one is more use to the architect than none.
           walk.siteModelError = describe(err);
           logger.error({ walkId: walk.id, err: walk.siteModelError }, 'Walk site model extraction failed');
         }
         save();
+        // What to photograph and ask follows from what has been heard so far.
+        scheduleGuide(walk);
       } while (state.dirty);
     } finally {
       extracting.delete(walk.id);
@@ -177,5 +183,7 @@ export function resumeWalks(): void {
     }
     // A restart can interrupt the final extraction; walks from before there was one are left alone.
     if (walk.status === 'finished' && walk.siteModelPass !== undefined) extractIfComplete(walk);
+    // Likewise a guide that was being written; walks from before there were guides are left alone.
+    if (walk.guideChunkKeys !== undefined) scheduleGuide(walk);
   }
 }

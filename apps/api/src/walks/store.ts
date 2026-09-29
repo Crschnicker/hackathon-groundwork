@@ -10,6 +10,7 @@ import type { ChatResult } from '../llm/chat.ts';
 import { logger } from '../logger.ts';
 import type { AudioFileType, TranscriptionSegment } from '../plaud/client.ts';
 import type { SiteModel } from '../site-model/schema.ts';
+import type { WalkGuide } from './guide.ts';
 
 export const DEFAULT_CUT_SECONDS = 90;
 
@@ -60,9 +61,52 @@ export interface Walk {
    * transcript. Missing on walks saved before there was a final pass.
    */
   siteModelPass?: SiteModelPass | null;
+  /** Site photos taken on the walk, oldest first. Missing on walks saved before there were photos. */
+  photos?: WalkPhoto[];
+  /** The walk guide (see guide.ts). Missing on walks saved before there was one. */
+  guide?: WalkGuide | null;
+  /** Keys of the chunks whose transcripts the current guide was written from. */
+  guideChunkKeys?: string[];
 }
 
-const file = path.join(repoRoot, '.groundwork', 'walks.json');
+export type PhotoContentType = 'image/jpeg' | 'image/png' | 'image/webp';
+
+/**
+ * A photo taken on the walk. The image itself is a file in the state folder (see photos.ts);
+ * this is what is known about it. `area` ties it to one of the site model's areas by name.
+ */
+export interface WalkPhoto {
+  id: string;
+  /** Chosen by the sender; re-sending the same key returns the photo already stored. */
+  key: string;
+  /** Epoch ms the photo was taken, by the sender's clock. Lines it up with the recordings. */
+  takenAt: number;
+  receivedAt: number;
+  source: 'phone' | 'web';
+  contentType: PhotoContentType;
+  bytes: number;
+  /** A short description, written by the mapper or the architect. */
+  caption: string | null;
+  /** Name of the site model area the photo shows, or null when it is not known yet. */
+  area: string | null;
+  /** Who set `area` and `caption`: the mapper, or the architect (whose choice the mapper keeps). */
+  areaSource: 'auto' | 'architect' | null;
+  /** What the architect was saying around the moment the photo was taken, when that is transcribed. */
+  spokenContext: string | null;
+  /** The walk guide's section and photo prompt this photo answers (see guide.ts); null for a free photo. */
+  sectionId: string | null;
+  promptId: string | null;
+}
+
+/**
+ * Where walks, photos and proposals are kept. GROUNDWORK_STATE_DIR points a second API (a test
+ * run) at its own copy so it cannot overwrite the dev server's walks.
+ */
+export const stateDir = process.env.GROUNDWORK_STATE_DIR
+  ? path.resolve(process.env.GROUNDWORK_STATE_DIR)
+  : path.join(repoRoot, '.groundwork');
+
+const file = path.join(stateDir, 'walks.json');
 const walks = new Map<string, Walk>();
 
 function load(): void {
@@ -110,6 +154,7 @@ export function createWalk(init: Pick<Walk, 'userId' | 'cutSeconds' | 'language'
     siteModelChunkKeys: [],
     siteModelUpdatedAt: null,
     siteModelPass: null,
+    photos: [],
   };
   walks.set(walk.id, walk);
   save();

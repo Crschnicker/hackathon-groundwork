@@ -131,12 +131,12 @@ function StatusRow({ walk, now }: { walk: Walk; now: number }) {
 
   return (
     <div className="flex flex-wrap items-baseline gap-x-8 gap-y-1">
-      <p className="flex flex-wrap items-baseline gap-x-3 text-2xl font-semibold tracking-tight text-ink">
-        <span className="inline-flex items-center gap-2.5">
-          {live && <span aria-hidden className="live-dot h-3 w-3 rounded-full bg-danger" />}
+      <p className="flex items-center gap-2.5 text-2xl font-semibold tracking-tight text-ink">
+        {live && <span aria-hidden className="live-dot h-3 w-3 shrink-0 rounded-full bg-danger" />}
+        <span className="flex flex-wrap items-baseline gap-x-3">
           {word}
+          <span className={`font-normal text-ink-2 ${live || walk.settled ? "tabular-nums" : "text-lg"}`}>{detail}</span>
         </span>
-        <span className={`font-normal text-ink-2 ${live || walk.settled ? "tabular-nums" : "text-lg"}`}>{detail}</span>
       </p>
       <p className="text-lg tabular-nums text-ink-2">
         {total === 0
@@ -247,7 +247,7 @@ function TranscriptSection({ walk, sample }: { walk: Walk; sample: boolean }) {
   return (
     <section
       aria-labelledby={headingId}
-      className="flex min-w-0 flex-col gap-4 lg:sticky lg:top-6 lg:max-h-[calc(100dvh-3rem)] lg:overflow-y-auto"
+      className="flex min-w-0 flex-col gap-4 lg:sticky lg:top-5 lg:-m-1 lg:max-h-[calc(100dvh-2.5rem)] lg:overflow-y-auto lg:p-1"
     >
       <h2 id={headingId} className="text-xl font-semibold tracking-tight text-ink">
         Walkthrough

@@ -19,6 +19,7 @@
     "load": "npm run load -w packages/graph --",
     "verify": "npm run verify -w packages/graph --",
     "walk:simulate": "npm run walk:simulate -w apps/api --",
+    "guide:preview": "npm run guide:preview -w apps/api --",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present"
   },

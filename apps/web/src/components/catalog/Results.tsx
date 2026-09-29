@@ -81,9 +81,9 @@ function ResultsTable({ rows, openPart, idBase, busy, onToggle, onClose }: Resul
         <colgroup>
           <col />
           <col className="w-24 lg:w-40" />
-          <col className="w-14 lg:w-16" />
+          <col className="w-16" />
           <col className="w-24 lg:w-28" />
-          <col className="w-40" />
+          <col className="w-32 lg:w-40" />
           <col className="w-32 lg:w-36" />
         </colgroup>
         <thead>
@@ -119,7 +119,7 @@ function ResultsTable({ rows, openPart, idBase, busy, onToggle, onClose }: Resul
                     <span className="block break-all font-mono text-xs text-ink-2">{row.partNumber}</span>
                   </th>
                   <td className="break-words px-3 py-2 text-ink-2">{row.type ?? <Missing>not given</Missing>}</td>
-                  <td className="px-3 py-2 text-ink-2">{row.unit ?? <Missing>not given</Missing>}</td>
+                  <td className="px-3 py-2 text-ink-2">{row.unit ?? <Missing>none</Missing>}</td>
                   <td className="whitespace-nowrap px-3 py-2 text-right tabular-nums text-ink">
                     <Price value={row.cost} />
                   </td>

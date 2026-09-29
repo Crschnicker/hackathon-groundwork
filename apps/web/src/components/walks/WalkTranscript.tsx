@@ -80,14 +80,16 @@ export function WalkTranscript({
   }
 
   return (
-    <div className="relative flex min-h-0 flex-col">
+    <div className="relative">
+      {/* On a wide screen the box is kept short enough for its last words, and the buttons
+          under it, to be in view before the page has been scrolled. */}
       <div
         ref={box}
         onScroll={onScroll}
         role="region"
         aria-labelledby={labelledBy}
         tabIndex={0}
-        className="max-h-[26rem] min-h-24 overflow-y-auto overscroll-contain rounded-lg border border-line bg-surface px-4 py-4 focus-visible:rounded-lg lg:max-h-none lg:min-h-40 lg:flex-1"
+        className="max-h-[26rem] min-h-24 overflow-y-auto overscroll-contain rounded-lg border border-line bg-surface px-4 py-4 focus-visible:rounded-lg lg:max-h-[max(14rem,calc(100dvh-32rem))]"
       >
         {lines.length === 0 ? (
           <p className="text-sm text-ink-2">{empty}</p>

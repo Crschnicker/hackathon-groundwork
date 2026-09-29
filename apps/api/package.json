@@ -8,6 +8,7 @@
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
     "walk:simulate": "tsx scripts/simulate-walk.ts",
+    "guide:preview": "tsx scripts/guide-preview.ts",
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {

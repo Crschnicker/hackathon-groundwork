@@ -50,10 +50,33 @@ export function requireWalkToken(req: Request, _res: Response, next: NextFunctio
 }
 walksRouter.use('/walks', requireWalkToken);
 
+const MIN_QUIET_MS = 10 * 60_000;
+
+/**
+ * A recorder that is closed, loses its connection or is stopped before its first recording
+ * never says the walk is over. A walk that has heard nothing from its recorder for ten minutes,
+ * or four recordings' worth if that is longer, is finished here as of the last thing it sent.
+ * Recordings that still arrive afterwards are accepted as usual.
+ */
+function finishIfQuiet(walk: Walk): Walk {
+  if (walk.status !== 'active') return walk;
+  const last = Math.max(
+    walk.createdAt,
+    ...walk.chunks.map((c) => c.timings.receivedAt),
+    ...(walk.photos ?? []).map((p) => p.receivedAt),
+  );
+  if (Date.now() - last < Math.max(MIN_QUIET_MS, walk.cutSeconds * 4_000)) return walk;
+  walk.status = 'finished';
+  walk.finishedAt = last;
+  save();
+  extractIfComplete(walk);
+  return walk;
+}
+
 function requireWalk(id: string | undefined): Walk {
   const walk = id ? getWalk(id) : undefined;
   if (!walk) throw new HttpError(404, 'Walk not found');
-  return walk;
+  return finishIfQuiet(walk);
 }
 
 function chunkView(chunk: WalkChunk, withSegments: boolean) {
@@ -124,7 +147,7 @@ walksRouter.post('/walks', (req, res) => {
 
 walksRouter.get('/walks', (_req, res) => {
   res.json(
-    listWalks().map((walk) => ({
+    listWalks().map(finishIfQuiet).map((walk) => ({
       id: walk.id,
       userId: walk.userId,
       status: walk.status,

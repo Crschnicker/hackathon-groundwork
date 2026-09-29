@@ -339,6 +339,15 @@ final class WalkCutManager {
                 if $0.endedAt == nil, $0.startedAt != nil { $0.endedAt = Date() }
                 $0.message = self.message("Stopping the recording.", .progress)
             }
+            // The server hears that the walk is over now, not once the last recording has come
+            // off the recorder, which can take minutes. It accepts recordings after this.
+            if let walkId = state.walkId {
+                WalkBackend.shared.finishWalk(walkId: walkId) { [weak self] result in
+                    if case .failure(let error) = result {
+                        self?.log("Could not tell the server the walk has stopped: \(error.localizedDescription)")
+                    }
+                }
+            }
             if RecordingManager.shared.stateSubject.value.isActive {
                 sendStop()
             } else if startInFlight {

@@ -35,6 +35,8 @@ function arrivals(before: Walk, after: Walk): string {
 }
 
 /** Holds the walk on screen and works out what to announce each time a newer version arrives. */
+const SETTLED_REFRESH_MS = 15_000;
+
 function useWalk() {
   const [walk, setWalk] = useState<Walk | null>(null);
   const [now, setNow] = useState(0);
@@ -415,9 +417,11 @@ function ServerWalk({ id }: { id: string }) {
     [id, accept],
   );
 
+  // A finished walk is still checked, less often: recordings can reach the server after the
+  // walk has ended, when the recorder hands them over late.
   usePolling(load, {
-    everyMs: REFRESH_MS,
-    active: problem !== "token" && problem !== "missing" && !walk?.settled,
+    everyMs: walk?.settled ? SETTLED_REFRESH_MS : REFRESH_MS,
+    active: problem !== "token" && problem !== "missing",
     reloadKey: `${recoveries}:${reloads}`,
   });
 

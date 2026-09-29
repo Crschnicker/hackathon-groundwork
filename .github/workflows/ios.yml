@@ -78,6 +78,11 @@ jobs:
       - name: Apply the Groundwork overlay
         run: node apps/mobile/ios/apply-overlay.mjs plaud-sdk
 
+      # The release lane only runs in the TestFlight job, after signing. A typo in it should
+      # be found here instead.
+      - name: Check the release lane parses
+        run: ruby -c apps/mobile/ios/fastlane/Fastfile
+
       - name: Generate the Xcode project
         working-directory: plaud-sdk/ios
         run: |

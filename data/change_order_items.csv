@@ -1,0 +1,77 @@
+id,change_order_id,action,category,factor_code,part_number,description,quantity,cost,sale_price,labor_hours,line_ext_cost,tax,additional_description,is_separator,unit,type,size,original_item_id
+83,2,add,irrigation,525,0054-515,AMPELOPSIS VEITCHII 15G,100,35,35,1.25,3806.25,306.25,,false,EA,SH,15G,
+166,3,modify,irrigation,,>>>,MODELS IRRIGATION,1,0,,0,0,0,,false,,,,19800462
+167,3,modify,irrigation,449,9301-235,POC HOMEOWNER W/O PRV,3,15,15,1,0,0,,false,,,,19800463
+168,3,modify,irrigation,380.6,22-1431,"HUNTER PGV 100G 1""",3,22,22,1,0,0,,false,,,,19800464
+169,3,modify,irrigation,999,13-1627,"WILKINS NR3-DU 1.25"" PRV",3,550,550,1,0,0,WILKINS NR3XL,false,,,,19800465
+170,3,modify,irrigation,999,28-1178,"NIBCO 4660T-1.25""",3,11,11,1,0,0,,false,,,,19800466
+171,3,modify,irrigation,132,13-2100,"ML 1.25"" SCH 40 PVC",160,1.45,1.45,0.04,0,0,,false,,,,19800467
+172,3,modify,irrigation,390,22-1441,"HUNTER PGV-ASV-CC 075 3/4"" ANTI-SIPHON",4,17,17,0.62,0,0,,false,,,,19800468
+173,3,modify,irrigation,390,22-1420,HUNTER ACZ-075-40 DRIP ZONE KIT,5,48,48,0.62,0,0,,false,,,,19800469
+174,3,modify,irrigation,None,20-3005,"UNION 3/4"" TT SCH 80 PVC",5,6,6,0,0,0,,false,,,,19800470
+175,3,modify,irrigation,471,25-1490,HUNTER P2C400 outdoor,3,170,170,2,0,0,,false,,,,19800471
+176,3,modify,irrigation,637,25-1518,HUNTER PCM-300 3 STA. MODULE,2,48,48,0.1,0,0,,false,,,,19800472
+177,3,modify,irrigation,638.1,22-1508,HUNTER WR-CLIK (wireless),3,95,95,0.5,0,0,,false,,,,19800473
+178,3,modify,irrigation,430,13-1174,18-9 WIRE FOR 8 STATION CONTROLLERS,200,0.7,0.7,0.003,0,0,,false,,,,19800474
+179,3,modify,irrigation,213,22-1108,HUNTER PROS-04,30,4,4,0.12,0,0,,false,,,,19800475
+180,3,modify,irrigation,None,22-1087,HUNTER PROSPRAY NOZZLE,-30,1.2,1.2,0,0,0,,false,,,,19800476
+181,3,modify,irrigation,999,10-1185,HUNTER MSBN-25 Q BUBBLER NOZ.,30,2,2,0,0,0,,false,,,,19800477
+182,3,modify,irrigation,110,12-2180,"LAT 3/4"" SCH 40  PVC",300,0.75,0.75,0.0428,0,0,,false,,,,19800478
+183,3,modify,irrigation,638.5,13-0705,HUNTER HDL-09-18500-CV (500,1,180,180,7,0,0,,false,,,,19800479
+184,3,modify,irrigation,110,12-2180,"LAT 3/4"" SCH 40  PVC",300,0.75,0.75,0.0428,0,0,,false,,,,19800480
+185,3,modify,irrigation,None,20-2260,3/4 x 3/4 x 1/2 TEE SST PVC,200,1.25,1.25,0,0,0,,false,,,,19800481
+186,3,modify,irrigation,None,13-1198,"HUNTER PLD BARB FITTING (TEE,ELL,COUP)",200,0.35,0.35,0,0,0,,false,,,,19800482
+187,3,modify,irrigation,402.3,25-2101,HUNTER PLD-BV SHUT OFF VALVE,36,2,2,0.75,0,0,,false,,,,19800483
+188,3,modify,irrigation,402.3,25-2101,HUNTER PLD-AVR AIR RELIEF,5,7,7,0.75,0,0,,false,,,,19800484
+189,3,modify,irrigation,110,12-2180,"LAT 3/4"" SCH 40  PVC",500,0.75,0.75,0.0428,0,0,,false,,,,19800485
+190,3,modify,irrigation,639.1,0432-605,BRICK PAVER,94,1.4,1.4,0.005,0,0,,false,,,,19800486
+191,3,modify,irrigation,641,33-1304,FILTER FABRIC 4oz (Mirafi 140n),100,0.2,0.2,0.003,0,0,,false,,,,19800487
+192,3,modify,irrigation,639.3,7000-100,"WIRE CLOTH 19-GAUGE 1/2""MESH GALV.",20,1,1,0.025,0,0,,false,,,,19800488
+193,3,modify,irrigation,185,30-2013,"SLV 6"" CL 200 PVC",40,14.8,14.8,0.04,0,0,,false,,,,19800489
+194,3,modify,irrigation,172,30-2015,"SLV 3"" CL 200 PVC PIPE",20,3.4,3.4,0.04,0,0,,false,,,,19800490
+195,3,modify,irrigation,154,13-2670,"SLV 2"" SCH 40 PVC",20,2.3,2.3,0.04,0,0,,false,,,,19800491
+196,3,modify,irrigation,None,13-1199,HUNTER PLD-075-TBTEE,36,0.8,0.8,0,0,0,HUNTER PLD FLUSH CAP,false,,,,19800492
+197,3,modify,landscape,,>>>,MODELS PLANTING,1,0,,0,0,0,,false,,,,19800493
+198,3,modify,landscape,534.1,2101-1000,GENERIC MULCH,10,25,25,0.5,0,0,,false,,,,19800494
+199,3,modify,landscape,503.4,0370-248,"ARBUTUS MARINA 48"" MLT",2,1350,1350,6,0,0,,false,,,,19800495
+200,3,modify,landscape,503.4,3920-148,"OLEA SWAN HILL 48"" STD",2,2830,2830,6,0,0,,false,,,,19800496
+201,3,modify,landscape,505.3,1341-136,"CITRUS 36"" STD",2,1000,1000,4.5,0,0,,false,,,,19800497
+202,3,modify,landscape,505.3,1343-036,"CITRUS ""MEYERS IMPROVED"" 36"" STD",2,1000,1000,4.5,0,0,,false,,,,19800498
+203,3,modify,landscape,505.3,3421-136,"MAGNOLIA G. LITTLE GEM 36"" STD",1,480,480,4.5,0,0,,false,,,,19800499
+204,3,modify,landscape,507,2020-424,"FEIJOA SELLOWIANA 24"" STD",1,175,175,2.8,0,0,,false,,,,19800500
+205,3,modify,landscape,507,3110-115,"LAURUS NOBILIS 24"" STD",1,180,180,2.8,0,0,,false,,,,19800501
+206,3,modify,landscape,507,0270-124,"AGONIS FLEXUOSA 24"" STD",3,190,190,2.8,0,0,,false,,,,19800502
+207,3,modify,landscape,507,1150-724,"CERCIS OKLAHOMA 24"" STD",1,190,190,2.8,0,0,,false,,,,19800503
+208,3,modify,landscape,510,4372-415,PODO. ICEE BLUE 15G CLMN,7,140,140,1.01,0,0,,false,,,,19800504
+209,3,modify,landscape,510.3,4375-115,PODOCARPUS M. MAKI 15G CLMN,9,60,60,1.01,0,0,,false,,,,19800505
+210,3,modify,landscape,510,1572-317,CUPRESSUS S. MONSHEL 15G CLMN,7,100,100,1.01,0,0,,false,,,,19800506
+211,3,modify,landscape,510.3,4487-615,PRUNUS C BRIGHT N TIGHT 15G,9,58,58,1.01,0,0,,false,,,,19800507
+212,3,modify,landscape,519,3620-515,MYRTUS COMMUNIS COMP 15G,28,42,42,0.75,0,0,,false,,,,19800508
+213,3,modify,landscape,519,3920-815,OLEA ,13,55,55,0.75,0,0,,false,,,,19800509
+214,3,modify,landscape,519,4826-415,ROSA F. ICEBERG 15G,7,40,40,0.75,0,0,,false,,,,19800510
+215,3,modify,landscape,519,4800-215,LEUCOPHYLLUM ,8,45,45,0.75,0,0,,false,,,,19800511
+216,3,modify,landscape,519,4261-615,PITT. TEN. SILVER SHEEN 15G,25,65,65,0.75,0,0,,false,,,,19800512
+217,3,modify,landscape,520,0391-605,AGAVE ATTENUATA 5G,9,16,16,0.27,0,0,,false,,,,19800513
+218,3,modify,landscape,520,0392-705,AGAVE SHAWII 5G,7,25,25,0.27,0,0,,false,,,,19800514
+219,3,modify,landscape,520,1630-405,DIANELLA LITTLE REV 5G,124,16.5,16.5,0.27,0,0,,false,,,,19800515
+220,3,modify,landscape,520,1630-105,DIANELLA TAS. ,30,18,18,0.27,0,0,,false,,,,19800516
+221,3,modify,landscape,520,2800-910,JUNIPERUS H. BLUE CHIP 5G,21,13,13,0.27,0,0,,false,,,,19800517
+222,3,modify,landscape,520,3100-305,LANTANA M. ALBA 5G,26,10,10,0.27,0,0,,false,,,,19800518
+223,3,modify,landscape,520,3100-565,LANTANA SELLOWIANA 5G,25,10,10,0.27,0,0,,false,,,,19800519
+224,3,modify,landscape,520,4801-005,LEUCOPHYLLUM LAE. LYNN,8,11,11,0.27,0,0,,false,,,,19800520
+225,3,modify,landscape,520,4821-905,ROSA FLR CRPT NOASHNEE 5G (WHITE),24,15,15,0.27,0,0,,false,,,,19800521
+226,3,modify,landscape,520,4900-306,ROSA FLR CRPT NOAMEL 5G (SOFT PINK),17,15,15,0.27,0,0,,false,,,,19800522
+227,3,modify,landscape,520,1052-105,WESTRINGIA FRUITICOSA 5G,31,12.5,12.5,0.27,0,0,,false,,,,19800523
+228,3,modify,landscape,520,3600-005,MUHLENBERGIA LENCA 5G,14,10,10,0.27,0,0,,false,,,,19800524
+229,3,modify,landscape,520,4825-407,SENECIO MANDRALISCAE 5G,10,11,11,0.27,0,0,,false,,,,19800525
+230,3,modify,landscape,520,5168-505,STRELITZIA REGINAE 5G,14,12.5,12.5,0.27,0,0,,false,,,,19800526
+231,3,modify,landscape,528,6038-615,CLYTOSTOMA CALLI 15G  ESP,3,125,125,1.25,0,0,,false,,,,19800527
+232,3,modify,landscape,528,6048-615,HARDENBERGIA VIOLACEA 15G  ESP,3,125,125,1.25,0,0,,false,,,,19800528
+233,3,modify,landscape,528,6060-615,JASMINUM POLYANTHUM 15G ESP,6,125,125,1.25,0,0,,false,,,,19800529
+234,3,modify,landscape,534.1,2101-005,GENERIC MULCH,25,25,25,0.5,0,0,,false,,,,19800530
+235,3,modify,landscape,536,9302-225,FINE RAKE,3655,0,,0.002,0,0,,false,,,,19800531
+236,3,modify,landscape,533,9302-210,SOIL PREP,3655,0,,0.0035,0,0,,false,,,,19800532
+237,3,modify,landscape,None,9302-280,SOIL TEST,1,900,900,0,0,0,,false,,,,19800533
+238,3,modify,landscape,535,9302-220,WEED CONTROL (GRO-N-KILL),400,0,,0.0005,0,0,,false,,,,19800534
+239,3,modify,subcontractor,,2320-004,"ORIGANUM MAJORANA 4"" POTS",1,4,4,0,0,0,,false,EA,,,19800536
+240,3,add,maintenance,999,10-20101,MAINTENANCE 12 MONTH,1,10000,10000,0,10875,875,,false,,,,

@@ -1,0 +1,2072 @@
+id,component_id,name,value,display_order
+719,218,Drains,21593,0
+720,218,Irrigation,161577,0
+721,218,Landscape,519096,0
+722,218,90 Day Maintenance,0,0
+813,238,SF-1 Club Chairs (8),0,0
+814,238,90 Day Maintenance,0,0
+815,238,Landscape,89449,0
+816,238,Irrigation,47615,0
+817,238,Drains,35155,0
+818,239,SF-2 Trash Receptacle (1),0,0
+819,239,90 Day Maintenance,0,0
+820,239,Planting,0,0
+821,239,Irrigation,0,0
+822,239,Drains,0,0
+826,243,"Storm Drain Items 9 to 12, 14, 16, & 19",112041,0
+1035,276,Drains,73734,0
+1036,276,Irrigation,48382,0
+1037,276,Landscape,164670,0
+1038,276,90 Day Maintenance,0,0
+1098,290,Drains,16721,0
+1099,290,Irrigation,58945,0
+1100,290,Landscape,131729,0
+1101,290,90 Day Maintenance,0,0
+1102,291,Drains,19700,0
+1103,291,Irrigation,56500,0
+1104,291,Landscape,122200,0
+1105,291,90 Day Maintenance,2700,0
+1106,291,Picnic table,6000,0
+1107,291,Hot ash,1800,0
+1108,291,Waste Receptacle,14850,0
+1109,292,Drains,2850,0
+1110,292,Planting,11400,0
+1111,292,Tree upsizing,4000,0
+1112,292,SF-1 pots,4500,0
+1113,292,Allowance,2000,0
+1238,326,Irrigation Allowance,7294,0
+1239,326,Landscape,20870,0
+1240,326,90 Day Maintenance,0,0
+1241,326,P-5 Artificial Turf (425 sf),0,0
+1242,326,P-5 Artificial Turf at Concrete Checkboard,0,0
+1243,326,P-6 Metal Edging (128'),0,0
+1248,328,New Landscape Improvements,15500,0
+1328,340,Irrigation,60000,0
+1329,340,Landscape,66500,0
+1330,340,90 Day Maintenance,3300,0
+1355,347,Drains,177755,0
+1356,347,Irrigation,85793,0
+1357,347,Landscape,89661,0
+1358,347,90 Day Maintenance,0,0
+1359,348,Drains,0,0
+1360,348,Irrigation,0,0
+1361,348,Landscape,58086,0
+1362,348,90 Day Maintenance,0,0
+1457,374,Irrigation,52000,0
+1458,374,Landscape,36500,0
+1459,374,90 Day Maintenance,3000,0
+1460,374,Allowance for (5) downspout connections per home,30100,0
+1461,375,Irrigation,74400,0
+1462,375,Landscape,85000,0
+1463,375,90 Day Maintenance,4000,0
+1464,375,Allowance for (5) downspout connections per home,72800,0
+1490,386,Irrigation,43500,0
+1491,386,Landscape,26600,0
+1492,386,90 Day Maintenance,3000,0
+1493,386,Allowance for (5) downspout connections per home,28380,0
+1494,387,Irrigation,68100,0
+1495,387,Landscape,81700,0
+1496,387,90 Day Maintenance,3700,0
+1497,387,Allowance for (5) downspouts per house,68640,0
+1530,400,Irrigation,154850,0
+1531,400,Planting,290600,0
+1532,400,90 Day Maintenance,3000,0
+1533,401,Planting,25500,0
+1534,401,90 Day Maintenance,1200,0
+1535,402,Irrigation,116800,0
+1536,402,Planting,190100,0
+1537,402,90 Day Maintenance,3000,0
+1539,404,Per Attached Bid Form,29200,0
+1577,415,Drains (Selective Items behind the curb),0,0
+1578,415,Irrigation,315402,0
+1579,415,Landscape,1020365,0
+1580,415,90 Day Maintenance,0,0
+1586,417,Drains,12089,0
+1587,417,Irrigation,108635,0
+1588,417,Landscape,105998,0
+1589,417,Artificial Turf,0,0
+1590,417,90 Day Maintenance,0,0
+1591,418,Partial drains,3500,0
+1592,418,Irrigation Allowance,51300,0
+1593,418,Landscape,60900,0
+1594,418,90 Day Maintenance,2100,0
+1648,436,Per Attached Bid Form,65200,0
+1650,438,Per Attached Bid Form,65200,0
+1656,442,Per Attached Bid Form,241750,0
+1670,447,Irrigation,90000,0
+1671,447,Landscape,175000,0
+1672,447,90 Day Maintenance,4500,0
+1676,449,Irrigation,54800,0
+1677,449,Landscape,265400,0
+1678,449,90 Day Maintenance,2700,0
+1703,459,Per Attached Bid Form,653760,0
+1714,464,Irrigation,204742,0
+1715,464,Planting,384481,0
+1716,464,Pot Planting,0,0
+1717,464,90 Day Maintenance,0,0
+1718,465,Irrigation,0,0
+1719,465,Planting,0,0
+1720,465,Item #13 Crushed Misc. Base,0,0
+1721,465,90 Day Maintenance,0,0
+1725,467,Irrigation,0,0
+1726,467,Landscape,33202,0
+1727,467,90 Day Maintenance,0,0
+1806,479,Irrigation,7800,0
+1807,479,Landscape,29100,0
+1808,479,"Living wall, modified as recommended",18100,0
+1809,479,Low voltage lighting,29200,0
+1810,479,Synthetic turf at hardscape joints,2720,0
+1811,479,30 Day Start-up Maintenance,300,0
+1834,486,Drains,35155,0
+1835,486,Irrigation,47615,0
+1836,486,Landscape,89449,0
+1837,486,90 Day Maintenance,0,0
+1838,486,SF-1 Club Chairs (8),0,0
+1839,487,Drains,0,0
+1840,487,Irrigation,0,0
+1841,487,Planting,0,0
+1842,487,90 Day Maintenance,0,0
+1843,487,SF-2 Trash Receptacle (1),0,0
+1844,488,Drains,35155,0
+1845,488,Irrigation,47615,0
+1846,488,Landscape,89449,0
+1847,488,90 Day Maintenance,0,0
+1848,488,SF-1 Club Chairs (8),0,0
+1849,489,Drains,0,0
+1850,489,Irrigation,0,0
+1851,489,Planting,0,0
+1852,489,90 Day Maintenance,0,0
+1853,489,SF-2 Trash Receptacle (1),0,0
+1859,491,Total per attached bid form,0,0
+1885,497,Drains,225600,0
+1886,497,Irrigation,128700,0
+1887,497,Landscape,248200,0
+1888,497,(P-08) Rock Ground Cover,3800,0
+1889,497,90 Day Maintenance,3600,0
+1890,498,Per Attached Bid Form,0,0
+1906,502,Demolition,0,0
+1907,502,Irrigation,5618,0
+1908,502,Planting,30359,0
+1909,502,Pot Painting (6),0,0
+1910,502,Pot Planting (6),0,0
+1911,502,90 Day Maintenance,0,0
+1924,505,Demolition,0,0
+1925,505,Irrigation,5618,0
+1926,505,Planting,30359,0
+1927,505,Pot Painting (6),0,0
+1928,505,Pot Planting (6),0,0
+1929,505,90 Day Maintenance,0,0
+1935,508,Per Attached Bid Form,0,0
+1950,512,Drains,12911,0
+1951,512,Irrigation,44870,1
+1952,512,Landscape,43802,2
+1953,512,90 Day Maintenance,0,3
+1954,513,Drains,220700,0
+1955,513,Irrigation,127000,1
+1956,513,Landscape,243800,2
+1957,513,(P-08) Rock Ground Cover,3800,3
+1958,513,90 Day Maintenance,3600,4
+1969,516,Irrigation,21700,0
+1970,516,Landscape,28200,1
+1971,516,Decorative white gravel,2200,2
+1972,516,Low voltage lighting,22800,3
+1973,516,90 Day Maintenance,1500,4
+2076,521,5165 Example St,6500,0
+2077,521,629 Hartwell Court,6200,0
+2078,521,634 Millard Canyon Rd,5500,0
+2079,521,648 Millard Canyon Rd,8200,0
+2080,521,670 Millard Canyon Rd,5500,0
+2081,521,846 W Heritage Oak Ct,5200,0
+2082,521,3557 Giddings Person 15A429B5 Rd,6200,0
+2083,521,3760 Hollingsworth Rd,5900,0
+2084,521,3869 Lilac Canyon Ln,5200,0
+2085,521,3885 Lilac Canyon Ln,4000,0
+2086,521,3925 Lilac Canyon Ln,4700,0
+2087,521,604 Coate Court,5800,0
+2088,521,610 Brown Court,5500,0
+2089,521,614 Church Canyon Pl,3700,0
+2090,521,620 Millard Canyon Rd,5300,0
+2091,521,629 Hartwell Court,5800,0
+2092,521,664 Millard Canyon Rd,4800,0
+2093,521,809 La Vina Ln,4800,0
+2094,521,838 W Heritage Oak Ct,4800,0
+2095,521,3628 Giddings Person 15A429B5 Rd,5800,0
+2096,521,3654 Giddings Person 15A429B5 Rd,6000,0
+2097,521,3691 Giddings Person 15A429B5 Rd,7200,0
+2098,521,3825 Lilac Canyon Ln,5500,0
+2099,521,3855 Lilac Canyon Ln,5800,0
+2153,531,Irrigation,46646,0
+2154,531,Planting,142196,1
+2155,531,90 Day Maintenance,0,2
+2156,531,AM-11 Backed Bench (6),0,3
+2157,531,PV-07 Decorative Crushed Stone (60 sf),0,4
+2158,531,Prefab Planter Pots (27),0,5
+2159,531,"Soil, Conc. Washed Sand, Vert. Drainage For W-01 & W-02 Planters",0,6
+2160,532,Irrigation,0,0
+2161,532,Planting,0,1
+2162,532,90 Day Maintenance,0,2
+2163,532,Prefab Planter Pots (8),0,3
+2164,532,"Soil, Conc. Washed Sand, Vert. Drainage For W-02 Planters",0,4
+2165,533,Irrigation,0,0
+2166,533,Planting,0,1
+2167,533,90 Day Maintenance,0,2
+2168,533,Prefab Planter Pots (19),0,3
+2169,533,"Soil, Conc. Washed Sand, Vert. Drainage For W-02 Planters",0,4
+2170,534,5165 Example St,6500,0
+2171,534,629 Hartwell Court,6200,1
+2172,534,634 Millard Canyon Rd,5500,2
+2173,534,648 Millard Canyon Rd,8200,3
+2174,534,670 Millard Canyon Rd,5500,4
+2175,534,846 W Heritage Oak Ct,5200,5
+2176,534,3557 Giddings Person 15A429B5 Rd,6200,6
+2177,534,3760 Hollingsworth Rd,5900,7
+2178,534,3869 Lilac Canyon Ln,5200,8
+2179,534,3885 Lilac Canyon Ln,4000,9
+2180,534,3925 Lilac Canyon Ln,4700,10
+2181,534,604 Coate Court,5800,11
+2182,534,610 Brown Court,5500,12
+2183,534,614 Church Canyon Pl,3700,13
+2184,534,620 Millard Canyon Rd,5300,14
+2185,534,629 Hartwell Court,5800,15
+2186,534,664 Millard Canyon Rd,4800,16
+2187,534,809 La Vina Ln,4800,17
+2188,534,838 W Heritage Oak Ct,4800,18
+2189,534,3628 Giddings Person 15A429B5 Rd,5800,19
+2190,534,3654 Giddings Person 15A429B5 Rd,6000,20
+2191,534,3691 Giddings Person 15A429B5 Rd,7200,21
+2192,534,3825 Lilac Canyon Ln,5500,22
+2193,534,3855 Lilac Canyon Ln,5800,23
+2214,539,Test,1000,0
+2215,539,Testt,1212,1
+2216,539,Test,213,2
+2217,539,Test,1251234,3
+2218,539,Test,123123,4
+2254,545,"#46, irrig sleeves",4000,0
+2255,545,"#60, irrigation water meter & controller",18000,1
+2256,545,"#61, irrigation, LS, gabion walls, DG, gravel",127800,2
+2306,553,Per Attached Bid Form,657200,0
+2326,565,Per Attached Bid Form,1328065.7,0
+2346,570,Irrigation,68100,0
+2347,570,Landscape,214200,1
+2348,570,90 Day Maintenance,1800,2
+2349,570,Initial irrigation safe-off,2800,3
+2377,575,Initial irrigation safe off,2500,0
+2378,575,Drains,33100,1
+2379,575,Irrigation,46900,2
+2380,575,Planting,59900,3
+2381,575,90 Day Maintenance,1500,4
+2382,575,Benches (9),32940,5
+2383,575,Tree Grates (6),24600,6
+2385,577,Per Attached Bid Form,639470,0
+2412,581,Drains at grade level,15350,0
+2413,581,Bio-Retention Planter (soil and drains),2900,1
+2414,581,"Irrigation allowance, BLS design",13500,2
+2415,581,"Planting, with BLS located plant material",53000,3
+2416,581,"Pots (7), allowance pending specs",8750,4
+2417,581,Decomposed Granite and header,6100,5
+2418,581,Synthetic Turf and header,6300,6
+2419,581,30 Day Start-up maintenance,400,7
+2427,583,Initial irrigation safe off,2500,0
+2428,583,Drains,33100,1
+2429,583,Irrigation,46900,2
+2430,583,15g shrubs for utility screening (22),2200,3
+2431,583,Planting,59900,4
+2432,583,90 Day Maintenance,1500,5
+2433,583,Benches (9),32940,6
+2434,583,Tree Grates (6),24600,7
+2464,587,Irrigation,95700,0
+2465,587,Landscape,37900,1
+2466,587,90 Day Maintenance,1500,2
+2467,587,DG and header,8400,3
+2515,595,Irrigation,427400,0
+2516,595,Planting,550900,1
+2517,595,90 Day Maintenance,7500,2
+2518,595,"[7] Stabilized DG (2,810 sf), with redwood header",9600,3
+2519,595,[10] & [11] Concrete Outdoor Seating (7),31750,4
+2520,595,[12] & [13] Precast Planters (36),88100,5
+2521,595,[14] Trash Receptacles (11),25080,6
+2522,595,[15] Bike Racks (15),7650,7
+2523,595,[16] Bike Lockers (2),8320,8
+2524,596,Total per bid form,613525,0
+2783,631,[16] Bike Lockers (2),8320,0
+2784,631,[15] Bike Racks (15),7650,1
+2785,631,[14] Trash Receptacles (11),25080,2
+2786,631,"[12] & [13] Precast Planters (36), with alt watering devices supplier",88100,3
+2787,631,[10] & [11] Concrete Outdoor Seating (7),31750,4
+2788,631,"[7] Stabilized DG (2,810 sf), with redwood header",9600,5
+2789,631,90 Day Maintenance,7500,6
+2790,631,Planting,550900,7
+2791,631,Irrigation,427400,8
+2813,635,Drains,0,0
+2814,635,Irrigation,112065,1
+2815,635,Landscape,113372,2
+2816,635,90 Day Maintenance,0,3
+2817,635,Trash Receptacles (7),0,4
+2818,635,Recy. Receptacles (3),0,5
+2819,635,Conc. Picnic Tables (4),0,6
+2820,635,Tables w/seating (4),0,7
+2821,635,Dog Waste Dispenser (1),0,8
+2822,635,Boulders (27),0,9
+2938,652,Per Attached Bid Form,1523490.7,0
+2961,657,Per Attached Bid Form,601570,0
+2962,658,Drains,0,0
+2963,658,Irrigation,29464,1
+2964,658,Landscape,41764,2
+2965,658,90 Day Maintenance,0,3
+2966,658,BENCH (2),0,4
+2967,658,PLANTER(6),0,5
+2968,658,PLANTER W/TRELLIS (5),0,6
+2969,658,PORTABLE BBQ (1),0,7
+3201,687,Irrigation,139700,0
+3202,687,Planting,147400,1
+3203,687,Artificial Turf,33200,2
+3204,687,90 Day Maintenance,4500,3
+3205,687,SF-1 Benches (3),12300,4
+3206,687,SF-2 Bike Racks (4),4200,5
+3207,687,SF-3 Picnic Table (1) with (4) bench seats,15100,6
+3208,687,SF-4 Trash Receptacles (2),8000,7
+3209,687,SF-5 Pet Waste Station (1),800,8
+3210,687,"SA-1 Rock Mulch (3,800 sf)",20600,9
+3211,687,SA-4 Play Structure (1),58000,10
+3212,687,P-6 Play Area Rubber Surfacing (720 sf),25300,11
+3213,687,Agg base under rubber surface (720 sf),2300,12
+3214,687,P-7 Gravel Mulch in front of Utility Doors (600 sf),3000,13
+3215,688,Irrigation,63100,0
+3216,688,Planting,21800,1
+3217,688,90 Day Maintenance,900,2
+3490,721,Drains,31000,0
+3491,721,Irrigation,37300,1
+3492,721,Landscape,69100,2
+3493,721,90 Day Maintenance,2400,3
+3494,721,Low Voltage Lighting,19700,4
+3495,721,P-401 DG w/ Metal Edging (410 sf),3600,5
+3496,721,"S-101 Gazebo, excluding footings",7900,6
+3497,721,S-102 Pet Waste Station (1),650,7
+3498,721,S-102 SQ Outdoor Table w/ Chairs (1),2400,8
+3499,721,S-103 Seating Bench (1),1820,9
+3500,721,S-105 Elevated Garden Beds w/ Soil (6),4100,10
+3501,721,S-106 Hose Reel (1),300,11
+3504,724,Per Attached Bid Form,227521,0
+3505,725,Per Attached Bid Form,0,0
+3507,727,Total per attached bid form,425837.89,0
+3534,732,Drains,35351,0
+3535,732,Irrigation,108855,1
+3536,732,Planting,174895,2
+3537,732,Decompose Granite Path,0,3
+3538,732,Tree Protection Fence installation & removal (14),0,4
+3539,732,Item 4.1 Trash / Recycling Receptacle (2 sets),0,5
+3540,732,Item 4.2 Pre cast Table & Chair (2 ADA) (2 STANDARD),0,6
+3541,732,Item 4.3 Information Placard (4),0,7
+3542,732,Item 4.4 Pet Waste Bag Dispenser (2),0,8
+3543,732,90 Day Maintenance,0,9
+3544,733,Irrigation,0,0
+3545,733,Planting,0,1
+3546,733,90 Day Maintenance,0,2
+3563,739,Total per attached bid form,188769.9,0
+3591,746,Irrigation,46400,0
+3592,746,Landscape,39500,1
+3593,746,"Synthetic turf (4,390 sf, per exhibit)",61400,2
+3594,746,90 Day Maintenance,1800,3
+3604,756,Total per bid form,320600,0
+3605,757,Total per bid form,320600,0
+3607,759,Per Attached Bid Form,223144,0
+3615,767,Total per bid form,669990,0
+3618,770,Total per bid form,315600,0
+3881,807,"Irrigation Allowance (8,600 sf)",30000,0
+3882,807,Planting,46000,1
+3883,807,"Synthetic Turf (2,000 sf)",29600,2
+3884,807,90 Day Maintenance,1800,3
+3885,808,Irrigation Allowance,5000,0
+3886,808,Planting,3700,1
+3887,808,"Synthetic Turf (3,820 sf)",53480,2
+3888,808,"Synthetic Turf overlay (2,100 sf)",48300,3
+3889,808,90 Day Maintenance,900,4
+4062,827,Per Attached Bid Form,224776,0
+4071,836,Total per bid form,720318,0
+4076,839,Landscape per Attached Bid Form,355530,0
+4077,839,Drains per attached bid form,51800,1
+4079,841,Total per bid form,720318,0
+4080,841,Drains per bid form,70500,1
+4085,844,Landscape per attached Bid Form,531340,0
+4086,844,Drains per attached bid form,111300,1
+4089,847,Per Attached Bid Form,1729344.5,0
+4091,849,Per Attached Bid Form,1720144.5,0
+4095,853,Total per bid form,620000,0
+4388,876,90 Day Maintenance,0,0
+4389,876,Landscape,118630,1
+4390,876,Irrigation,112273,2
+4391,876,Drains,36149,3
+4425,883,Irrigation,30900,0
+4426,883,Planting,17000,1
+4427,883,90 Day Maintenance,900,2
+4542,898,Total per attached bid form,425837.89,0
+4543,898,Model drains,5060,1
+4544,898,"Production drains, including buildout",69600,2
+4599,904,Irrigation,48200,0
+4600,904,Planting,71000,1
+4601,904,Item SF-1 Bike Rack (1),1300,2
+4602,904,90 Day Maintenance,900,3
+4647,915,Irrigation Allowance for 7 rear yards,9500,0
+4648,915,Planting,6700,1
+4649,915,Item P-2 & P-11 Decorative Gravel,2200,2
+4650,915,Item P6 & P7 gravel,2350,3
+4651,915,Item P-8 Decomposed Granite Paving,1950,4
+4652,915,Item P-14 & P-19 Decorative Gravel,500,5
+4653,915,Item P-18 Boulders from On-site (6),600,6
+4654,915,Item SF-1 Water Feature (3),2700,7
+4655,915,Item SF-2 Water Feature (1),1000,8
+4656,915,Item SA-1 Outdoor Barbecue,1960,9
+4657,915,"Item SA-2 String Lights, excluding footings",2500,10
+4658,915,Item SA-3 Outdoor Griddle,1750,11
+4659,915,Item SA-4 Smoker,1170,12
+4660,915,90 Day Maintenance,1500,13
+4661,916,Irrigation Allowance for 3 lots,3600,0
+4662,916,Planting,1400,1
+4663,916,Item P-2 & P-4 Decorative Gravel,650,2
+4664,916,Item P-6 Decorative Gravel,650,3
+4665,916,Item SF-1 Water Feature,1200,4
+4666,916,90 Day Maintenance,300,5
+4667,917,Perf drainline per exhibit,1300,0
+4668,917,Irrigation,12000,1
+4669,917,Planting,13600,2
+4670,917,Pots (11),38500,3
+4671,917,"Set boulders, from on-site supply (9)",900,4
+4672,917,Item P-3 Decorative Crushed Rock with header,2200,5
+4673,917,Item P-5 Decomposed Granite with header,3300,6
+4674,917,"Item SA-1 String Lights & Posts using alt vendor, excluding footings",10500,7
+4675,917,90 Day Maintenance,750,8
+4676,918,Drains per attached bid form,40100,0
+4677,918,Landscape per Attached Bid Form,355530,1
+4678,919,Drains per bid form,45900,0
+4679,919,Total per bid form,720318,1
+4682,921,Drains per attached bid form,82600,0
+4683,921,Landscape per attached Bid Form,531340,1
+4802,935,Perf drainline per exhibit,1300,0
+4803,935,Irrigation,12000,1
+4804,935,Planting,13600,2
+4805,935,Pots (11),38500,3
+4806,935,"Set boulders, from on-site supply (9)",900,4
+4807,935,Item P-3 Decorative Crushed Rock with header,2200,5
+4808,935,Item P-5 Decomposed Granite with header,3300,6
+4809,935,"Item SA-1 String Lights & Posts using alt vendor, excluding footings",10500,7
+4810,935,90 Day Maintenance,750,8
+4811,936,Irrigation Allowance for 7 rear yards,9500,0
+4812,936,Planting,6700,1
+4813,936,Item P-2 & P-11 Decorative Gravel,2200,2
+4814,936,Item P6 & P7 gravel,2350,3
+4815,936,Item P-8 Decomposed Granite Paving,1950,4
+4816,936,Item P-14 & P-19 Decorative Gravel,500,5
+4817,936,Item P-18 Boulders from On-site (6),600,6
+4818,936,Item SF-1 Water Feature (3),2700,7
+4819,936,Item SF-2 Water Feature (1),1000,8
+4820,936,Item SA-1 Outdoor Barbecue,1960,9
+4821,936,"Item SA-2 String Lights, excluding footings",2500,10
+4822,936,Item SA-3 Outdoor Griddle,1750,11
+4823,936,Item SA-4 Smoker,1170,12
+4824,936,90 Day Maintenance,1500,13
+4828,940,Per Attached Bid Form,0,0
+4844,945,Landscape per attached Bid Form,531340,0
+4845,945,Drains per attached bid form,82600,1
+4852,949,Landscape per Attached Bid Form,355530,0
+4853,949,Drains per attached bid form,40100,1
+4872,952,Irrigation,115000,0
+4873,952,Planting,305000,1
+4874,952,"Pots (25), excluding plant material",64100,2
+4875,952,Item #13 Decomposed Granite with header,6500,3
+4876,952,Item #15 Decorative pebbles,2500,4
+4877,952,"Item #14 Artificial Turf (2,240 sf)",35000,5
+4878,952,Item #56 Corn Hole (4),10800,6
+4879,952,Item # 58 Ping Pong Table (1),21000,7
+4880,952,90 Day Maintenance,2400,8
+4881,953,Irrigation,290000,0
+4882,953,Planting,500300,1
+4883,953,90 Day Maintenance,3000,2
+4884,953,Item P-9 Artificial Turf,9500,3
+4885,953,Item P-10 Artificial Turf at Dog Run,4700,4
+4886,953,Item SF-1 Bike Racks (5),5000,5
+4887,953,Item SF-2 Dog Waste Stations (3),2250,6
+4888,953,Item SF-3 Tall Pots (3),4650,7
+4889,954,Irrigation,247300,0
+4890,954,Planting,360300,1
+4891,954,90 Day Maintenance,3000,2
+4892,954,Item P-9 Artificial Turf,32200,3
+4893,954,Item P-10 Play Area Rubber Surfacing,26800,4
+4894,954,Agg base below rubber surface,5600,5
+4895,954,Item SF-1 Bike Racks (5),5000,6
+4896,954,Item SF-2 Dog Waste Stations (2),1500,7
+4897,954,Item SF-3 Tall Pots (2),4300,8
+4898,954,Item SA-2 Play Structure (1),101100,9
+4899,954,Item SA-11 Dog Wash Station (1),3600,10
+4903,956,Total per attached bid form,405481.86,0
+4904,956,Model drains,5000,1
+4905,956,"Production drains, including buildout",69500,2
+5002,973,Irrigation,51500,0
+5003,973,Planting,41500,1
+5004,973,Landscape Boulders,2200,2
+5005,973,Pea Gravel,2800,3
+5006,973,90 Day Maintenance,900,4
+5040,995,Per attached Bid Form,270156.25,0
+5041,996,Per attached Bid Form,181580.3,0
+5068,999,Irrigation,120000,0
+5069,999,Planting,119200,1
+5070,999,"5.8 Dog Waste Dispenser, allowance (1)",1000,2
+5071,999,"5.6 Portable BBQ Station (1), excluding gas line",8500,3
+5072,999,Chaise Lounge (16),22400,4
+5073,999,Side Table (8),3600,5
+5074,999,Dining Table (6),7200,6
+5075,999,ADA Dining Table (4),4800,7
+5076,999,Dining Chair (36),27000,8
+5077,999,Bench without Cushion (8),9600,9
+5078,999,Trash Receptacle (9),27000,10
+5079,999,Recycle Receptacle (9),27000,11
+5080,999,120 Day Maintenance,2800,12
+5081,1000,90 Day Maintenance,2400,0
+5082,1000,Planting,27700,1
+5083,1000,Irrigation,54800,2
+5084,1000,Drains,0,3
+5189,1016,Drains,167000,0
+5190,1016,Irrigation,269000,1
+5191,1016,Planting,528400,2
+5192,1016,Pot Planting (2),2650,3
+5193,1016,Artificial Turf,241000,4
+5194,1016,Rock Mulch,176000,5
+5195,1016,90 Day Maintenance,4500,6
+5220,1023,Drains,2500,0
+5221,1023,"Base irrigation, excluding alternates below",46600,1
+5222,1023,Planting,35500,2
+5223,1023,90 Day Maintenance,2100,3
+5224,1024,Irrigation Allowance,0,0
+5225,1024,Planting,78897,1
+5226,1024,Non-irrigated Hydroseed,0,2
+5227,1024,90 Day Maintenance,0,3
+5228,1024,Surface Mount 2-Bike Rack Allowance (1),0,4
+5291,1034,Per Attached Bid Form,1699719.5,0
+5310,1037,Irrigation,41000,0
+5311,1037,Landscape,24000,1
+5312,1037,Decomposed Granite Path with header,7500,2
+5313,1037,4' Long Benches (Allowance) (4),10000,3
+5314,1037,Play Structure (Allowance),60000,4
+5315,1037,Play Area Rubber Surfacing Allowance (700 sf),24700,5
+5316,1037,Agg base below rubber surfacing (700 sf),3500,6
+5317,1037,Shredded Wood Mulch at Bench Seating Area (320 sf),900,7
+5318,1037,90 Day Maintenance,900,8
+5333,1040,Irrigation,44100,0
+5334,1040,Planting,46400,1
+5335,1040,90 Day Maintenance,1500,2
+5342,1047,Per attached Bid Form,234816.25,0
+5343,1048,Per attached Bid Form,181580.3,0
+5352,1050,Irrigation,79000,0
+5353,1050,Planting,110600,1
+5354,1050,Seat Boulders (4),14000,2
+5355,1050,"Decomposed Granite Path (420 sf), with header",4500,3
+5356,1050,Pots for Citrus (4),4000,4
+5357,1050,Bike Racks (3),4500,5
+5358,1050,Raised Wood Planter Boxes at Edible Garden (8),32000,6
+5359,1050,90 Day Maintenance,1800,7
+5373,1054,Irrigation,114700,0
+5374,1054,Planting,203000,1
+5375,1054,SA-2 Artificial Turf,8500,2
+5376,1054,SA-3 Aluminum Edging,6600,3
+5377,1054,P-7 Decomposed Granite Paving,7800,4
+5378,1054,90 Day Maintenance,1800,5
+5379,1055,90 Day Maintenance,0,0
+5380,1055,Planting,16750,1
+5381,1055,Irrigation,20552,2
+5382,1055,Drains,0,3
+5383,1056,"Partial Drains, per notes below",27100,0
+5384,1056,Irrigation,45100,1
+5385,1056,Planting,26100,2
+5386,1056,"Cobble field (2,040 sf)",6800,3
+5387,1056,"Storm Planter soil and gravel (950 sf), per notes below",15100,4
+5388,1056,90 Day Maintenance,1500,5
+5405,1061,Drains,0,0
+5406,1061,Irrigation,0,1
+5407,1061,Planting,0,2
+5408,1061,90 Day Maintenance,0,3
+5411,1064,Per Attached Bid Form,1713919.5,0
+5420,1070,Per Attached Bid Form,486970,0
+5426,1076,Per Attached Bid Form,561970,0
+5427,1077,Per Attached Bid Form,561970,0
+5430,1080,Irrigation,117,0
+5431,1080,Landscape,316718,1
+5432,1080,90 Day Maintenance,0,2
+5433,1081,Irrigation,0,0
+5434,1081,Planting,0,1
+5435,1081,90 Day Maintenance,0,2
+5439,1083,"Drains, pending receipt of plans",0,0
+5440,1083,Irrigation,24600,1
+5441,1083,Planting per plan,33400,2
+5442,1083,Model overtime allowance,6000,3
+5443,1083,Select tree and shrub upsizing on model plan,20100,4
+5444,1083,"Item P-04 Artificial Turf (1,180 sf)",14000,5
+5445,1083,Item S-01 Decorative Screen Panels (19),9785,6
+5446,1083,Item S-02 Faux Living Wall,7500,7
+5447,1083,Item S-03 Benches (2),5400,8
+5448,1083,Item S-04 Square Fiberglass Planters (6) (no planting noted or included),15000,9
+5449,1083,Item S-05 Planters with Trellises (7),30450,10
+5450,1083,Item S-06 Portable BBQ (1),9400,11
+5451,1083,90 Day Maintenance,2100,12
+5452,1084,Drains  (pending receipt of plans),0,0
+5453,1084,Under-deck burrito drain (280'),4200,1
+5454,1084,Pool deck cut-off wall burrito drain (400'),6000,2
+5455,1084,Irrigation,105100,3
+5456,1084,Planting,108300,4
+5457,1084,Marketing window overtime allowance,5000,5
+5458,1084,Landscape Boulders (27),15000,6
+5459,1084,Item SF-01 Trash Receptacles (7),22400,7
+5460,1084,Item SF-02 Recycle Trash Receptacles (3),9600,8
+5461,1084,Item SF-03 Dog Waste Bag Dispenser (1),1200,9
+5462,1084,"Item SF-04 Drinking Fountain, with gravel sump (1)",7100,10
+5463,1084,Water supply allowance to drinking fountain (250' 1'' pipe),1000,11
+5464,1084,Item SF-06 Picnic Tables (2),12900,12
+5465,1084,Item SF-07 ADA Picnic Tables (2),12100,13
+5466,1084,Item SF-08 Table with Built-in Seating (3),28290,14
+5467,1084,Item SF-09 ADA Table with Built-in Seating (1),8800,15
+5468,1084,Hot Coal Ash Receptacles (2),4000,16
+5469,1084,Item S-11 Bocce Ball Court surfacing (990 sf) and channel drain,11000,17
+5470,1084,Item S-11 Bocce Court Cedar siderails (see VE option for TREX),10600,18
+5471,1084,Play equipment at tot lot (TBD: no callout on plans),0,19
+5472,1084,"Item P-05 Rubber Surfacing for Play Area (4,070 sf)",107100,20
+5473,1084,"Agg base under rubber surface (4,070 sf)",10200,21
+5474,1084,90 Day Maintenance,1500,22
+5475,1085,Drains,212500,0
+5476,1085,"8'' drain trunk line on sheet 19, if not done by others (600')",26000,1
+5477,1085,Irrigation,354300,2
+5478,1085,Planting,410000,3
+5479,1085,Marketing window overtime allowance,5000,4
+5480,1085,P-06 Decomposed Granite Paving (925 sf),7400,5
+5481,1085,Landscape Boulders (8),5400,6
+5482,1085,"Items S-02 to S-05, Exercise Equipment",54300,7
+5483,1085,90 Day Maintenance,9000,8
+5494,1088,Irrigation,0,0
+5495,1088,Planting,81847,1
+5496,1088,90 Day Maintenance,0,2
+5497,1089,Irrigation,0,0
+5498,1089,Planting,0,1
+5499,1089,90 Day Maintenance,0,2
+5521,1095,Per Attached Bid Form,534830,0
+5523,1097,Per Attached Bid Form,534830,0
+5540,1102,Irrigation,113200,0
+5541,1102,Planting,211300,1
+5542,1102,Header (580'),3915,2
+5543,1102,90 Day Maintenance,4200,3
+5544,1103,Irrigation,49800,0
+5545,1103,Planting,103400,1
+5546,1103,Header (1550'),10460,2
+5547,1103,90 Day Maintenance,3300,3
+5567,1109,Per attached Bid Form,233816.25,0
+5568,1110,Per attached Bid Form,181580.3,0
+5590,1115,Irrigation,51154,0
+5591,1115,Landscape,41526,1
+5592,1115,90 Day Maintenance,0,2
+5593,1115,Rock Cobble at Downspouts,0,3
+5594,1115,Bike Rack (1),0,4
+5641,1125,Irrigation,209700,0
+5642,1125,Planting,266100,1
+5643,1125,"Header (2,100')",14700,2
+5644,1125,90 Day Maintenance,12000,3
+5645,1125,"Pot allowance, pending specs (4)",14000,4
+5646,1125,"#3 DG, excluding mow curbs (620 sf)",6200,5
+5661,1128,Irrigation,57200,0
+5662,1128,Landscape,52100,1
+5663,1128,90 Day Maintenance,3000,2
+5664,1128,Trash Receptacle (1),1200,3
+5665,1128,Bike Rack (1),900,4
+5666,1128,Pet Waste Stations (3),2550,5
+5667,1128,"Install (15) owner-provided bollards, related wiring",21000,6
+5668,1129,Irrigation,57200,0
+5669,1129,Landscape,52100,0
+5670,1129,90 Day Maintenance,3000,0
+5671,1129,Trash Receptacle (1),1200,0
+5672,1129,Bike Rack (1),900,0
+5673,1129,Pet Waste Stations (3),2550,0
+5674,1129,"Install (15) owner-provided bollards, related wiring",21000,0
+5703,1134,"Install (15) owner-provided bollards, related wiring",21000,0
+5704,1134,Pet Waste Stations (3),2550,1
+5705,1134,Bike Rack (1),900,2
+5706,1134,Trash Receptacle (1),1200,3
+5707,1134,90 Day Maintenance,3000,4
+5708,1134,Landscape,52100,5
+5709,1134,Irrigation,57200,6
+5717,1136,"Irrigation, excluding mainline, valve wires, FS wires-conduit, ML sleeves",46400,0
+5718,1136,Landscape,52100,1
+5719,1136,90 Day Maintenance,3000,2
+5720,1136,Trash Receptacle (1),1200,3
+5721,1136,Bike Rack (1),900,4
+5722,1136,Pet Waste Stations (3),2550,5
+5723,1136,"Install (15) owner-provided bollards, related wiring",21000,6
+5726,1139,Per attached Bid Form,229921.25,0
+5727,1140,Per attached Bid Form,169690.3,0
+5747,1145,Irrigation,209700,0
+5748,1145,Planting,266100,1
+5749,1145,"Header (2,100 sf)",14700,2
+5750,1145,90 Day Maintenance,12000,3
+5751,1145,"Pot allowance, pending specs (4)",14000,4
+5752,1145,"#3 DG, excluding mow curbs (620 sf)",6200,5
+5753,1145,Grade adjustment and new sod at ph. 3 interface (based on 20' wide zone),9500,6
+5763,1149,"Irrigation cut cap, and new irrigation",6200,0
+5764,1149,Planting,12950,1
+5765,1149,90 Day Maintenance,750,2
+5778,1153,"Demolition of Existing Trees, shrubs and turf slated for removal",8200,0
+5779,1153,Irrigation Allowance,10900,1
+5780,1153,Planting Allowance,8500,2
+5781,1153,90 Day Maintenance,900,3
+5786,1158,Irrigation,151600,0
+5787,1158,Planting,167300,1
+5788,1158,Item H-06 Decomposed Granite Surfacing for Bocce Court,4100,2
+5789,1158,Item H-07 Crushed Gravel Topdressing,15400,3
+5790,1158,90 Day Maintenance,7200,4
+5795,1163,Per attached Bid Form,99310,0
+5796,1164,Per attached Bid Form,569650,0
+5856,1176,Per Attached Bid Form,524030,0
+5865,1179,Irrigation,174422,0
+5866,1179,Landscape,152590,1
+5867,1179,"Decomposed Granite (12,710 sf)",0,2
+5868,1179,90 Day Maintenance,0,3
+5869,1180,Per attached Bid Form,99310,0
+5870,1181,Per attached Bid Form,569650,0
+5941,1192,Per attached Bid Form,445365,0
+5942,1192,Models and model upgrades,86380,1
+5943,1192,"Alternate pots, not listed in bid form",10925,2
+5947,1194,Per attached bid form,447062.9,0
+5948,1194,Models and model upgrades,86419,1
+5949,1194,"Alternate pots, not listed on bid form",10925,2
+5956,1198,Irrigation,70527,0
+5957,1198,Landscape,156231,1
+5958,1198,"AS-1, Decomposed Granite (14,200 sf)",0,2
+5959,1198,"AS-2, Gravel Joints (130 sf)",0,3
+5960,1198,"LF-1, Landscape Edging",0,4
+5961,1198,"RR-1, Landscape Boulders",0,5
+5962,1198,Low Voltage Lighting,0,6
+5963,1198,90 Day Maintenance,0,7
+5977,1200,Irrigation,50300,0
+5978,1200,Planting,102800,1
+5979,1200,90 Day Maintenance,2100,2
+5980,1200,SF-1 Bike Rack (1),700,3
+5981,1200,SF-2 Hot Ash Receptacle (1),1930,4
+5982,1200,SF-3 Trash Receptacle (1),2100,5
+5983,1200,SF-4 Standard Table & Chair Set (1),4320,6
+5984,1200,SF-4 ADA Table & Chair Set (1),3700,7
+5985,1200,SF-5 Adirondack Chairs (2),1020,8
+5986,1200,SF-6 Side Table (1),180,9
+5987,1200,SF-7 Dog Bag Station (1),800,10
+5988,1200,SF-8 Half Tree Grates (7),11200,11
+5989,1200,SA-4 Freestanding BBQ Grill (1),1000,12
+5990,1201,"Select bid form items, per attached",576720,0
+6037,1208,Demo shrub and turf areas per CCSI exhibit,6200,0
+6038,1208,Irrigation,92800,1
+6039,1208,"Landscape, including non-stabilized DG in some planting areas",119200,2
+6040,1208,Landscape Boulder Relocation (17),1400,3
+6041,1208,Pots (12),29700,4
+6042,1208,"M-1, Sierra Cobble",2750,5
+6043,1208,"M-2, Sierrra Cobble",1800,6
+6044,1208,"M-3, Organic lock DG at Parking Islands",12600,7
+6045,1208,90 Day Maintenance,2100,8
+6087,1223,Irrigation,38000,0
+6088,1223,Planting,72400,1
+6089,1223,"Item #1 DG Paving, excluding cobble edger",2500,2
+6090,1223,90 Day Maintenance,1200,3
+6096,1229,Per Attached Bid Form,524030,0
+6097,1229,"Wall burrito drain, item #43",6000,1
+6098,1230,Drains,113,0
+6099,1230,Irrigation,59,1
+6100,1230,Landscape,1092025,2
+6101,1230,90 Day Maintenance,0,3
+6110,1236,Per attached bid form,496696.7,0
+6112,1238,Per attached bid form,593098,0
+6116,1242,"Phases 7-10, per attached bid form",554236.5,0
+6117,1243,Per Attached Bid Form,1924770.78,0
+6134,1246,Drains,33100,0
+6135,1246,Irrigation,36000,1
+6136,1246,Landscape,38900,2
+6137,1246,90 Day Maintenance,1500,3
+6138,1246,SA-4 Decorative Pot (1),2000,4
+6139,1246,P-5 Plastic Edging (45'),300,5
+6140,1246,Low voltage lighting,2500,6
+6141,1246,110v lighting,19000,7
+6150,1248,Drains,18400,0
+6151,1248,Irrigation,36000,1
+6152,1248,Landscape,38900,2
+6153,1248,90 Day Maintenance,1500,3
+6154,1248,SA-4 Decorative Pot (1),2000,4
+6155,1248,P-5 Plastic Edging (45'),300,5
+6156,1248,Low voltage lighting,2500,6
+6157,1248,110v lighting,19000,7
+6160,1251,Per attached bid form,496696.7,0
+6164,1255,Per attached bid form,593098,0
+6165,1256,Drains,113,0
+6166,1256,Irrigation,59,1
+6167,1256,Landscape,1092025,2
+6168,1256,90 Day Maintenance,0,3
+6169,1257,Drains,113,0
+6170,1257,Irrigation,59,1
+6171,1257,Landscape,1092025,2
+6172,1257,90 Day Maintenance,0,3
+6195,1262,Drains,0,0
+6196,1262,Irrigation,36707,1
+6197,1262,Landscape,43249,2
+6198,1262,Concrete Mowstrip (70'),0,3
+6199,1262,Concrete Steppers (13),0,4
+6200,1262,90 Day Maintenance,0,5
+6219,1268,Per attached bid form,418491.5,0
+6220,1268,Models and model upgrades,86419,1
+6221,1268,"Alternate pots, not listed on bid form",10925,2
+6272,1279,Irrigation,22400,0
+6273,1279,Landscape,27900,1
+6274,1279,90 Day Maintenance,1500,2
+6275,1279,"#10 BENCH SEATING, install only (3)",1800,3
+6276,1279,"#12 VINE TRELLIS, install only (2)",2850,4
+6455,1306,Selected Items per attached Bid Form,1415692.59,0
+6456,1307,Per Attached Bid Form,1924770.78,0
+6458,1309,Per Attached Bid Form,1905200.6,0
+6501,1317,Drains,43775,0
+6502,1317,Irrigation,201240,1
+6503,1317,Planting,840537,2
+6504,1317,P-105 Decomposed Granite,0,3
+6505,1317,SA-102 Landscape Boulder,0,4
+6506,1317,90 Day Maintenance,0,5
+6513,1319,Drains,0,0
+6514,1319,Irrigation,67311,1
+6515,1319,Planting,22871,2
+6516,1319,90 Day Maintenance,0,3
+6517,1320,Irrigation,139700,0
+6518,1320,Planting,147400,1
+6519,1320,Artificial Turf,48200,2
+6520,1320,90 Day Maintenance,4500,3
+6521,1320,SF-1 Benches (3),12300,4
+6522,1320,SF-2 Bike Racks (4),4200,5
+6523,1320,SF-3 Picnic Table (1) with (4) bench seats,15100,6
+6524,1320,SF-4 Trash Receptacles (2),8000,7
+6525,1320,SF-5 Pet Waste Station (1),800,8
+6526,1320,"SA-1 Rock Mulch (3,800 sf)",20600,9
+6527,1320,SA-4 Play Structure (1),58000,10
+6528,1320,P-6 Play Area Rubber Surfacing (720 sf),25300,11
+6529,1320,Agg base under rubber surface (720 sf),2300,12
+6530,1321,90 Day Maintenance,900,0
+6531,1321,Planting,21800,1
+6532,1321,Irrigation,63100,2
+6567,1329,Irrigation Allowance,0,0
+6568,1329,Planting,0,1
+6569,1329,90 Day Maintenance,0,2
+6570,1330,Irrigation,0,0
+6571,1330,Planting,0,1
+6572,1330,P2 Synthetic Turf,0,2
+6573,1330,P3 Infield Clay Mix,0,3
+6574,1330,P4 Warning Track,0,4
+6575,1330,P5 Grasspave2 Porous Paving,0,5
+6576,1330,90 Day Maintenance,0,6
+6579,1333,"Phases 7-10, per attached bid form",509923.5,0
+6586,1336,Drains,113,0
+6587,1336,Irrigation,59,1
+6588,1336,Landscape,1092025,2
+6589,1336,90 Day Maintenance,0,3
+6608,1340,Initial irrigation cut-cap prior to demo,2800,0
+6609,1340,Irrigation,22200,1
+6610,1340,Planting,64100,2
+6611,1340,Pot Planting (4),7400,3
+6612,1340,"Artificial Turf, using Forever Lawn",35300,4
+6613,1340,90 Day Maintenance,1200,5
+6614,1341,Initial irrigation cut-cap prior to demo,2800,0
+6615,1341,Irrigation,22200,1
+6616,1341,Planting,64100,2
+6617,1341,Pot Planting (4),7400,3
+6618,1341,"Artificial Turf, using Forever Lawn",35300,4
+6619,1341,90 Day Maintenance,1200,5
+6620,1342,Initial irrigation cut-cap prior to demo,2800,0
+6621,1342,Irrigation,22200,1
+6622,1342,Planting,64100,2
+6623,1342,Pot Planting (4),7400,3
+6624,1342,"Artificial Turf, using Forever Lawn",35300,4
+6625,1342,90 Day Maintenance,1200,5
+6676,1350,Drains,29929,0
+6677,1350,Irrigation,163385,1
+6678,1350,Planting,677436,2
+6679,1350,P-105 Decomposed Granite,0,3
+6680,1350,SA-102 Landscape Boulder,0,4
+6681,1350,90 Day Maintenance,0,5
+6730,1357,Drains,18400,0
+6731,1357,Irrigation,36800,1
+6732,1357,Landscape,38900,2
+6733,1357,90 Day Maintenance,1500,3
+6734,1357,SA-4 Decorative Pot (1),2000,4
+6735,1357,P-5 Plastic Edging (45'),300,5
+6736,1357,Low voltage lighting,2500,6
+6737,1357,110v lighting,19000,7
+6738,1358,Drains,34145,0
+6739,1358,Irrigation,152557,1
+6740,1358,Landscape,676669,2
+6741,1358,90 Day Maintenance,0,3
+6742,1359,Drains,50338,0
+6743,1359,Irrigation,201771,1
+6744,1359,Landscape,908048,2
+6745,1359,90 Day Maintenance,10290,3
+6751,1361,Irrigation,19255,0
+6752,1361,Planting,48991,1
+6753,1361,"4EA Pots: Supplied, Installed, and Planted complete",6000,2
+6754,1361,90 Day Maintenance,1199,3
+6755,1361,Artificial Turf using Forever Lawn,37500,4
+6790,1369,HOA Irrigation,1135400,0
+6791,1369,Private irrigation,16500,1
+6792,1369,Landscape,830500,2
+6793,1369,90 Day Maintenance,59600,3
+6794,1369,DG trail (550 sf),3300,4
+6795,1369,"Mow curb (2,970')",80190,5
+6796,1370,Irrigation,230126,0
+6797,1370,Landscape,499582,1
+6798,1370,90 Day Maintenance,60000,2
+6824,1378,Irrigation,228000,0
+6825,1378,Planting,321000,1
+6826,1378,90 Day Maintenance,33000,2
+6855,1387,Drains,18500,0
+6856,1387,Irrigation,57939,1
+6857,1387,Landscape,97210,2
+6858,1387,Item F1 Trash Receptacle / Recycle Receptacle (4 Sets),16100,3
+6859,1387,Item F2 Benches (4),15751,4
+6860,1387,Item P4 - Synthetic Turf Over Asphalt( Ashpalt Installed by others),38800,5
+6861,1387,Item A2 - Octagonal Umbrella (9EA),16499,6
+6862,1387,90 Day Maintenance,1800,7
+6871,1389,"Initial irrigation cut/cap, prior to demo",2500,0
+6872,1389,Irrigation,58000,1
+6873,1389,Planting,89000,2
+6874,1389,Item F1 Trash Receptacle / Recycle Receptacle (4 sets),15760,3
+6875,1389,Item F2 Benches (4),15000,4
+6876,1389,Item P4 Synthetic Turf over asphalt,38800,5
+6877,1389,Item A2 Octagonal Umbrella (9),16200,6
+6878,1389,90 Day Maintenance,1800,7
+6887,1391,"Initial irrigation cut/cap, prior to demo",2500,0
+6888,1391,Irrigation,58000,1
+6889,1391,Planting,89000,2
+6890,1391,Item F1 Trash Receptacle / Recycle Receptacle (4 sets),15760,3
+6891,1391,Item F2 Benches (4),15000,4
+6892,1391,Item P4 Synthetic Turf over asphalt,38800,5
+6893,1391,Item A2 Octagonal Umbrella (9),16200,6
+6894,1391,90 Day Maintenance,1800,7
+6924,1401,Drains,16448,0
+6925,1401,Irrigation,37745,1
+6926,1401,Landscape,56700,2
+6927,1401,Artificial Turf at Models,3800,3
+6928,1401,Landscape Pebble and Gravel,1090,4
+6929,1401,90 Day Maintenance,1500,5
+6930,1402,Drains,195000,0
+6931,1402,Channel Drains (concrete by others),21000,1
+6932,1402,Irrigation,391249,2
+6933,1402,Landscape,307639,3
+6934,1402,90Day Maintenance,15000,4
+6935,1402,"SF-104: F&I Mailbox, Product CBU16 (3EA)",13000,5
+6936,1402,SF-106: F& I Pet Waste Station (2EA),1250,6
+6937,1402,SF - 110: F&I Trash Receptacle (2EA),4425,7
+6938,1402,F&I Picnic Table (2EA),8600,8
+6939,1402,F&I Bench (2EA),7799,9
+6940,1402,F&I ADA Picnic Table (1EA),3900,10
+6941,1402,F&I Adirondack (5EA),2085,11
+6942,1402,Furnish and Install Fire Pit (1EA),14300,12
+6943,1402,F& I  Toy Lot Welcome Sign (1EA)  Vendor emailed working direct w/ Trumark,0,13
+6944,1402,F&I Tot Lot Rubber Surface(1513SF),45389,14
+6945,1402,F&I Tot Lot 1EA,91500,15
+6948,1405,Per attached bid form,490556.7,0
+6970,1409,"#10 LID Vegetated Swale (550 sf), soil, gravel, filter fabric",9800,0
+6971,1409,"#15 LID Planter Boxes (820 sf), soil, gravel, filter fabric, drainage",18300,1
+6972,1409,Planting of LID vegetated swale and planter boxes,23600,2
+6973,1409,90 Day Maintenance,1500,3
+6974,1409,Allowance for hand watering of LID planting areas during maintenance,3500,4
+6975,1409,#16 Allowance for (4) 5' Tree Grates,17600,5
+6976,1409,Allowance for misc irrigation and LS repairs,4000,6
+6998,1413,"#10 LID Vegetated Swale (550 sf), soil, gravel, filter fabric",9800,0
+6999,1413,"#15 LID Planter Boxes (820 sf), soil, gravel, filter fabric, drainage",18300,1
+7000,1413,Planting of LID vegetated swale and planter boxes,72200,2
+7001,1413,90 Day Maintenance,1800,3
+7002,1413,Design build irrigation system for planters & street trees,20400,4
+7003,1413,#16 Allowance for (4) 3' Tree Grates,13600,5
+7004,1413,Allowance for misc irrigation and LS repairs to existing,4000,6
+7007,1416,Landscape Improvements per attached Bid Form,1165150.37,0
+7008,1417,Per attached bid form,589308,0
+7034,1421,Drains,18400,0
+7035,1421,Irrigation,36800,1
+7036,1421,Landscape,38900,2
+7037,1421,90 Day Maintenance,1500,3
+7038,1421,SA-4 Decorative Pot (1),2000,4
+7039,1421,P-5 Plastic Edging (45'),300,5
+7040,1421,Low voltage lighting,2500,6
+7041,1421,110v lighting,19000,7
+7042,1421,OCIP reduction,-807.14,8
+7051,1426,Model Drains (3 Lots & Parking),9500,0
+7052,1426,Production Drains (57 Lots),135500,1
+7074,1435,Model Drains (3 Lots & Parking),8300,0
+7075,1435,Production Drains (57 Lots),120000,1
+7080,1437,Irrigation,38000,0
+7081,1437,Planting,72400,1
+7082,1437,"Item #1 DG Paving, excluding cobble edger",2500,2
+7083,1437,90 Day Maintenance,1200,3
+7088,1439,Irrigation,38000,0
+7089,1439,Planting,72400,1
+7090,1439,"Item #1 DG Paving, excluding cobble edger",2500,2
+7091,1439,90 Day Maintenance,1200,3
+7100,1442,Irrigation,38000,0
+7101,1442,Planting,72400,1
+7102,1442,"Item #1 DG Paving, excluding cobble edger",2500,2
+7103,1442,90 Day Maintenance,1200,3
+7157,1457,Per attached Bid Form,1099979.8,0
+7158,1458,Initial cut/cap irrigation,3000,0
+7159,1458,Irrigation,37100,1
+7160,1458,Planting,85400,2
+7161,1458,90 Day Maintenance,1500,3
+7162,1458,#1 Trash receptacles (3),5700,4
+7168,1460,Initial cut/cap irrigation,3000,0
+7169,1460,Irrigation,37100,1
+7170,1460,Planting,85400,2
+7171,1460,90 Day Maintenance,1500,3
+7172,1460,#1 Trash receptacles (3),5700,4
+7221,1470,Irrigation,38000,0
+7222,1470,Planting,72400,1
+7223,1470,"Item #1 DG Paving, 1500sft",7500,2
+7224,1470,Flagstone Edging for DG Pathway,16022,3
+7225,1470,@Ea Company 8C6EA673 Benches,6375,4
+7226,1470,90 Day Maintenance,1200,5
+7263,1478,Drains,9949,0
+7264,1478,Irrigation,26716,1
+7265,1478,Planting,62456,2
+7266,1478,90 Day Maintenance,3200,3
+7267,1478,"Site Lighting: 4EA Type A3, 2EA Type B Trellis, 6EA Type C Boll./Ftgs, 10 Type C Accent Light Light,",54503,4
+7268,1478,1 OH Steel Struct. per  Detail A/CD-1( lattice steel also),45850,5
+7270,1480,Selected Items per attached Bid Form,2004182.05,0
+7273,1483,Selected Items per attached Bid Form,2030112.59,0
+7327,1495,Landscape per attached Bid Form,0,0
+7353,1503,Irrigation Allowance,2500,0
+7354,1503,Landscape per plan,2500,1
+7355,1503,Bench w/ Wood Slats by Landscape Forms (2),0,2
+7356,1503,Value Engineering for Benches using Polysite Slats in lieu of Wood (Deduct),0,3
+7357,1503,90 Day Maintenance,900,4
+7358,1504,Irrigation,105300,0
+7359,1504,Planting,111500,1
+7360,1504,P2 - Synthetic Turf,91711,2
+7361,1504,P3 - Infield Clay Mix,30600,3
+7362,1504,P4 - Warning Track,36900,4
+7363,1504,P5 - Grasspave2 Pourous Paving,17500,5
+7364,1504,90 Day Maintenance,8500,6
+7399,1511,Drains,18371,0
+7400,1511,Irrigation,17215,1
+7401,1511,Planting,67455,2
+7402,1511,Planting for Salvaged / Relocated Pots (24),0,3
+7403,1511,90 Day Maintenance,0,4
+7404,1512,Irrigation,38000,0
+7405,1512,Planting,72400,1
+7406,1512,Item #1 DG Paving 1500 SFT,7500,2
+7407,1512,Flagstone Edging for DG,16022,3
+7408,1512,Item 9 Bench by Company 8C6EA673 2EA,6375,4
+7409,1512,90 Day Maintenance,1200,5
+7437,1517,Irrigation,38000,0
+7438,1517,Planting,72400,1
+7439,1517,"Item #1 DG Paving, 1500sft",7500,2
+7440,1517,Flagstone Edging for DG pathways,16022,3
+7441,1517,Item ( 2EA ) Benches from Company 8C6EA673,6375,4
+7442,1517,90 Day Maintenance,1200,5
+7457,1520,Drains,0,0
+7458,1520,Irrigation,0,1
+7459,1520,Landscape,0,2
+7460,1520,90 Day Maintenance,0,3
+7469,1523,Drains,125000,0
+7470,1523,Irrigation,75000,1
+7471,1523,Landscape,25000,2
+7472,1523,90 Day Maintenance,0,3
+7473,1524,Per Attached Bid Form,1713919.5,0
+7481,1526,Irrigation,38000,0
+7482,1526,Planting,69979,1
+7483,1526,Item #1 Stabilized DG Path (490sf),3997,2
+7484,1526,DG topdressing at planting areas around markers,3133,3
+7485,1526,Flagstone Edging for DG,11186,4
+7486,1526,Item 9 Bench by Company 8C6EA673 (2ea.),6375,5
+7487,1526,90 Day Maintenance,1201,6
+7488,1527,Per Attached Bid Form,1713919.5,0
+7496,1529,Irrigation Allowance,2500,0
+7497,1529,Landscape per plan,2500,1
+7498,1529,Bench w/ Wood Slats by Landscape Forms (2),14800,2
+7499,1529,Value Engineering for Benches using Polysite Slats in lieu of Wood (Deduct),11800,3
+7500,1529,90 Day Maintenance,900,4
+7501,1530,Irrigation,105300,0
+7502,1530,Planting,111500,1
+7503,1530,P2 - Synthetic Turf,91711,2
+7504,1530,P3 - Infield Clay Mix,30600,3
+7505,1530,P4 - Warning Track,36900,4
+7506,1530,P5 - Grasspave2 Pourous Paving,17500,5
+7507,1530,90 Day Maintenance,8500,6
+7508,1531,Per Attached Bid Form,1713919.5,0
+7509,1532,Per Attached Bid Form,1713919.5,0
+7524,1539,Irrigation,38000,0
+7525,1539,Planting,69980,1
+7526,1539,"Duraslope 6"" Collector Line",12200,2
+7527,1539,Item #1 Stabilized DG Path (490 sf),4000,3
+7528,1539,DG topdressing at planting areas around markers,3200,4
+7529,1539,Flagstone Edging for DG,11200,5
+7530,1539,Item 9 Bench by Company 8C6EA673 (2 ea.),6375,6
+7531,1539,90 Day Maintenance,1200,7
+7532,1540,Irrigation,1130000,0
+7533,1540,Planting,1320000,1
+7534,1540,(5.0) Gravel mulch,128000,2
+7535,1540,(5.1) Non-stablilized DG,23000,3
+7536,1540,90 Day Maintenance,8300,4
+7537,1541,"Hydroseed (74,800 sf)",15000,0
+7538,1542,"#16 Drains, per notes below",81000,0
+7539,1542,Decomposed Granite Paving,3500,1
+7540,1542,Rock Mulch for Monument Wall,1800,2
+7541,1542,"Install Owner-Supplied Site Furnishings (Items SA-1, SA-2, SA-3, SA-4, SA-5, SA-7)",5900,3
+7542,1543,Drains,11200,0
+7543,1543,Irrigation,34300,1
+7544,1543,Planting,22000,2
+7545,1543,90 Day Maintenance,1200,3
+7551,1545,Irrigation,56454,0
+7552,1545,Planting,43390,1
+7553,1545,Landscape Boulders,2199,2
+7554,1545,Pea Gravel,2900,3
+7555,1545,90 Day Maintenance,900,4
+7556,1546,Irrigation,87061,0
+7557,1546,Planting,77723,1
+7558,1546,Item E Decorative Gravel,2300,2
+7559,1546,Item #2 Bike Rack (1),949,3
+7560,1546,90 Day Maintenance,825,4
+7562,1548,Per attached Bid Form,1039910,0
+7569,1550,Irrigation,38000,0
+7570,1550,Planting,72400,1
+7571,1550,"6"" Collector Line for Dura slope Channel drain by others",12200,2
+7572,1550,"Item #1 DG Paving, 1500sft",7500,3
+7573,1550,Flagstone Edging for DG pathways,16022,4
+7574,1550,Item ( 2EA ) Benches from Company 8C6EA673,6375,5
+7575,1550,90 Day Maintenance,1200,6
+7576,1551,Drains,14500,0
+7577,1551,Irrigation,17200,1
+7578,1551,Planting,79255,2
+7579,1551,Planted Pots (16),11350,3
+7580,1551,90 Day Maintenance,1200,4
+7590,1555,Selected Items per attached Bid Form,2015774.23,0
+7595,1557,Irrigation,30821,0
+7596,1557,Planting,20860,1
+7597,1557,Landscape Boulders (5),3900,2
+7598,1557,90 Day Maintenance,975,3
+7630,1563,Drains,0,0
+7631,1563,Irrigation,0,1
+7632,1563,Planting,0,2
+7633,1563,90 Day Maintenance,0,3
+7638,1565,"Partial drainage, per notes below",35100,0
+7639,1565,"Bio-retention planters, per notes below",26700,1
+7640,1565,"Initial safe off, cut & cap",2000,2
+7641,1565,Irrigation,19900,3
+7642,1565,Irrigation repair allowance for existing turf area,2300,4
+7643,1565,Planting,14400,5
+7644,1565,90 Day Maintenance of new areas,1500,6
+7678,1569,Landscape per attached Bid Form,0,0
+7680,1571,"#16 Drains, per notes below",81000,0
+7681,1571,Decomposed Granite paving,3500,1
+7682,1571,Rock Mulch for Monument Wall,1800,2
+7683,1571,Install owner-supplied furnishings (SA-1 through SA-5),5700,3
+7684,1571,"Supply SA-6 (BBQ's-2, Access Doors-2, vents-2); install by others",17600,4
+7685,1571,Supply & install (1) SA-7 pet waste dispenser,1000,5
+7728,1580,Irrigation,74800,0
+7729,1580,Landscape,122100,1
+7730,1580,"#1 Dry Stream bed, excluding excavation",8970,2
+7731,1580,90 Day Maintenance,2400,3
+7734,1583,Landscape Improvements per attached Bid Form (ADDENDUM 2),1281596.26,0
+7735,1584,Landscape Improvements per attached Bid Form (ADDENDUM 2),1281596.26,0
+7736,1585,Landscape Improvements per attached Bid Form (ADDENDUM 2),1154316.02,0
+7772,1591,Phase 16 (11 lots),33550,0
+7773,1591,Phase 17 (13 lots),39650,1
+7774,1591,Phase 18 (12 lots),36600,2
+7775,1591,Phase 19 (14 lots),42700,3
+7776,1591,Phase 20 (13 lots),39650,4
+7777,1591,Phase 21 (15) lots,45750,5
+7778,1591,OCIP reduction,-1785,6
+7842,1600,Drains,5500,0
+7843,1600,Irrigation,402610,1
+7844,1600,Planting,889659,2
+7845,1600,Pots w/ Planting (14),28999,3
+7846,1600,Item G Synthetic Turf,14875,4
+7847,1600,Item H Stabilized Decomposed Granite,2880,5
+7848,1600,Item J Decorative Cobble,3350,6
+7849,1600,90 Day Maintenance,6600,7
+7890,1606,"Phase 16 (12 lots, including lot 17)",36600,0
+7891,1606,Phase 17 (13 lots),39650,1
+7892,1606,Phase 18 (12 lots),36600,2
+7893,1606,Phase 19 (14 lots),42700,3
+7894,1606,Phase 20 (13 lots),39650,4
+7895,1606,Phase 21 (15) lots,45750,5
+7896,1606,OCIP reduction,-1807.11,6
+7898,1608,"Phases 7-10, per attached bid form",529862,0
+7996,1621,Drains,0,0
+7997,1621,Irrigation,0,1
+7998,1621,Landscape,3349,2
+7999,1621,90 Day Maintenance,0,3
+8000,1622,Drains,0,0
+8001,1622,Irrigation,0,1
+8002,1622,Landscape,3349,2
+8003,1622,90 Day Maintenance,0,3
+8028,1626,Drainage per notes below,35100,0
+8029,1626,"Bio-retention planters, per notes below",26700,1
+8030,1626,"Initial safe off, cut & cap",2000,2
+8031,1626,Irrigation,19900,3
+8032,1626,Irrigation repair allowance for existing turf area,2300,4
+8033,1626,Planting,14400,5
+8034,1626,90 Day Maintenance of new areas,1500,6
+8036,1628,Per attached Bid Form,1186940.5,0
+8052,1632,Per attached Bid Form,1163269.5,0
+8056,1636,"Phases 7-10, per attached bid form",497725.25,0
+8111,1643,Drains,26550,0
+8112,1643,Irrigation,47750,1
+8113,1643,Planting,82780,2
+8114,1643,"City Street Trees, per SIP",2500,3
+8115,1643,90 Day Maintenance,2400,4
+8116,1643,P-7; Decorative Rock (180 sf),1620,5
+8117,1643,SF-2; Picnic Table & Benches (2),22500,6
+8118,1643,SF-3; Pedestal BBQ (2) Propane,9500,7
+8119,1643,SF-5; Bike Racks (4),4200,8
+8236,1659,Drains,22450,0
+8237,1659,Irrigation,47400,1
+8238,1659,Planting,26550,2
+8239,1659,90 Day Maintenance,450,3
+8240,1659,[2] Crushed Rock (120 sf),1380,4
+8241,1659,[3] Artificial Pet Turf (210 sf),2520,5
+8242,1659,[4] Stabilized DG (540 sf),3645,6
+8243,1659,[5] Redwood Header (70'),560,7
+8244,1659,[10] Bench (1),2610,8
+8245,1659,[11] Dog Waste Dispenser (1),710,9
+8246,1659,[12] Trash Receptacle (1),2320,10
+8323,1675,Irrigation,66100,0
+8324,1675,Landscape,130500,1
+8325,1675,90 Day Maintenance,3000,2
+8326,1675,"DG per PGP plan (3,100 sf)",11800,3
+8327,1675,Tree grates (2),18500,4
+8328,1675,Long term bike boxes (2),10000,5
+8338,1678,"#16 Drains, per notes below",81000,0
+8339,1678,Decomposed Granite paving,3500,1
+8340,1678,Rock Mulch for Monument Wall,1800,2
+8341,1678,Install owner-supplied furnishings (SA-1 through SA-5),5700,3
+8342,1678,"Supply SA-6 (BBQ's-2, Access Doors-2, vents-2); install by others",17600,4
+8343,1678,Supply & install (1) SA-7 pet waste dispenser,1000,5
+8430,1695,Drains,6589,0
+8431,1695,Irrigation,26180,1
+8432,1695,Planting,35984,2
+8433,1695,Item S-10 Metal Edging,0,3
+8434,1695,Item S-14 Decomposed Granite,0,4
+8435,1695,Item S-18 Landscape Boulders (50),0,5
+8436,1695,Item S-19 Decorative Gravel Paving,0,6
+8437,1695,90 Day Maintenance,0,7
+8454,1698,Drains,44150,0
+8455,1698,Irrigation,153000,1
+8456,1698,Planting,145300,2
+8457,1698,90 Day Maintenance,6500,3
+8458,1698,Decomposed Granite Mulch,35600,4
+8459,1698,2'-4' Boulders,10920,5
+8460,1698,Flagstone Pavers,9100,6
+8461,1698,Low Voltage Lighting,70844,7
+8462,1699,Drains,16320,0
+8463,1699,Irrigation,89790,1
+8464,1699,Planting,267720,2
+8465,1699,90 Day Maintenance,7500,3
+8466,1699,Decomposed Granite Mulch,27750,4
+8467,1699,2'-4' Boulders,6100,5
+8468,1699,Flagstone Pavers,8400,6
+8469,1699,Low Voltage Lighting,42100,7
+8505,1709,Total per bid form,736168,0
+8506,1709,Drains per bid form,89000,1
+8512,1712,Landscape per attached Bid Form,400000,0
+8513,1712,Area Drains per attached Bid Form,116450,1
+8514,1712,"Site Amenities/ Furnishings, Village A, perattached Bid Form",18550,2
+8515,1712,"Site Amenities/ Furnishings, Village B, per attached bid form, appears to be redundant from Glenwood",103450,3
+8516,1713,Landscape per Attached Bid Form,232000,0
+8517,1713,Drains per attached bid form,70000,1
+8518,1713,Site Person 33991F4D per the attached Bid Form,23000,2
+8608,1733,Irrigation,166550,0
+8609,1733,Planting,285500,1
+8610,1733,90 Day Maintenance,3300,2
+8611,1733,"R16, Synth turf at dog park (1,225 sf)",17700,3
+8612,1733,"S17, D.G. at transformers (900 sf)",5200,4
+8613,1733,"S18, Boulders (7)",3000,5
+8614,1734,Irrigation,38100,0
+8615,1734,Planting,19100,1
+8616,1734,90 Day Maintenance,600,2
+8635,1738,Drains,9275,0
+8636,1738,Irrigation,24200,1
+8637,1738,Planting,60156,2
+8638,1738,90 Day Maintenance,1800,3
+8639,1738,"Site Lighting: 4EA Type A3, 2EA Type B Trellis, 6EA Type C Boll./Ftgs, 10 Type C Accent Light Light,",49250,4
+8640,1738,1 OH Steel Struct. per  Detail A/CD-1( lattice steel also),42850,5
+8724,1763,Irrigation,0,0
+8725,1763,Planting,0,1
+8726,1763,90 Day Maintenance,0,2
+8727,1764,Irrigation,0,0
+8728,1764,Planting,177890,1
+8729,1764,90 Day Maintenance,6000,2
+8756,1775,Irrigation,122100,0
+8757,1775,Planting,49100,1
+8758,1775,90 Day Maintenance,2400,2
+8759,1776,Irrigation,188500,0
+8760,1776,Planting,160100,1
+8761,1776,90 Day Maintenance,3000,2
+8763,1778,Irrigation,228000,0
+8764,1778,Planting,321000,1
+8765,1778,90 Day Maintenance,33000,2
+8776,1783,Per attached Bid Form,251116.62,0
+8777,1784,Drains,34145,0
+8778,1784,Irrigation,152557,1
+8779,1784,Landscape,676669,2
+8780,1784,90 Day Maintenance,6000,3
+8805,1790,Drainage: (NONE SHOWN ON PLANS - NO BID),0,0
+8806,1790,"Irrigation Ground Level Budgetary Estimate, No Plans",45000,1
+8807,1790,Irrigation On-Structure or Podium (NONE SHOWN ON PLANS - NO BID),0,2
+8808,1790,Planting,135507,3
+8809,1790,Pots on Podium with self-watering reservoirs (56EA),179200,4
+8810,1790,90 Day Maintenance,6600,5
+8851,1793,Irrigation,770000,0
+8852,1793,Planting,435000,1
+8853,1793,Synthetic Turf at Backyard,154000,2
+8854,1793,Synthetic Turf at Dog Park,5224,3
+8855,1793,Decomposed Granite Paving,7399,4
+8856,1793,Metal Edging at DG Paving,5649,5
+8857,1793,Landscape Boulder,6000,6
+8858,1793,Trash Receptacle (1),3600,7
+8859,1793,Bench (1),2768,8
+8860,1793,Pet Waste Receptacle (1),900,9
+8861,1793,MailBox (4),11436,10
+8862,1793,90 Day Maintenance,9000,11
+8870,1795,Irrigation,38000,0
+8871,1795,Planting,72400,1
+8872,1795,"6'' Collector Line, for Dura Slope channel drain by others",12200,2
+8873,1795,Item #1 DG Paving (1500 sf),7500,3
+8874,1795,Flagstone Edging for DG pathways,16020,4
+8875,1795,Item: Benches from Company 8C6EA673 (2),6375,5
+8876,1795,90 Day Maintenance,1200,6
+8877,1795,"Rip Rap, per detail sheet 2, plan sheet 4",2400,7
+8913,1801,Drains (10,53500,0
+8914,1801,Irrigation,78900,1
+8915,1801,Planting,89700,2
+8916,1801,P-4 Decomposed Granite Paving,5400,3
+8917,1801,P-5 Metal Edging,3200,4
+8918,1801,P-6 Decorative Rock,3340,5
+8919,1801,P-7 Artificial Turf,4800,6
+8920,1801,SF-1 Bench (6),16980,7
+8921,1801,SF-2 Rectangular Picnic Table (2),14660,8
+8922,1801,SF-3 Round Picnic Table (8),42945,9
+8923,1801,SF-4 Trash Receptacle (1),1460,10
+8924,1801,SF-5 Adirondack Chairs (8),7000,11
+8925,1801,SF-6 Bike Rack (1),1350,12
+8926,1801,SF-7 Pet Waste Station (3),5700,13
+8927,1801,SF-8 Mailbox (1),11800,14
+8928,1801,SF-9 Freestanding BBQ (2),11720,15
+8929,1801,SF-10 Fire Table (1),6650,16
+8930,1801,SA-1 Shade Structure (1) (Excluding Masonry /Stone Over CMU),32240,17
+8931,1801,SA-2 String Lights Structure,10700,18
+8932,1801,90 Day Maintenance,1650,19
+8936,1805,Per attached Bid Form,1163269.5,0
+8942,1809,Irrigation Allowance per square footage(19600sf),58800,0
+8943,1809,"72"" trees (5EA)",51000,1
+8944,1809,"48"" Trees (6EA)",12600,2
+8945,1809,"24"" Trees (1EA)",550,3
+8946,1809,"Shrubs, mulch, soil prep, fine rake",176400,4
+8947,1809,Decomposed Granite Paving (300sf),1500,5
+8948,1809,Steel Edging (240lf),4320,6
+8949,1809,90 Day Maintenance,1800,7
+8970,1814,Irrigation,23400,0
+8971,1814,Planting,19500,1
+8972,1814,90 Day Maintenance,1200,2
+9069,1830,Mobilization,0,0
+9070,1830,Landscape,34900,1
+9071,1830,Irrigation,88100,2
+9072,1830,Root Barrier,630,3
+9073,1830,90 Day Maintenance,1800,4
+9074,1831,Mobilization,0,0
+9075,1831,Landscape,17400,1
+9076,1831,Irrigation,35900,2
+9077,1831,Root Barrier,650,3
+9078,1831,"6"" Concrete Curb",0,4
+9079,1831,DG Trail,8500,5
+9080,1831,Primary Monument Person 01954503,0,6
+9081,1831,"6"" Removable Bollards",0,7
+9082,1831,Cobble Paver Concrete Stamping,0,8
+9083,1831,DG Utility Access Road,8500,9
+9084,1831,"8"" Concrete Curb",0,10
+9085,1831,Non-Potable Water Warning Sign,0,11
+9086,1831,90 Day Maintenance,0,12
+9087,1832,Mobilization,0,0
+9088,1832,Landscape,67500,1
+9089,1832,Irrigation,107700,2
+9090,1832,Root Barrier,500,3
+9091,1832,"6"" Concrete Curb",0,4
+9092,1832,DG Trail,14200,5
+9093,1832,3 Rail Fence,0,6
+9094,1832,Cobble Paver Concrete Stamping,0,7
+9095,1832,"8"" Concrete Curb",0,8
+9096,1832,Non-Potable Water Warning Sign,0,9
+9097,1832,90 Day Maintenance,0,10
+9232,1847,Mobilization,0,0
+9233,1847,Landscape,31100,1
+9234,1847,Irrigation,75700,2
+9235,1847,Root Barrier,500,3
+9236,1847,90 Day Maintenance,1800,4
+9237,1848,Mobilization,0,0
+9238,1848,Landscape,15100,1
+9239,1848,Irrigation,29100,2
+9240,1848,Root Barrier,600,3
+9241,1848,6,0,4
+9242,1848,DG Trail,7100,5
+9243,1848,Primary Monument Person 01954503,0,6
+9244,1848,6,0,7
+9245,1848,Cobble Paver Concrete Stamping,0,8
+9246,1848,DG Utility Access Road,7100,9
+9247,1848,8,0,10
+9248,1848,Non-Potable Water Warning Sign,0,11
+9249,1848,90 Day Maintenance,0,12
+9250,1849,Mobilization,0,0
+9251,1849,Landscape,58000,1
+9252,1849,Irrigation,86200,2
+9253,1849,Root Barrier,500,3
+9254,1849,6,0,4
+9255,1849,DG Trail,11900,5
+9256,1849,3 Rail Fence,0,6
+9257,1849,Cobble Paver Concrete Stamping,0,7
+9258,1849,8,0,8
+9259,1849,Non-Potable Water Warning Sign,0,9
+9260,1849,90 Day Maintenance,0,10
+9297,1855,Per attached Bid Form,1121571,0
+9318,1858,"Drains (Allowance, Drain Plans not complete)",47300,0
+9319,1858,Irrigation,94500,1
+9320,1858,Planting,108000,2
+9321,1858,SF-1 Pedestal BBQ (2),9700,3
+9322,1858,SF-2 Bench (3),11900,4
+9323,1858,SF-3 Trash Receptacle (1),4100,5
+9324,1858,SF-4 Dining Table (2),24000,6
+9325,1858,SF-5 Mailboxes (2),11000,7
+9326,1858,SF-6 Pet Waste Station (2),2700,8
+9327,1858,90 Day Maintenance,2100,9
+9340,1861,Irrigation,73200,0
+9341,1861,Landscape,155200,1
+9342,1861,90 Day Maintenance,3000,2
+9343,1861,"DG per PGP plan (3,100 sf)",11800,3
+9344,1861,Tree grates (2),18500,4
+9345,1861,Long term bike boxes (2),10000,5
+9388,1872,Irrigation,122100,0
+9389,1872,Planting,49100,1
+9390,1872,90 Day Maintenance,2400,2
+9391,1873,Irrigation,188500,0
+9392,1873,Planting,160100,1
+9393,1873,90 Day Maintenance,3000,2
+9409,1877,Irrigation,126650,0
+9410,1877,Planting,81000,1
+9411,1877,90 Day Maintenance,1200,2
+9412,1878,Irrigation,59900,0
+9413,1878,Planting,100600,1
+9414,1878,S-1 Play Structure,54000,2
+9415,1878,Paving Item 6 Fibar Play Area Surfacing,3000,3
+9416,1878,S-2 Park Bench (2) Allowance No Model No.,6900,4
+9417,1878,S-3 Trash Receptacle (3) Allowance No Model No.,11000,5
+9418,1878,Paving Item 8 Gravel Mulch,1000,6
+9419,1878,90 Day Maintenance,1800,7
+9420,1879,Irrigation,26300,0
+9421,1879,Planting,23000,1
+9422,1879,Item 2 Decomposed Granite Path,9500,2
+9423,1879,90 Day Maintenance,900,3
+9446,1883,Irrigation,13332,0
+9447,1883,Planting,59114,1
+9448,1883,S-8 Landscape Boulders (8),0,2
+9449,1883,S-9 Artificial Turf,0,3
+9450,1883,S-10 Landscape Metal Edging,0,4
+9451,1883,S-12 Supply Decorative Pots (24) Planting by Ohers,0,5
+9452,1883,P-1 thru P-6 Decorative Gravel,0,6
+9453,1883,Item 3-18 Corn Hole (1 set),0,7
+9454,1883,Item 3-12 Living Wall at Pool Area (4' high per Detail),0,8
+9455,1883,90 Day Maintenance,0,9
+9456,1883,Drains,0,10
+9457,1884,Drains,0,0
+9458,1884,Irrigation,12898,1
+9459,1884,Landscape,77811,2
+9460,1884,90 Day Maintenance,3200,3
+9461,1884,Item 3-18: Corn Hole,1650,4
+9462,1884,S-12 Supply Decorative Pots Planted and maint. by others,16500,5
+9463,1884,Item 3-12 Faux Artificial plant wall,7750,6
+9653,1905,Irrigation,228000,0
+9654,1905,Planting,321000,1
+9655,1905,Add Acacia and Myoporum per exhibit,137500,2
+9656,1905,90 Day Maintenance,33000,3
+9757,1915,Drains,5460,0
+9758,1915,Irrigation (Repair Allowance),6900,1
+9759,1915,Planting,54250,2
+9760,1915,Planting Allowance,2800,3
+9761,1915,Supply Pots (17)  [Planting & Maintenance by Instant Jungle],17500,4
+9762,1915,Item F3 Pedestal BBQ Grill (2),12800,5
+9763,1915,Synthetic Turf (260 sf),4190,6
+9764,1915,90 Day Maintenance,660,7
+9765,1916,Irrigation,243238,0
+9766,1916,Irrigation Highline (8,2450,1
+9767,1916,Landscape,183312,2
+9768,1916,"Decomposed Granite (12,710 sf)",48368,3
+9769,1916,6,36975,4
+9770,1916,Split Rail Fence (2550lf),117000,5
+9771,1916,90 Day Maintenance,13350,6
+9787,1924,Irrigation,122100,0
+9788,1924,Planting,49100,1
+9789,1924,90 Day Maintenance,2400,2
+9790,1925,Irrigation,188500,0
+9791,1925,Planting,160100,1
+9792,1925,90 Day Maintenance,3000,2
+9799,1927,Drains,7900,0
+9800,1927,Irrigation,24200,1
+9801,1927,Planting,36100,2
+9802,1927,"Gravels, DG and header",39900,3
+9803,1927,90 Day Maintenance,1800,4
+9804,1927,"Site Lighting: 4EA Type A3, 2EA Type B Trellis, 6EA Type C Boll./Ftgs, 10 Type C Accent Light Light,",49250,5
+9805,1927,1 OH Steel Struct. per  Detail A/CD-1( lattice steel also),40800,6
+9810,1932,Total per attached BLS breakdown,363750,0
+9829,1942,Drainage per notes below,61400,0
+9830,1942,"Bio-retention planters, per notes below",26700,1
+9831,1942,"Initial safe off, cut & cap",2000,2
+9832,1942,Irrigation,19900,3
+9833,1942,Irrigation repair allowance for existing turf area,2300,4
+9834,1942,Planting,14400,5
+9835,1942,90 Day Maintenance of new areas,1500,6
+9836,1943,Irrigation Repair Allowance,2423,0
+9837,1943,Planting Repair Allowance,1268,1
+9838,1943,90 Day Maintenance,0,2
+9842,1947,Per attached Bid Form,1110258,0
+9844,1949,Total per attached BLS breakdown,365400,0
+9961,1965,Irrigation Repair Allowance,3450,0
+9962,1965,Planting Repair Allowance,3450,1
+9963,1965,90 Day Maintenance,450,2
+9964,1966,Per attached Bid Form,1348657,0
+9966,1968,Drains,11647,0
+9967,1968,Irrigation,17110,1
+9968,1968,Planting,20092,2
+9969,1968,90 Day Maintenance,0,3
+9970,1969,Per attached Bid Form,1348657,0
+9971,1970,Per attached Bid Form,3173530,0
+9983,1972,Drains,31061,0
+9984,1972,Irrigation,50422,1
+9985,1972,Planting,30977,2
+9986,1972,90 Day Maintenance,600,3
+9987,1972,[2] Crushed Rock (120 sf),1380,4
+9988,1972,[3] Artificial Pet Turf (210 sf),2520,5
+9989,1972,[4] Stabilized DG (540 sf),3645,6
+9990,1972,[5] Redwood Header (70'),560,7
+9991,1972,[10] Bench (1),2610,8
+9992,1972,[11] Dog Waste Dispenser (1),710,9
+9993,1972,[12] Trash Receptacle (1),2320,10
+9994,1973,Per attached Bid Form,3281530,0
+9996,1975,Per attached Bid Form,3281530,0
+10022,1980,Drains,247946,0
+10023,1980,Irrigation,225204,1
+10024,1980,Planting,458100,2
+10025,1980,Item SF-1 Bike Rack (1),1282,3
+10026,1980,Item SF-2 Dog Bag Station (2),1560,4
+10027,1980,Item SF-3 Decorative Pot & Planting,4750,5
+10028,1980,Item P-8 Artificial Turf,20550,6
+10029,1980,90 Day Maintenance,4800,7
+10030,1981,"Drains (Allowance only, plans not complete)",45842,0
+10031,1981,Irrigation,253000,1
+10032,1981,Planting,550700,2
+10033,1981,Item P-3 Playground Surfacing Spectrapour by SPECTRA TURF),100525,3
+10034,1981,Item P-4 Infield DG Mix and Item P-5 Mound Mix,195000,4
+10035,1981,Item P-6 Synthetic Turf,125120,5
+10036,1981,Item SF-1 Bench (26),91600,6
+10037,1981,Item SF-2 Round Dining Table (3),21600,7
+10038,1981,Item SF-3 ADA Round Dining Table (3),16900,8
+10039,1981,Item SF-4 Bistro Table (7),34400,9
+10040,1981,Item SF-5 ADA Rectangular Dining Table (7),39600,10
+10041,1981,Item SF-6 Dining Table Bench (14),36100,11
+10042,1981,Item SF-7 Adirondack Chair (12),41500,12
+10043,1981,Item SF-8 Side Table (6),9500,13
+10044,1981,Item SF-9 Trash Receptacle (8),19800,14
+10045,1981,Item SF-10 Coal BBQ (2),2960,15
+10046,1981,Item SF-11 Coal Receptacle (2),2400,16
+10047,1981,Item SF-12 Dog Waste Station (6),4700,17
+10048,1981,Item SF-13 Bike Rack (2),2600,18
+10049,1981,Item SF-14 Bleachers (4),22100,19
+10050,1981,Item SF-15 & SF-16 Baseball Field Backstop (2),25500,20
+10051,1981,Item SF-17 Dugout Bench (4),10300,21
+10052,1981,Item SA-3 thru Item SA-8 Play Structures (1 set),303700,22
+10053,1981,"Item SA-9 & SA-10 Diamond Bases,Pitcher's Rubber & Home Plate (2 sets)",2600,23
+10054,1981,Item SA-11 Soccer Goal & Transporter System (1),14200,24
+10055,1981,90 Day Maintenance,15000,25
+10142,1989,Irrigation,95700,0
+10143,1989,Landscape,37900,1
+10144,1989,90 Day Maintenance,1500,2
+10145,1989,DG and header,8400,3
+10154,1991,Irrigation,38000,0
+10155,1991,Planting,72400,1
+10156,1991,"6'' Collector Line, for Dura Slope channel drain by others",12200,2
+10157,1991,Item #1 DG Paving (1500 sf),7500,3
+10158,1991,90 Day Maintenance,1200,4
+10159,1991,"Rip Rap, per detail sheet 2, plan sheet 4",2400,5
+10172,1995,Irrigation,74800,0
+10173,1995,Landscape,122100,1
+10174,1995,"#1 Dry Stream bed, excluding excavation",8970,2
+10175,1995,90 Day Maintenance,2400,3
+10200,2002,Irrigation,95300,0
+10201,2002,Landscape,40600,1
+10202,2002,60 Day Maintenance,1200,2
+10203,2002,DG and header,8400,3
+10206,2005,Per attached Bid Form,1071398.97,0
+10249,2009,Drains,58100,0
+10250,2009,Irrigation,118900,1
+10251,2009,Planting,119500,2
+10252,2009,"5.8 Dog Waste Dispenser, allowance (1)",1100,3
+10253,2009,"5.6 Portable BBQ Station (1), excluding gas line",8700,4
+10254,2009,Chaise Lounge (16),22400,5
+10255,2009,Side Table (8),3600,6
+10256,2009,Dining Table (6),7200,7
+10257,2009,ADA Dining Table (4),4800,8
+10258,2009,Dining Chair (36),27000,9
+10259,2009,Bench without Cushion (8),9600,10
+10260,2009,Trash Receptacle (9),29250,11
+10261,2009,Recycle Receptacle (9),29250,12
+10262,2009,120 Day Maintenance,2900,13
+10274,2012,Drains,155423,0
+10275,2012,Irrigation,100306,1
+10276,2012,Planting,122017,2
+10277,2012,Landscape Boulders (7),0,3
+10278,2012,Decorative Cobble,0,4
+10279,2012,Planted Pots (5),0,5
+10280,2012,90 Day Maintenance,0,6
+10286,2014,Irrigation Allowance (Per landscape square footage),0,0
+10287,2014,Planting,225879,1
+10288,2014,Pot Planting [(64) Pots at 1st Floor (2) Pots at 2nd Floor],0,2
+10289,2014,Artificial Plants [ (7) Pots at 2nd Floor],0,3
+10290,2014,90 Day Maintenance,0,4
+10303,2019,Irrigation Repair Allowance,3450,0
+10304,2019,Planting Repair Allowance,3450,1
+10305,2019,90 Day Maintenance,450,2
+10324,2026,Irrigation,122100,0
+10325,2026,Planting,49100,1
+10326,2026,90 Day Maintenance,2400,2
+10327,2027,Irrigation,188500,0
+10328,2027,Planting,160100,1
+10329,2027,90 Day Maintenance,3000,2
+10340,2030,Irrigation Allowance (Per landscape square footage),207500,0
+10341,2030,Planting,203900,1
+10342,2030,Pot Planting [(64) Pots at 1st Floor (2) Pots at 2nd Floor],246515,2
+10343,2030,Artificial Plants [ (7) Pots at 2nd Floor],18635,3
+10344,2030,90 Day Maintenance,3600,4
+10350,2032,Irrigation Allowance (Per landscape square footage),207500,0
+10351,2032,Planting,203900,1
+10352,2032,Pot Planting [(64) Pots at 1st Floor (2) Pots at 2nd Floor],246515,2
+10353,2032,Artificial Plants [ (7) Pots at 2nd Floor],18635,3
+10354,2032,90 Day Maintenance,3600,4
+10360,2034,Irrigation Allowance (Per landscape square footage),207500,0
+10361,2034,Planting,203900,1
+10362,2034,Pot Planting [(64) Pots at 1st Floor (2) Pots at 2nd Floor],246515,2
+10363,2034,Artificial Plants [ (7) Pots at 2nd Floor],18635,3
+10364,2034,90 Day Maintenance,3600,4
+10409,2039,Drains,58100,0
+10410,2039,Irrigation,118900,1
+10411,2039,Planting,119500,2
+10412,2039,"5.8 Dog Waste Dispenser, allowance (1)",1100,3
+10413,2039,"5.6 Portable BBQ Station (1), excluding gas line",8700,4
+10414,2039,Chaise Lounge (16),22400,5
+10415,2039,Side Table (8),3600,6
+10416,2039,Dining Table (6),7200,7
+10417,2039,ADA Dining Table (4),4800,8
+10418,2039,Dining Chair (36),27000,9
+10419,2039,Bench without Cushion (8),9600,10
+10420,2039,Trash Receptacle (9),29250,11
+10421,2039,Recycle Receptacle (9),29250,12
+10422,2039,120 Day Maintenance,2900,13
+10440,2045,Drains,5460,0
+10441,2045,Irrigation (Repair Allowance),6900,1
+10442,2045,"Planting (Installation only, Plant Materials to be provided by Owner)",30200,2
+10443,2045,Planting Allowance,2800,3
+10444,2045,Supply Pots (17)  [Planting & Maintenance by Instant Jungle],17500,4
+10445,2045,Item F3 Pedestal BBQ Grill (2),12800,5
+10446,2045,Synthetic Turf (260 sf),4190,6
+10447,2045,90 Day Maintenance,660,7
+10488,2056,Irrigation,133200,0
+10489,2056,Landscape,294000,1
+10490,2056,90 Day Maintenance,2400,2
+10491,2056,S-25 Pots (16),31600,3
+10506,2071,Per attached Bid Form,2514121,0
+10507,2072,Demolition and Disposal (incl. gazebo),21500,0
+10508,2072,Irrigation Repair Allowance,4500,1
+10509,2072,Planting,104200,2
+10510,2072,Planted raised planter (6),1200,3
+10511,2072,Decomposed Granite Path 1437sf (no header),6300,4
+10512,2072,90 Day Maintenance,1500,5
+10537,2083,Per attached Bid Form,1064881.97,0
+10554,2092,Per attached Bid Form,1481012.2,0
+10556,2094,Per attached Bid Form,1401962.2,0
+10574,2098,Irrigation,22000,0
+10575,2098,Planting,34000,1
+10576,2098,"Gravels, DG and header",36500,2
+10577,2098,90 Day Maintenance,1500,3
+10578,2098,"Site Lighting: 4EA Type A3, 2EA Type B Trellis, 6EA Type C Boll./Ftgs, 10 Type C Accent Light Light,",36050,4
+10580,2100,Total per attached BLS breakdown,339400,0
+10772,2152,Drains,0,0
+10773,2152,Irrigation,24728,1
+10774,2152,Planting,34100,2
+10775,2152,90 Day Maintenance,0,3
+10829,2166,Per Attached Bid Form,123844.64,0
+10838,2169,Drains,21700,0
+10839,2169,Irrigation,41551,1
+10840,2169,Planting,46100,2
+10841,2169,90 Day Maintenance,750,3
+11052,2216,Irrigation,509664,0
+11053,2216,Landscape,596600,1
+11054,2216,90 Day Maintenance,18600,2
+11055,2216,(S-8) Decorative Gravel,117500,3
+11056,2216,(S-9) On-site Boulders,13400,4
+11057,2216,(S-10) Metal Edging,210500,5
+11058,2217,Irrigation,192700,0
+11059,2217,Landscape,95200,1
+11060,2217,90 Day Maintenance,10200,2
+11061,2218,Irrigation,119114,0
+11062,2218,Landscape,145200,1
+11063,2218,90 Day Maintenance,12000,2
+11064,2218,(S-9) On-site Boulders,15800,3
+11065,2219,Irrigation,428513,0
+11066,2219,Landscape,399800,1
+11067,2219,90 Day Maintenance,14700,2
+11068,2219,(S-8) Decorative Gravel,94400,3
+11069,2219,(S-9) On-site Boulders,11700,4
+11070,2219,(S-10) Metal Edging,89300,5
+11071,2220,Irrigation,166500,0
+11072,2220,Landscape,75100,1
+11073,2220,90 Day Maintenance,9000,2
+11074,2221,Irrigation,223600,0
+11075,2221,Landscape,259500,1
+11076,2221,90 Day Maintenance,21000,2
+11077,2221,(S-9) On-site Boulders,18000,3
+11086,2224,Irrigation,174284,0
+11087,2224,Planting,155500,1
+11088,2224,Item C-02 Concrete Mow Curb,16000,2
+11089,2224,Item C-05 PlayGround Fiber Mulch Surfacing,8500,3
+11090,2224,Item C-06 Decomposed Granite Paving,96000,4
+11091,2224,Item C-26 Landscape Boulders,8700,5
+11092,2224,90 Day MAintenance,6000,6
+11155,2236,Per attached Bid Form,656157,0
+11236,2250,Per attached Bid Form,576557,0
+11268,2254,Drains,23500,0
+11269,2254,Irrigation,85000,1
+11270,2254,Planting,78000,2
+11271,2254,90 Day Maintenance,1800,3
+11272,2254,Decomposed Granite Paving,8000,4
+11273,2254,Item F-01 Bench (2),11000,5
+11274,2254,Item F-02 Dog Waste Station (1),785,6
+11313,2259,Drains,188000,0
+11314,2259,Irrigation,338000,1
+11315,2259,Planting,427000,2
+11316,2259,Artificial Turf,20600,3
+11317,2259,Decomposed Granite Paving,2800,4
+11318,2259,Item #6 Pots for Tile Pedestal (4),6150,5
+11319,2259,Item #20 Dog Park Drinking Fountain (1),4800,6
+11320,2259,Item #21 Dog Waste Station (8),5000,7
+11321,2259,Item #22 Bench (3),14000,8
+11322,2259,Item #23 Trash Receptacle (2),4500,9
+11323,2259,Item #24 Concrete Steppers (180),4100,10
+11324,2259,Dog Wash & Dog Grooming Station (1),4700,11
+11325,2259,90 Day Maintenance,4500,12
+11326,2260,Irrigation,52000,0
+11327,2260,Planting,258800,1
+11328,2260,Pots,31900,2
+11329,2260,Item Q Fractured Rock Paving,3400,3
+11330,2260,12' square umbrella (7),188000,4
+11331,2260,90 Day Maintenance,1650,5
+11332,2261,Irrigation Allowance to repair existing,3500,0
+11333,2261,"Landscape Allowance for added Plants 120ea 1Gal, 34ea 5G, 15 Flatsal, and GC",4000,1
+11334,2261,Cobble and filter fabric (Allow 3050 SFT),22083,2
+11335,2261,Clear Grub and dipose weeds and debris,1500,3
+11336,2261,Tree Lacing and Trimming,3200,4
+11337,2261,90 Day Maintenance,900,5
+11345,2263,Irrigation,224000,0
+11346,2263,Planting,315000,1
+11347,2263,Add Acacia and Myoporum per exhibit,135000,2
+11348,2263,90 Day Maintenance,30000,3
+11349,2263,Add hydroseed in blue area of exhibit (not shown on 20 scale plan),179000,4
+11355,2265,Irrigation,224000,0
+11356,2265,Planting,315000,1
+11357,2265,Add Acacia and Myoporum per exhibit,135000,2
+11358,2265,90 Day Maintenance,30000,3
+11359,2265,Add hydroseed in blue area of exhibit (not shown on 20 scale plan),179000,4
+11365,2271,Please See Bid Break Out Attached,504276,0
+11403,2279,Selective Drains at Landscape Areas,34500,0
+11404,2279,Irrigation,68894,1
+11405,2279,Planting,88600,2
+11406,2279,Tree Grates (2),5300,3
+11407,2279,Landscape Boulders,33000,4
+11408,2279,Rock Cobble,6800,5
+11409,2279,90 Day Maintenance,1800,6
+11413,2283,Per attached Bid Form,629764.71,0
+11417,2287,Per attached Bid Form,619999.01,0
+11419,2289,Lot Drainage,54530,0
+11420,2289,Irrigation,128700,1
+11421,2289,Planting,297800,2
+11422,2289,90 Day Maintenance,4200,3
+11423,2289,"P-5, D.G.",5000,4
+11424,2289,"P-6, Plastic Edging",4100,5
+11425,2289,"P-9, Playground Wood Fiber",3800,6
+11426,2289,"P-10, Artificial turf",10600,7
+11427,2289,"SF-6, Park bench (1)",2800,8
+11428,2289,SF-1 Bike racks (2),2900,9
+11429,2289,SF-7 Dog Waste Station (1),1250,10
+11430,2289,"SA-5 Curva Spinner (1) & SA-6 Mushroom steppers (3), Play Equipment",13100,11
+11456,2293,Per attached Bid Form,2527904.14,0
+11457,2294,Lot Drainage,54530,0
+11458,2294,Irrigation,128700,1
+11459,2294,Planting,297800,2
+11460,2294,90 Day Maintenance,4200,3
+11461,2294,"P-5, D.G.",5000,4
+11462,2294,"P-6, Plastic Edging",4100,5
+11463,2294,"P-9, Playground Wood Fiber",3800,6
+11464,2294,"P-10, Artificial turf",10600,7
+11465,2294,"SF-6, Park bench (1)",2800,8
+11466,2294,SF-1 Bike racks (2),2900,9
+11467,2294,SF-7 Dog Waste Station (1),1250,10
+11468,2294,"SA-5 Curva Spinner (1) & SA-6 Mushroom steppers (3), Play Equipment",13100,11
+11469,2295,Please See Bid Break Out Attached,504276,0
+11470,2296,Drains,20250,0
+11471,2296,Irrigation,40500,1
+11472,2296,Planting,66000,2
+11473,2296,"City Street Trees, per SIP",1800,3
+11474,2296,90 Day Maintenance,1500,4
+11475,2296,P-7; Decorative Rock (180 sf),1400,5
+11476,2296,SF-2; Picnic Table & Benches (2),21200,6
+11477,2296,SF-3; Pedestal BBQ (2) Propane,9250,7
+11478,2296,SF-5; Bike Racks (4),4100,8
+11479,2296,"P-2, precast concrete steppers (24)",1100,9
+11490,2298,Drains,20250,0
+11491,2298,Irrigation,40500,1
+11492,2298,Planting,66000,2
+11493,2298,"City Street Trees, per SIP",1800,3
+11494,2298,90 Day Maintenance,1500,4
+11495,2298,P-7; Decorative Rock (180 sf),1400,5
+11496,2298,SF-2; Picnic Table & Benches (2),21200,6
+11497,2298,SF-3; Pedestal BBQ (2) Propane,9250,7
+11498,2298,SF-5; Bike Racks (4),4100,8
+11499,2298,"P-2, precast concrete steppers (24)",1100,9
+11514,2301,Drains,76780,0
+11515,2301,Irrigation,99375,1
+11516,2301,Planting,116000,2
+11517,2301,Landscape Boulders (7),5500,3
+11518,2301,Decorative Cobble,3250,4
+11519,2301,Planted Pots (5),9500,5
+11520,2301,90 Day Maintenance,2400,6
+11522,2303,Per attached Bid Form,1064155.09,0
+11548,2310,Irrigation,99700,0
+11549,2310,Landscape,49800,1
+11550,2310,"Baja Cresta crushed rock, excluding excavation (4,500 sf)",54650,2
+11551,2310,"12"" gravel layer under Baja Cresta rock (4,500 sf)",16250,3
+11552,2310,90 Day Maintenance,2400,4
+11713,2348,Irrigation,506990,0
+11714,2348,Landscape,572430,1
+11715,2348,90 Day Maintenance,18600,2
+11716,2348,(S-8) Decorative Gravel,101490,3
+11717,2348,(S-9) On-site Boulders,13710,4
+11718,2348,(S-10) Metal Edging,178720,5
+11719,2349,Irrigation,177330,0
+11720,2349,Landscape,90110,1
+11721,2349,90 Day Maintenance,10200,2
+11722,2350,Irrigation,118840,0
+11723,2350,Landscape,137580,1
+11724,2350,90 Day Maintenance,12000,2
+11725,2350,(S-9) On-site Boulders,15900,3
+11726,2351,Irrigation,444460,0
+11727,2351,Landscape,383730,1
+11728,2351,90 Day Maintenance,14700,2
+11729,2351,(S-8) Decorative Gravel,81470,3
+11730,2351,(S-9) On-site Boulders,11930,4
+11731,2351,(S-10) Metal Edging,75800,5
+11732,2352,Irrigation,131200,0
+11733,2352,Landscape,70490,1
+11734,2352,90 Day Maintenance,9000,2
+11735,2353,Irrigation,223170,0
+11736,2353,Landscape,245980,1
+11737,2353,90 Day Maintenance,21000,2
+11738,2353,(S-9) On-site Boulders,18240,3
+11739,2354,Per attached Bid Form,2527904.14,0
+11761,2359,Drains,0,0
+11762,2359,Irrigation,0,1
+11763,2359,Landscape,3349,2
+11764,2359,90 Day Maintenance,0,3
+11766,2361,Per attached Bid Form,3464184.5,0
+11787,2366,"Irrigation, with Mainline change as per notes below",85600,0
+11788,2366,Landscape,49800,1
+11789,2366,"Baja Cresta crushed rock, excluding excavation (4,500 sf)",54650,2
+11790,2366,"12'' gravel layer under Baja Cresta rock (4,500 sf)",16250,3
+11791,2366,90 Day Maintenance,2400,4
+11806,2369,Drains at grade level,15350,0
+11807,2369,Bio-Retention Planter (soil and drains),2900,1
+11808,2369,"Irrigation allowance, BLS design",13500,2
+11809,2369,"Planting, with BLS located plant material",53000,3
+11810,2369,"Pots (7), allowance pending specs",8750,4
+11811,2369,Decomposed Granite and header,6100,5
+11812,2369,Synthetic Turf and header,6300,6
+11813,2369,30 Day Start-up maintenance,400,7
+11874,2381,"Drain allowance, per notes below",42800,0
+11875,2381,Irrigation,122400,1
+11876,2381,Landscape,187700,2
+11877,2381,Low voltage lighting,4950,3
+11878,2381,90 Day Maintenance,4500,4
+11905,2390,Per attached Bid Form,1469441,0
+11906,2391,Per attached Bid Form,3464184.5,0
+11955,2402,Irrigation,94900,0
+11956,2402,Planting,79080,1
+11957,2402,90 Day Maintenance,3600,2
+11958,2402,(A-16) Aluminum Header,2440,3
+11959,2402,Stone Cobbles,10470,4
+11960,2402,Decomposed Granite,6340,5
+11961,2402,Boulders,8580,6
+11962,2403,Irrigation,10000,0
+11963,2403,Planting,18440,1
+11964,2403,90 Day Maintenance,1048,2
+11978,2407,"Irrigation, with Mainline change per notes below",85600,0
+11979,2407,Landscape,50700,1
+11980,2407,Baja Cresta Red crushed rock 4,46200,2
+11981,2407,90 Day Maintenance,2400,3
+12368,2488,Drains,374580,0
+12369,2488,Irrigation,522700,1
+12370,2488,Landscape,572430,2
+12371,2488,90 Day Maintenance,18600,3
+12372,2488,(S-8) Decorative Gravel,101490,4
+12373,2488,(S-9) On-site Boulders,13710,5
+12374,2488,(S-10) Metal Edging,178720,6
+12375,2489,Drains,27740,0
+12376,2489,Irrigation,177330,1
+12377,2489,Landscape,90110,2
+12378,2489,90 Day Maintenance,10200,3
+12379,2490,Irrigation,118840,0
+12380,2490,Landscape,137580,1
+12381,2490,90 Day Maintenance,12000,2
+12382,2490,(S-9) On-site Boulders,15900,3
+12383,2491,Drains,332160,0
+12384,2491,Irrigation,450410,1
+12385,2491,Landscape,383730,2
+12386,2491,90 Day Maintenance,14700,3
+12387,2491,(S-8) Decorative Gravel,81470,4
+12388,2491,(S-9) On-site Boulders,11930,5
+12389,2491,(S-10) Metal Edging,75800,6
+12390,2492,Drains,27180,0
+12391,2492,Irrigation,131200,1
+12392,2492,Landscape,70490,2
+12393,2492,90 Day Maintenance,9000,3
+12394,2493,Irrigation,223170,0
+12395,2493,Landscape,245980,1
+12396,2493,90 Day Maintenance,21000,2
+12397,2493,(S-9) On-site Boulders,18240,3
+12456,2497,Drains,58600,0
+12457,2497,Irrigation,70100,1
+12458,2497,Planting,79400,2
+12459,2497,P-4 Decomposed Granite Paving,4600,3
+12460,2497,P-5 Metal Edging,3920,4
+12461,2497,P-6 Decorative Rock,3000,5
+12462,2497,P-7 Artificial Turf,4800,6
+12463,2497,SF-1 Benches (6),16290,7
+12464,2497,SF-2 Rectangular Picnic Tables (2),14340,8
+12465,2497,SF-3 Round Picnic Tables (8),42000,9
+12466,2497,SF-4 Trash Receptacle (1),2340,10
+12467,2497,SF-5 Adirondack Chairs (8),6560,11
+12468,2497,SF-6 Bike Rack (1),1350,12
+12469,2497,SF-7 Pet Waste Stations (3),5550,13
+12470,2497,SF-9 Freestanding propane BBQs (2),11200,14
+12471,2497,SF-10 Propane Fire Table (1),6650,15
+12472,2497,"SA-1 Shade Structure (1), excluding masonry/veneer and footings",30500,16
+12473,2497,"SA-2 String Lights and posts, excluding footings",14500,17
+12474,2497,90 Day Maintenance,1800,18
+12505,2508,Irrigation,1045000,0
+12506,2508,Planting,1351000,1
+12507,2508,(5.0) Gravel mulch,124100,2
+12508,2508,"(5.1) Non-stablilized DG, 6'' depth",41000,3
+12509,2508,90 Day Maintenance,8600,4
+12510,2509,"Hydroseed (74,800 sf)",15000,0
+12527,2514,Irrigation,42700,0
+12528,2514,Planting,73200,1
+12529,2514,"Gorilla Slope Stabilizer allowance, pending price",2600,2
+12530,2514,90 Day Maintenance,2100,3
+12635,2535,Irrigation,13425,0
+12636,2535,Planting,44350,1
+12637,2535,Pot Planting (Pots Excluded),5800,2
+12638,2535,Existing Tree Protection Fence,650,3
+12639,2535,Item 6.1 Fire Pit,17480,4
+12640,2535,90 Day Maintenance,450,5
+12647,2537,Irrigation,10300,0
+12648,2537,Planting,18000,1
+12649,2537,Pot Planting (Pottery Excluded),2875,2
+12650,2537,Existing Tree Protection Fence,1400,3
+12651,2537,Item 7.1 Fire Pit,17500,4
+12652,2537,90 Day Maintenance,450,5
+12654,2539,Per attached Bid Form,3416170.75,0
+12687,2552,Models per attached Bid Form,61695.75,0
+12688,2552,Common Areas per attached Bid Form,569450,1
+12689,2552,Private Lot Production per attached Bid Form,699917.3,2
+12702,2557,Irrigation,1045000,0
+12703,2557,"Planting, excluding plant material purchase",708500,1
+12704,2557,(5.0) Gravel mulch,124100,2
+12705,2557,"(5.1) Non-stablilized DG, 6'' depth",41000,3
+12706,2557,90 Day Maintenance,8600,4
+12707,2558,"Hydroseed (74,800 sf)",15000,0
+12824,2572,Drains at grade level,15350,0
+12825,2572,Bio-Retention Planter (soil and drains),2900,1
+12826,2572,"Irrigation allowance, BLS design",13500,2
+12827,2572,"Planting, with Cunningham located plant material",70700,3
+12828,2572,"Pots (7), allowance pending specs",8750,4
+12829,2572,Decomposed Granite and header,6100,5
+12830,2572,Synthetic Turf and header,6300,6
+12831,2572,30 Day Start-up maintenance,400,7
+12833,2574,Per attached Bid Form,959041.62,0
+12900,2581,Drains,39900,0
+12901,2581,Irrigation,61300,1
+12902,2581,Planting,57100,2
+12903,2581,90 Day Maintenance,2400,3
+12904,2581,"S-03, Pet Stations (4)",3600,4
+12905,2581,S-04 Trash-recycle double receptacles (7),19600,5
+12906,2581,S-05 single trash receptacle (1),1750,6
+12907,2581,"S-08, Park Benches (5)",10000,7
+12908,2581,Low Voltage Lighting,13400,8
+12909,2581,"Bollard light budget, pending final pricing",72000,9
+12910,2581,"Play equipment allowance, pending model Person 8426449F",60000,10
+12911,2581,"Rubber surface allowance, pending design (720 sf)",21600,11
+12912,2581,"S-06, pre-fab BBQ counter (1)",16900,12
+12941,2586,Irrigation,113770,0
+12942,2586,Planting,309420,1
+12943,2586,90 Day Maintenance,5250,2
+12944,2586,DG Mulch,72770,3
+12945,2586,Rubble Streams,23520,4
+12946,2586,Granite Boulders,95640,5
+12947,2586,Bike Racks (2),1880,6
+12992,2598,Irrigation,26860,0
+12993,2598,Planting,20290,1
+12994,2598,Rear Planter Planting Demo,2400,2
+12995,2598,120 Day Maintenance,1800,3
+13033,2603,"Drains 8'' and smaller, per notes below",39500,0
+13034,2603,Irrigation,79800,1
+13035,2603,Planting,109800,2
+13036,2603,Item SF-1 Bike Racks (2),2880,3
+13037,2603,Item SF-2 Dog Waste Station (1),900,4
+13038,2603,Item SF-3 Planted Decorative Pots (10),20500,5
+13039,2603,Decorative Pots for Entry Monument (2),2500,6
+13040,2603,90 Day Maintenance,2400,7
+13041,2603,110v Lighting (fixtures by owner),27500,8
+13042,2603,Low voltage lighting (fixtures by owner),2000,9
+13177,2616,Lot Drainage,52500,0
+13178,2616,Irrigation,134600,1
+13179,2616,Planting,225850,2
+13180,2616,90 Day Maintenance,4200,3
+13181,2616,"P-5, D.G.",3710,4
+13182,2616,"P-6, Plastic Edging",5210,5
+13183,2616,"SF-6, Park bench (1)",2870,6
+13184,2616,SF-1 Bike racks (2),2500,7
+13185,2616,SF-7 Dog Waste Station (1),1250,8
+13186,2616,"SA-5 Curva Spinners (2) & SA-6 Mushroom steppers (6), Play Equipment",24300,9
+13187,2616,"Rubber surface (1,070 sf)",18200,10
+13198,2623,Per attached Bid Form,619999.01,0
+13199,2623,VE items per attached list,-65881,1
+13231,2631,"Drains 8'' and smaller, per notes below",39400,0
+13232,2631,Irrigation,79800,1
+13233,2631,Planting,109800,2
+13234,2631,Item SF-1 Bike Racks (2),2800,3
+13235,2631,Item SF-2 Dog Waste Station (1),850,4
+13236,2631,Item SF-3 Planted Decorative Pots (10),20300,5
+13237,2631,Decorative Pots for Entry Monument (2),2400,6
+13238,2631,90 Day Maintenance,2400,7
+13239,2631,110v Lighting (fixtures by owner),20200,8
+13240,2631,Low voltage lighting (fixtures by owner),2000,9
+13244,2635,Per attached Bid Form,949881.79,0
+13252,2640,Landscape work per attached,221825,0
+13253,2641,Total Per Attached Bid Form,1003649.8,0
+13276,2646,Irrigation,0,0
+13277,2646,Planting,40260,1
+13278,2646,90 Day Maintenance,750,2
+13279,2646,H-101; Cleanline Header,0,3
+13280,2646,H-102; Concrete Fountain (1),3670,4
+13281,2646,H-103; Steel Bench (2),7340,5
+13282,2646,G-101; Pea Gravel,1130,6

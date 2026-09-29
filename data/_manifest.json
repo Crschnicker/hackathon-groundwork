@@ -1,0 +1,1160 @@
+{
+  "extractedAt": "2026-09-29T20:17:10.687Z",
+  "source": "Bid-Proposal-V2 Postgres (flask_bids), scrubbed",
+  "sourceVersion": "11.22",
+  "tables": {
+    "inventory": {
+      "rows": 17639,
+      "columns": [
+        "part_number",
+        "cost",
+        "factor_code",
+        "unit",
+        "description",
+        "sale_price",
+        "type",
+        "size",
+        "cost_code"
+      ],
+      "types": {
+        "part_number": "string",
+        "cost": "float",
+        "factor_code": "string",
+        "unit": "string",
+        "description": "string",
+        "sale_price": "float",
+        "type": "string",
+        "size": "string",
+        "cost_code": "string"
+      },
+      "files": [
+        "inventory.csv"
+      ]
+    },
+    "factor_code": {
+      "rows": 605,
+      "columns": [
+        "factor_code",
+        "labor_hours",
+        "description"
+      ],
+      "types": {
+        "factor_code": "string",
+        "labor_hours": "float",
+        "description": "string"
+      },
+      "files": [
+        "factor_code.csv"
+      ]
+    },
+    "factor_code_items": {
+      "rows": 2177,
+      "columns": [
+        "id",
+        "factor_code",
+        "part_number",
+        "quantity"
+      ],
+      "types": {
+        "id": "int",
+        "factor_code": "string",
+        "part_number": "string",
+        "quantity": "float"
+      },
+      "files": [
+        "factor_code_items.csv"
+      ]
+    },
+    "conversion_code": {
+      "rows": 1534,
+      "columns": [
+        "code",
+        "description"
+      ],
+      "types": {
+        "code": "string",
+        "description": "string"
+      },
+      "files": [
+        "conversion_code.csv"
+      ]
+    },
+    "inventory_conversion_code": {
+      "rows": 18240,
+      "columns": [
+        "inventory_part_number",
+        "conversion_code",
+        "quantity"
+      ],
+      "types": {
+        "inventory_part_number": "string",
+        "conversion_code": "string",
+        "quantity": "float"
+      },
+      "files": [
+        "inventory_conversion_code.csv"
+      ]
+    },
+    "inventory_cross_reference": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "part_number",
+        "cross_reference_code"
+      ],
+      "types": {
+        "id": "int",
+        "part_number": "string",
+        "cross_reference_code": "string"
+      },
+      "files": [
+        "inventory_cross_reference.csv"
+      ]
+    },
+    "labor_rates": {
+      "rows": 4,
+      "columns": [
+        "id",
+        "category",
+        "rate"
+      ],
+      "types": {
+        "id": "int",
+        "category": "string",
+        "rate": "float"
+      },
+      "files": [
+        "labor_rates.csv"
+      ]
+    },
+    "tax": {
+      "rows": 18,
+      "columns": [
+        "zip_code",
+        "tax_rate",
+        "last_updated"
+      ],
+      "types": {
+        "zip_code": "string",
+        "tax_rate": "float",
+        "last_updated": "datetime"
+      },
+      "files": [
+        "tax.csv"
+      ]
+    },
+    "city_tax": {
+      "rows": 380,
+      "columns": [
+        "id",
+        "city",
+        "state",
+        "tax_rate",
+        "last_updated"
+      ],
+      "types": {
+        "id": "int",
+        "city": "string",
+        "state": "string",
+        "tax_rate": "float",
+        "last_updated": "datetime"
+      },
+      "files": [
+        "city_tax.csv"
+      ]
+    },
+    "user": {
+      "rows": 26,
+      "columns": [
+        "id",
+        "username",
+        "is_admin",
+        "is_super_admin",
+        "created_at",
+        "email"
+      ],
+      "types": {
+        "id": "int",
+        "username": "string",
+        "is_admin": "bool",
+        "is_super_admin": "bool",
+        "created_at": "datetime",
+        "email": "string"
+      },
+      "files": [
+        "user.csv"
+      ]
+    },
+    "vendors": {
+      "rows": 423,
+      "columns": [
+        "id",
+        "name",
+        "company",
+        "address1",
+        "address2",
+        "city",
+        "state",
+        "zip_code",
+        "phone_number",
+        "fax_number",
+        "email",
+        "contact_person"
+      ],
+      "types": {
+        "id": "int",
+        "name": "string",
+        "company": "string",
+        "address1": "string",
+        "address2": "string",
+        "city": "string",
+        "state": "string",
+        "zip_code": "string",
+        "phone_number": "string",
+        "fax_number": "string",
+        "email": "string",
+        "contact_person": "string"
+      },
+      "files": [
+        "vendors.csv"
+      ]
+    },
+    "architects": {
+      "rows": 4,
+      "columns": [
+        "id",
+        "name",
+        "company",
+        "address",
+        "phone_number"
+      ],
+      "types": {
+        "id": "int",
+        "name": "string",
+        "company": "string",
+        "address": "string",
+        "phone_number": "string"
+      },
+      "files": [
+        "architects.csv"
+      ]
+    },
+    "engineers": {
+      "rows": 3,
+      "columns": [
+        "id",
+        "name",
+        "company",
+        "address",
+        "phone_number"
+      ],
+      "types": {
+        "id": "int",
+        "name": "string",
+        "company": "string",
+        "address": "string",
+        "phone_number": "string"
+      },
+      "files": [
+        "engineers.csv"
+      ]
+    },
+    "customer": {
+      "rows": 153,
+      "columns": [
+        "customer_name",
+        "customer_address",
+        "customer_state",
+        "customer_city",
+        "customer_zip"
+      ],
+      "types": {
+        "customer_name": "string",
+        "customer_address": "string",
+        "customer_state": "string",
+        "customer_city": "string",
+        "customer_zip": "string"
+      },
+      "files": [
+        "customer.csv"
+      ]
+    },
+    "project": {
+      "rows": 881,
+      "columns": [
+        "project_name",
+        "project_address",
+        "project_state",
+        "project_city",
+        "project_zip",
+        "point_of_contact",
+        "contact_phone_number",
+        "status",
+        "date_received",
+        "date_needed",
+        "start_date",
+        "engineer_name",
+        "architect_name",
+        "is_active",
+        "bid_completion",
+        "bid_number",
+        "priority_number",
+        "builder_name",
+        "builder_plan_date",
+        "engineer_plan_date",
+        "architect_plan_date",
+        "bid_schedule_comments"
+      ],
+      "types": {
+        "project_name": "string",
+        "project_address": "string",
+        "project_state": "string",
+        "project_city": "string",
+        "project_zip": "string",
+        "point_of_contact": "string",
+        "contact_phone_number": "string",
+        "status": "string",
+        "date_received": "date",
+        "date_needed": "date",
+        "start_date": "date",
+        "engineer_name": "string",
+        "architect_name": "string",
+        "is_active": "bool",
+        "bid_completion": "float",
+        "bid_number": "string",
+        "priority_number": "int",
+        "builder_name": "string",
+        "builder_plan_date": "date",
+        "engineer_plan_date": "date",
+        "architect_plan_date": "date",
+        "bid_schedule_comments": "string"
+      },
+      "files": [
+        "project.csv"
+      ]
+    },
+    "bid": {
+      "rows": 824,
+      "columns": [
+        "bid_id",
+        "bid_date",
+        "customer_name",
+        "drains_labor_rate",
+        "irrigation_labor_rate",
+        "landscape_labor_rate",
+        "maintenance_labor_rate",
+        "local_sales_tax",
+        "project_name",
+        "project_address",
+        "project_state",
+        "project_city",
+        "project_zip",
+        "part_number",
+        "date_created",
+        "description",
+        "engineer_name",
+        "architect_name",
+        "point_of_contact",
+        "landscaping_total",
+        "drains_total",
+        "irrigation_total",
+        "maintenance_total",
+        "total_budget",
+        "urgency",
+        "bid_amount",
+        "comments",
+        "is_proposal_only",
+        "adjustment_data",
+        "markup_pct",
+        "overhead_pct",
+        "bond_cost",
+        "revision_number",
+        "is_revision_locked",
+        "base_bid_id",
+        "extras",
+        "is_change_order_snapshot"
+      ],
+      "types": {
+        "bid_id": "string",
+        "bid_date": "date",
+        "customer_name": "string",
+        "drains_labor_rate": "float",
+        "irrigation_labor_rate": "float",
+        "landscape_labor_rate": "float",
+        "maintenance_labor_rate": "float",
+        "local_sales_tax": "float",
+        "project_name": "string",
+        "project_address": "string",
+        "project_state": "string",
+        "project_city": "string",
+        "project_zip": "string",
+        "part_number": "string",
+        "date_created": "date",
+        "description": "string",
+        "engineer_name": "string",
+        "architect_name": "string",
+        "point_of_contact": "string",
+        "landscaping_total": "float",
+        "drains_total": "float",
+        "irrigation_total": "float",
+        "maintenance_total": "float",
+        "total_budget": "float",
+        "urgency": "string",
+        "bid_amount": "float",
+        "comments": "string",
+        "is_proposal_only": "bool",
+        "adjustment_data": "string",
+        "markup_pct": "float",
+        "overhead_pct": "float",
+        "bond_cost": "float",
+        "revision_number": "int",
+        "is_revision_locked": "bool",
+        "base_bid_id": "string",
+        "extras": "string",
+        "is_change_order_snapshot": "bool"
+      },
+      "files": [
+        "bid.csv"
+      ]
+    },
+    "bid_factor_code_items": {
+      "rows": 98073,
+      "columns": [
+        "id",
+        "bid_id",
+        "factor_code",
+        "part_number",
+        "quantity",
+        "category",
+        "cost",
+        "labor_hours",
+        "line_ext_cost",
+        "tax",
+        "description",
+        "additional_description",
+        "is_separator",
+        "unit",
+        "sale_price",
+        "type",
+        "size",
+        "delivery",
+        "cc_fee"
+      ],
+      "types": {
+        "id": "int",
+        "bid_id": "string",
+        "factor_code": "string",
+        "part_number": "string",
+        "quantity": "float",
+        "category": "string",
+        "cost": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "tax": "float",
+        "description": "string",
+        "additional_description": "string",
+        "is_separator": "bool",
+        "unit": "string",
+        "sale_price": "float",
+        "type": "string",
+        "size": "string",
+        "delivery": "float",
+        "cc_fee": "bool"
+      },
+      "files": [
+        "bid_factor_code_items.csv"
+      ]
+    },
+    "sub_bid": {
+      "rows": 1273,
+      "columns": [
+        "sub_bid_id",
+        "name",
+        "cost",
+        "labor_hours",
+        "bid_id",
+        "category",
+        "total_cost",
+        "sort_order"
+      ],
+      "types": {
+        "sub_bid_id": "int",
+        "name": "string",
+        "cost": "float",
+        "labor_hours": "float",
+        "bid_id": "string",
+        "category": "string",
+        "total_cost": "float",
+        "sort_order": "int"
+      },
+      "files": [
+        "sub_bid.csv"
+      ]
+    },
+    "sub_bid_items": {
+      "rows": 9302,
+      "columns": [
+        "id",
+        "sub_bid_id",
+        "part_number",
+        "description",
+        "additional_description",
+        "factor_code",
+        "quantity",
+        "cost",
+        "labor_hours",
+        "line_ext_cost",
+        "unit",
+        "sale_price"
+      ],
+      "types": {
+        "id": "int",
+        "sub_bid_id": "int",
+        "part_number": "string",
+        "description": "string",
+        "additional_description": "string",
+        "factor_code": "string",
+        "quantity": "float",
+        "cost": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "unit": "string",
+        "sale_price": "float"
+      },
+      "files": [
+        "sub_bid_items.csv"
+      ]
+    },
+    "bid_adjustments": {
+      "rows": 558,
+      "columns": [
+        "id",
+        "bid_id",
+        "user_id",
+        "timestamp",
+        "section",
+        "type",
+        "direction",
+        "percentage",
+        "original_values",
+        "is_active"
+      ],
+      "types": {
+        "id": "int",
+        "bid_id": "string",
+        "user_id": "int",
+        "timestamp": "datetime",
+        "section": "string",
+        "type": "string",
+        "direction": "string",
+        "percentage": "float",
+        "original_values": "string",
+        "is_active": "bool"
+      },
+      "files": [
+        "bid_adjustments.csv"
+      ]
+    },
+    "bid_change_orders": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "bid_id",
+        "name",
+        "description",
+        "status",
+        "decided_at",
+        "created_at",
+        "updated_at"
+      ],
+      "types": {
+        "id": "int",
+        "bid_id": "string",
+        "name": "string",
+        "description": "string",
+        "status": "string",
+        "decided_at": "datetime",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      },
+      "files": [
+        "bid_change_orders.csv"
+      ]
+    },
+    "bid_change_order_sections": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "bid_change_order_id",
+        "section",
+        "labor_hours",
+        "labor_rate",
+        "markup_material_pct",
+        "markup_labor_pct"
+      ],
+      "types": {
+        "id": "int",
+        "bid_change_order_id": "int",
+        "section": "string",
+        "labor_hours": "float",
+        "labor_rate": "float",
+        "markup_material_pct": "float",
+        "markup_labor_pct": "float"
+      },
+      "files": [
+        "bid_change_order_sections.csv"
+      ]
+    },
+    "bid_change_order_items": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "bid_change_order_id",
+        "section",
+        "part_number",
+        "description",
+        "factor_code",
+        "quantity",
+        "cost",
+        "sale_price",
+        "labor_hours",
+        "line_ext_cost",
+        "additional_description",
+        "unit"
+      ],
+      "types": {
+        "id": "int",
+        "bid_change_order_id": "int",
+        "section": "string",
+        "part_number": "string",
+        "description": "string",
+        "factor_code": "string",
+        "quantity": "float",
+        "cost": "float",
+        "sale_price": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "additional_description": "string",
+        "unit": "string"
+      },
+      "files": [
+        "bid_change_order_items.csv"
+      ]
+    },
+    "jobs": {
+      "rows": 323,
+      "columns": [
+        "job_id",
+        "bid_id",
+        "created_at",
+        "status",
+        "drains_enabled",
+        "irrigation_enabled",
+        "landscape_enabled",
+        "drains_labor_rate",
+        "irrigation_labor_rate",
+        "landscape_labor_rate",
+        "maintenance_labor_rate",
+        "local_sales_tax",
+        "is_migrated_from_access",
+        "legacy_bid_num",
+        "migration_notes"
+      ],
+      "types": {
+        "job_id": "string",
+        "bid_id": "string",
+        "created_at": "datetime",
+        "status": "string",
+        "drains_enabled": "bool",
+        "irrigation_enabled": "bool",
+        "landscape_enabled": "bool",
+        "drains_labor_rate": "float",
+        "irrigation_labor_rate": "float",
+        "landscape_labor_rate": "float",
+        "maintenance_labor_rate": "float",
+        "local_sales_tax": "float",
+        "is_migrated_from_access": "bool",
+        "legacy_bid_num": "string",
+        "migration_notes": "string"
+      },
+      "files": [
+        "jobs.csv"
+      ]
+    },
+    "job_bids": {
+      "rows": 283,
+      "columns": [
+        "id",
+        "job_id",
+        "bid_id",
+        "order_index",
+        "separator_text",
+        "is_base_bid"
+      ],
+      "types": {
+        "id": "int",
+        "job_id": "string",
+        "bid_id": "string",
+        "order_index": "int",
+        "separator_text": "string",
+        "is_base_bid": "bool"
+      },
+      "files": [
+        "job_bids.csv"
+      ]
+    },
+    "change_orders": {
+      "rows": 12,
+      "columns": [
+        "id",
+        "job_id",
+        "co_number",
+        "description",
+        "status",
+        "created_at",
+        "updated_at",
+        "created_by",
+        "name",
+        "revision",
+        "parent_id",
+        "submitted_at",
+        "decided_at",
+        "snapshot_bid_id",
+        "baseline_total"
+      ],
+      "types": {
+        "id": "int",
+        "job_id": "string",
+        "co_number": "int",
+        "description": "string",
+        "status": "string",
+        "created_at": "datetime",
+        "updated_at": "datetime",
+        "created_by": "int",
+        "name": "string",
+        "revision": "int",
+        "parent_id": "int",
+        "submitted_at": "datetime",
+        "decided_at": "datetime",
+        "snapshot_bid_id": "string",
+        "baseline_total": "float"
+      },
+      "files": [
+        "change_orders.csv"
+      ]
+    },
+    "change_order_items": {
+      "rows": 76,
+      "columns": [
+        "id",
+        "change_order_id",
+        "action",
+        "category",
+        "factor_code",
+        "part_number",
+        "description",
+        "quantity",
+        "cost",
+        "sale_price",
+        "labor_hours",
+        "line_ext_cost",
+        "tax",
+        "additional_description",
+        "is_separator",
+        "unit",
+        "type",
+        "size",
+        "original_item_id"
+      ],
+      "types": {
+        "id": "int",
+        "change_order_id": "int",
+        "action": "string",
+        "category": "string",
+        "factor_code": "string",
+        "part_number": "string",
+        "description": "string",
+        "quantity": "float",
+        "cost": "float",
+        "sale_price": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "tax": "float",
+        "additional_description": "string",
+        "is_separator": "bool",
+        "unit": "string",
+        "type": "string",
+        "size": "string",
+        "original_item_id": "int"
+      },
+      "files": [
+        "change_order_items.csv"
+      ]
+    },
+    "change_order_comments": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "change_order_id",
+        "user_id",
+        "text",
+        "created_at"
+      ],
+      "types": {
+        "id": "int",
+        "change_order_id": "int",
+        "user_id": "int",
+        "text": "string",
+        "created_at": "datetime"
+      },
+      "files": [
+        "change_order_comments.csv"
+      ]
+    },
+    "purchase_orders": {
+      "rows": 3950,
+      "columns": [
+        "po_number",
+        "job_id",
+        "category",
+        "vendor",
+        "date_created",
+        "amount",
+        "items_count",
+        "status",
+        "date_needed",
+        "finalized_at",
+        "last_updated",
+        "jobsite_contact",
+        "jobsite_phone_primary",
+        "jobsite_phone_secondary",
+        "jobsite_phone_alternate",
+        "deleted_at",
+        "ship_to_job",
+        "vendor_ship_to_overrides",
+        "vendor_date_needed_overrides",
+        "is_migrated_from_access",
+        "legacy_release_num",
+        "delivery_cost"
+      ],
+      "types": {
+        "po_number": "string",
+        "job_id": "string",
+        "category": "string",
+        "vendor": "string",
+        "date_created": "datetime",
+        "amount": "float",
+        "items_count": "int",
+        "status": "string",
+        "date_needed": "datetime",
+        "finalized_at": "datetime",
+        "last_updated": "datetime",
+        "jobsite_contact": "string",
+        "jobsite_phone_primary": "string",
+        "jobsite_phone_secondary": "string",
+        "jobsite_phone_alternate": "string",
+        "deleted_at": "datetime",
+        "ship_to_job": "string",
+        "vendor_ship_to_overrides": "string",
+        "vendor_date_needed_overrides": "string",
+        "is_migrated_from_access": "bool",
+        "legacy_release_num": "int",
+        "delivery_cost": "float"
+      },
+      "files": [
+        "purchase_orders.csv"
+      ]
+    },
+    "purchase_order_items": {
+      "rows": 45665,
+      "columns": [
+        "id",
+        "po_number",
+        "part_number",
+        "description",
+        "quantity",
+        "unit_cost",
+        "total_cost",
+        "created_at",
+        "vendor_id",
+        "is_taxable",
+        "additional_description",
+        "misc_vendor",
+        "misc_company",
+        "misc_address",
+        "misc_phone",
+        "misc_poc"
+      ],
+      "types": {
+        "id": "int",
+        "po_number": "string",
+        "part_number": "string",
+        "description": "string",
+        "quantity": "float",
+        "unit_cost": "float",
+        "total_cost": "float",
+        "created_at": "datetime",
+        "vendor_id": "int",
+        "is_taxable": "bool",
+        "additional_description": "string",
+        "misc_vendor": "bool",
+        "misc_company": "string",
+        "misc_address": "string",
+        "misc_phone": "string",
+        "misc_poc": "string"
+      },
+      "files": [
+        "purchase_order_items.csv"
+      ]
+    },
+    "comments": {
+      "rows": 95,
+      "columns": [
+        "id",
+        "po_number",
+        "user_id",
+        "text",
+        "created_at"
+      ],
+      "types": {
+        "id": "int",
+        "po_number": "string",
+        "user_id": "int",
+        "text": "string",
+        "created_at": "datetime"
+      },
+      "files": [
+        "comments.csv"
+      ]
+    },
+    "vendor_category_assignments": {
+      "rows": 109,
+      "columns": [
+        "id",
+        "job_id",
+        "category",
+        "vendor_id",
+        "created_at",
+        "updated_at"
+      ],
+      "types": {
+        "id": "int",
+        "job_id": "string",
+        "category": "string",
+        "vendor_id": "int",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      },
+      "files": [
+        "vendor_category_assignments.csv"
+      ]
+    },
+    "vendor_item_prices": {
+      "rows": 2358,
+      "columns": [
+        "id",
+        "job_id",
+        "category",
+        "vendor_id",
+        "part_number",
+        "vendor_price",
+        "created_at",
+        "updated_at"
+      ],
+      "types": {
+        "id": "int",
+        "job_id": "string",
+        "category": "string",
+        "vendor_id": "int",
+        "part_number": "string",
+        "vendor_price": "float",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      },
+      "files": [
+        "vendor_item_prices.csv"
+      ]
+    },
+    "proposals": {
+      "rows": 396,
+      "columns": [
+        "id",
+        "bid_id",
+        "customer_name",
+        "project_name",
+        "total_budget",
+        "created_at",
+        "updated_at",
+        "special_notes",
+        "terms_conditions",
+        "revision_number",
+        "exclusions",
+        "point_of_contact",
+        "architect_name",
+        "architect_specifications",
+        "architect_dated",
+        "architect_sheets",
+        "engineer_name",
+        "engineer_specifications",
+        "engineer_dated",
+        "engineer_sheets",
+        "display_id",
+        "proposal_date",
+        "poc_phone_number",
+        "prepared_by",
+        "prepared_by_title",
+        "signature_name",
+        "signature_title",
+        "status",
+        "completed_at",
+        "bid_type"
+      ],
+      "types": {
+        "id": "int",
+        "bid_id": "string",
+        "customer_name": "string",
+        "project_name": "string",
+        "total_budget": "float",
+        "created_at": "datetime",
+        "updated_at": "datetime",
+        "special_notes": "string",
+        "terms_conditions": "string",
+        "revision_number": "int",
+        "exclusions": "string",
+        "point_of_contact": "string",
+        "architect_name": "string",
+        "architect_specifications": "string",
+        "architect_dated": "string",
+        "architect_sheets": "string",
+        "engineer_name": "string",
+        "engineer_specifications": "string",
+        "engineer_dated": "string",
+        "engineer_sheets": "string",
+        "display_id": "string",
+        "proposal_date": "date",
+        "poc_phone_number": "string",
+        "prepared_by": "string",
+        "prepared_by_title": "string",
+        "signature_name": "string",
+        "signature_title": "string",
+        "status": "string",
+        "completed_at": "datetime",
+        "bid_type": "string"
+      },
+      "files": [
+        "proposals.csv"
+      ]
+    },
+    "proposal_recipients": {
+      "rows": 2,
+      "columns": [
+        "id",
+        "proposal_id",
+        "customer_name",
+        "customer_address",
+        "customer_city",
+        "customer_state",
+        "customer_zip",
+        "is_selected",
+        "created_at",
+        "content"
+      ],
+      "types": {
+        "id": "int",
+        "proposal_id": "int",
+        "customer_name": "string",
+        "customer_address": "string",
+        "customer_city": "string",
+        "customer_state": "string",
+        "customer_zip": "string",
+        "is_selected": "bool",
+        "created_at": "datetime",
+        "content": "string"
+      },
+      "files": [
+        "proposal_recipients.csv"
+      ]
+    },
+    "proposal_components": {
+      "rows": 443,
+      "columns": [
+        "id",
+        "proposal_id",
+        "type",
+        "name",
+        "display_order"
+      ],
+      "types": {
+        "id": "int",
+        "proposal_id": "int",
+        "type": "string",
+        "name": "string",
+        "display_order": "int"
+      },
+      "files": [
+        "proposal_components.csv"
+      ]
+    },
+    "proposal_component_lines": {
+      "rows": 2071,
+      "columns": [
+        "id",
+        "component_id",
+        "name",
+        "value",
+        "display_order"
+      ],
+      "types": {
+        "id": "int",
+        "component_id": "int",
+        "name": "string",
+        "value": "float",
+        "display_order": "int"
+      },
+      "files": [
+        "proposal_component_lines.csv"
+      ]
+    },
+    "proposal_amounts": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "proposal_id",
+        "description",
+        "amount"
+      ],
+      "types": {
+        "id": "int",
+        "proposal_id": "int",
+        "description": "string",
+        "amount": "float"
+      },
+      "files": [
+        "proposal_amounts.csv"
+      ]
+    },
+    "proposal_options": {
+      "rows": 577,
+      "columns": [
+        "id",
+        "proposal_id",
+        "description",
+        "amount"
+      ],
+      "types": {
+        "id": "int",
+        "proposal_id": "int",
+        "description": "string",
+        "amount": "float"
+      },
+      "files": [
+        "proposal_options.csv"
+      ]
+    }
+  },
+  "excluded": {
+    "entity_locks": "ephemeral edit locks",
+    "audit_logs": "IP addresses + usernames in free text; ~300k rows",
+    "app_settings": "not present in the source database"
+  }
+}

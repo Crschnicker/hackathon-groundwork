@@ -1,0 +1,27 @@
+id,username,is_admin,is_super_admin,created_at,email
+2,admin,true,true,2024-10-24 19:11:28.508627,user2@example.com
+3,user3,true,false,2024-10-24 19:11:28.508627,user3@example.com
+4,user4,true,false,2024-10-24 19:11:28.508627,user4@example.com
+5,user5,true,false,2024-10-24 19:11:28.508627,user5@example.com
+6,user6,false,false,2024-10-24 19:11:28.508627,user6@example.com
+9,user9,true,false,2024-10-25 03:19:37.538812,user9@example.com
+10,user10,true,false,2024-11-26 17:18:56.017578,user10@example.com
+11,user11,false,false,2024-12-02 20:13:44.373606,user11@example.com
+12,user12,false,false,2024-12-02 20:14:14.534027,user12@example.com
+13,user13,false,false,2024-12-02 20:26:59.876506,user13@example.com
+15,user15,false,false,2024-12-02 20:49:13.190471,user15@example.com
+16,user16,true,false,2024-12-12 19:33:26.766746,user16@example.com
+17,user17,true,false,2025-02-07 23:41:32.399124,user17@example.com
+18,user18,true,false,2025-02-07 23:48:58.918221,user18@example.com
+19,user19,false,false,2025-06-10 19:31:51.641428,user19@example.com
+20,user20,false,false,2025-09-11 15:29:01.820953,user20@example.com
+21,user21,false,false,2025-10-22 21:47:53.001464,user21@example.com
+22,user22,true,false,2026-02-02 18:41:21.73483,user22@example.com
+23,user23,true,false,2026-02-04 18:12:51.390667,user23@example.com
+24,user24,true,true,2026-03-14 05:34:40.647415,user24@example.com
+26,user26,true,false,2026-03-14 17:28:46.595,user26@example.com
+27,user27,false,false,2026-05-28 17:53:07.925902,user27@example.com
+28,user28,true,true,2026-07-01 17:01:23.733,user28@example.com
+29,user29,true,false,2026-07-07 17:02:36.941,user29@example.com
+30,user30,false,false,2026-07-07 18:16:00.544,user30@example.com
+31,user31,true,false,2026-07-14 16:34:58.615,user31@example.com

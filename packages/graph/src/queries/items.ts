@@ -30,10 +30,16 @@ export async function searchItems({ q = '', type, limit = 25 }: SearchItemsInput
        AND ($q = '' OR toLower(coalesce(i.description, '')) CONTAINS $q OR toLower(i.partNumber) CONTAINS $q)
        AND ($type IS NULL OR i.type = $type)
      OPTIONAL MATCH (i)-[:OF_TYPE]->(t:ItemType)
+     OPTIONAL MATCH (i)-[:DEFAULT_FACTOR]->(f:FactorCode)-[:INCLUDES]->()
+     // only offer a factor code that actually has a kit (the legacy data uses the text "None")
+     WITH DISTINCT i, t, f.code AS factorCode, toLower(coalesce(i.description, '')) AS d
+     // whole-word hits first ("tree" before "sTREEt"), then typed catalog items, then A–Z
+     ORDER BY CASE WHEN $q = '' OR d STARTS WITH $q OR d CONTAINS (' ' + $q) THEN 0 ELSE 1 END,
+              CASE WHEN t IS NULL THEN 1 ELSE 0 END,
+              d
+     LIMIT $limit
      RETURN i.partNumber AS partNumber, i.description AS description, i.type AS type, t.label AS typeLabel,
-            i.unit AS unit, i.size AS size, i.cost AS cost, i.salePrice AS salePrice, i.factorCode AS factorCode
-     ORDER BY i.description
-     LIMIT $limit`,
+            i.unit AS unit, i.size AS size, i.cost AS cost, i.salePrice AS salePrice, factorCode`,
     { q: q.trim().toLowerCase(), type: type ?? null, limit: neo4j.int(Math.min(Math.max(limit, 1), 200)) },
   );
 }

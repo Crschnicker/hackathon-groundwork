@@ -21,9 +21,27 @@ const schema = z.object({
   DATABASE_URL: z.string().optional(),
   SCRUB_SALT: z.string().optional(),
   API_PORT: z.coerce.number().int().positive().default(4000),
+
+  // LLM providers (both OpenAI-compatible). See apps/api/src/llm.
+  LLM_PROVIDER: z.enum(['openrouter', 'crusoe']).default('openrouter'),
+  OPENROUTER_API_KEY: z.string().optional(),
+  OPENROUTER_BASE_URL: z.string().default('https://openrouter.ai/api/v1'),
+  OPENROUTER_MODEL: z.string().default('openai/gpt-6.1-sol'),
+  CRUSOE_API_KEY: z.string().optional(),
+  CRUSOE_BASE_URL: z.string().default('https://api.inference.crusoecloud.com/v1'),
+  CRUSOE_MODEL: z.string().default('zai-org/GLM-5.3-Flash'),
+
+  // Plaud developer platform (Embedded SDK app). See apps/api/src/plaud.
+  PLAUD_CLIENT_ID: z.string().optional(),
+  PLAUD_SECRET_KEY: z.string().optional(),
+  PLAUD_API_KEY: z.string().optional(),
+  PLAUD_BASE_URL: z.string().default('https://platform-us.plaud.ai/developer/api'),
 });
 
-export const env = schema.parse(process.env);
+// "KEY=" in .env means unset, so defaults apply.
+const raw = Object.fromEntries(Object.entries(process.env).filter(([, v]) => v !== ''));
+
+export const env = schema.parse(raw);
 
 /** Throws a readable error when a script needs a var that isn't set. */
 export function requireEnv<K extends keyof typeof env>(key: K): NonNullable<(typeof env)[K]> {

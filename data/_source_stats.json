@@ -1,0 +1,815 @@
+{
+  "probedAt": "2026-09-29T20:07:40.541Z",
+  "serverVersion": "unknown",
+  "databaseBytes": 200940575,
+  "tables": {
+    "alembic_version": {
+      "rows": 3,
+      "bytes": 24576,
+      "status": "not in spec (ignored)",
+      "columns": {
+        "version_num": "string"
+      }
+    },
+    "architects": {
+      "rows": 4,
+      "bytes": 32768,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "name": "string",
+        "company": "string",
+        "address": "string",
+        "phone_number": "string"
+      }
+    },
+    "audit_logs": {
+      "rows": 316809,
+      "bytes": 81715200,
+      "status": "excluded: IP addresses + usernames in free text; ~300k rows",
+      "columns": {
+        "id": "int",
+        "timestamp": "datetime",
+        "user_id": "int",
+        "action": "string",
+        "details": "string",
+        "ip_address": "string",
+        "endpoint": "string"
+      }
+    },
+    "bid": {
+      "rows": 824,
+      "bytes": 1032192,
+      "status": "exported",
+      "columns": {
+        "bid_id": "string",
+        "bid_date": "date",
+        "customer_name": "string",
+        "drains_labor_rate": "float",
+        "irrigation_labor_rate": "float",
+        "landscape_labor_rate": "float",
+        "maintenance_labor_rate": "float",
+        "local_sales_tax": "float",
+        "project_name": "string",
+        "project_address": "string",
+        "project_state": "string",
+        "project_city": "string",
+        "project_zip": "string",
+        "part_number": "string",
+        "date_created": "date",
+        "description": "string",
+        "engineer_name": "string",
+        "architect_name": "string",
+        "point_of_contact": "string",
+        "landscaping_total": "float",
+        "drains_total": "float",
+        "irrigation_total": "float",
+        "maintenance_total": "float",
+        "total_budget": "float",
+        "urgency": "string",
+        "bid_amount": "float",
+        "comments": "string",
+        "is_proposal_only": "bool",
+        "adjustment_data": "string",
+        "markup_pct": "float",
+        "overhead_pct": "float",
+        "bond_cost": "float",
+        "revision_number": "int",
+        "is_revision_locked": "bool",
+        "base_bid_id": "string",
+        "extras": "string",
+        "is_change_order_snapshot": "bool"
+      }
+    },
+    "bid_adjustments": {
+      "rows": 558,
+      "bytes": 1007616,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "bid_id": "string",
+        "user_id": "int",
+        "timestamp": "datetime",
+        "section": "string",
+        "type": "string",
+        "direction": "string",
+        "percentage": "float",
+        "original_values": "string",
+        "is_active": "bool"
+      }
+    },
+    "bid_change_order_items": {
+      "rows": 0,
+      "bytes": 24576,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "bid_change_order_id": "int",
+        "section": "string",
+        "part_number": "string",
+        "description": "string",
+        "factor_code": "string",
+        "quantity": "float",
+        "cost": "float",
+        "sale_price": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "additional_description": "string",
+        "unit": "string"
+      }
+    },
+    "bid_change_orders": {
+      "rows": 0,
+      "bytes": 24576,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "bid_id": "string",
+        "name": "string",
+        "description": "string",
+        "status": "string",
+        "decided_at": "datetime",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "bid_change_order_sections": {
+      "rows": 0,
+      "bytes": 16384,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "bid_change_order_id": "int",
+        "section": "string",
+        "labor_hours": "float",
+        "labor_rate": "float",
+        "markup_material_pct": "float",
+        "markup_labor_pct": "float"
+      }
+    },
+    "bid_factor_code_items": {
+      "rows": 98073,
+      "bytes": 30957568,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "bid_id": "string",
+        "factor_code": "string",
+        "part_number": "string",
+        "quantity": "float",
+        "category": "string",
+        "cost": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "tax": "float",
+        "description": "string",
+        "additional_description": "string",
+        "is_separator": "bool",
+        "unit": "string",
+        "sale_price": "float",
+        "type": "string",
+        "size": "string",
+        "delivery": "float",
+        "cc_fee": "bool"
+      }
+    },
+    "change_order_comments": {
+      "rows": 0,
+      "bytes": 40960,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "change_order_id": "int",
+        "user_id": "int",
+        "text": "string",
+        "created_at": "datetime"
+      }
+    },
+    "change_order_items": {
+      "rows": 76,
+      "bytes": 98304,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "change_order_id": "int",
+        "action": "string",
+        "category": "string",
+        "factor_code": "string",
+        "part_number": "string",
+        "description": "string",
+        "quantity": "float",
+        "cost": "float",
+        "sale_price": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "tax": "float",
+        "additional_description": "string",
+        "is_separator": "bool",
+        "unit": "string",
+        "type": "string",
+        "size": "string",
+        "original_item_id": "int"
+      }
+    },
+    "change_orders": {
+      "rows": 12,
+      "bytes": 98304,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "job_id": "string",
+        "co_number": "int",
+        "description": "string",
+        "status": "string",
+        "created_at": "datetime",
+        "updated_at": "datetime",
+        "created_by": "int",
+        "name": "string",
+        "revision": "int",
+        "parent_id": "int",
+        "submitted_at": "datetime",
+        "decided_at": "datetime",
+        "snapshot_bid_id": "string",
+        "baseline_total": "float"
+      }
+    },
+    "city_tax": {
+      "rows": 380,
+      "bytes": 114688,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "city": "string",
+        "state": "string",
+        "tax_rate": "float",
+        "last_updated": "datetime"
+      }
+    },
+    "comments": {
+      "rows": 95,
+      "bytes": 131072,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "po_number": "string",
+        "user_id": "int",
+        "text": "string",
+        "created_at": "datetime"
+      }
+    },
+    "conversion_code": {
+      "rows": 1534,
+      "bytes": 172032,
+      "status": "exported",
+      "columns": {
+        "code": "string",
+        "description": "string"
+      }
+    },
+    "customer": {
+      "rows": 153,
+      "bytes": 65536,
+      "status": "exported",
+      "columns": {
+        "customer_name": "string",
+        "customer_address": "string",
+        "customer_state": "string",
+        "customer_city": "string",
+        "customer_zip": "string"
+      }
+    },
+    "engineers": {
+      "rows": 3,
+      "bytes": 32768,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "name": "string",
+        "company": "string",
+        "address": "string",
+        "phone_number": "string"
+      }
+    },
+    "entity_locks": {
+      "rows": 1,
+      "bytes": 106496,
+      "status": "excluded: ephemeral edit locks",
+      "columns": {
+        "id": "int",
+        "entity_type": "string",
+        "entity_id": "string",
+        "user_id": "int",
+        "locked_at": "datetime",
+        "last_heartbeat": "datetime"
+      }
+    },
+    "factor_code": {
+      "rows": 605,
+      "bytes": 90112,
+      "status": "exported",
+      "columns": {
+        "factor_code": "string",
+        "labor_hours": "float",
+        "description": "string"
+      }
+    },
+    "factor_code_items": {
+      "rows": 2177,
+      "bytes": 196608,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "factor_code": "string",
+        "part_number": "string",
+        "quantity": "float"
+      }
+    },
+    "inventory": {
+      "rows": 17639,
+      "bytes": 7217152,
+      "status": "exported",
+      "columns": {
+        "part_number": "string",
+        "cost": "float",
+        "factor_code": "string",
+        "unit": "string",
+        "description": "string",
+        "sale_price": "float",
+        "type": "string",
+        "size": "string",
+        "cost_code": "string"
+      }
+    },
+    "inventory_conversion_code": {
+      "rows": 18240,
+      "bytes": 1466368,
+      "status": "exported",
+      "columns": {
+        "inventory_part_number": "string",
+        "conversion_code": "string",
+        "quantity": "float"
+      }
+    },
+    "inventory_cross_reference": {
+      "rows": 0,
+      "bytes": 32768,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "part_number": "string",
+        "cross_reference_code": "string"
+      }
+    },
+    "job_bids": {
+      "rows": 283,
+      "bytes": 106496,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "job_id": "string",
+        "bid_id": "string",
+        "order_index": "int",
+        "separator_text": "string",
+        "is_base_bid": "bool"
+      }
+    },
+    "jobs": {
+      "rows": 323,
+      "bytes": 663552,
+      "status": "exported",
+      "columns": {
+        "job_id": "string",
+        "bid_id": "string",
+        "created_at": "datetime",
+        "status": "string",
+        "drains_enabled": "bool",
+        "irrigation_enabled": "bool",
+        "landscape_enabled": "bool",
+        "drains_labor_rate": "float",
+        "irrigation_labor_rate": "float",
+        "landscape_labor_rate": "float",
+        "maintenance_labor_rate": "float",
+        "local_sales_tax": "float",
+        "is_migrated_from_access": "bool",
+        "legacy_bid_num": "string",
+        "migration_notes": "string"
+      }
+    },
+    "labor_rates": {
+      "rows": 4,
+      "bytes": 40960,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "category": "string",
+        "rate": "float"
+      }
+    },
+    "_prisma_migrations": {
+      "rows": 4,
+      "bytes": 32768,
+      "status": "not in spec (ignored)",
+      "columns": {
+        "id": "string",
+        "checksum": "string",
+        "finished_at": "datetime",
+        "migration_name": "string",
+        "logs": "string",
+        "rolled_back_at": "datetime",
+        "started_at": "datetime",
+        "applied_steps_count": "int"
+      }
+    },
+    "project": {
+      "rows": 881,
+      "bytes": 385024,
+      "status": "exported",
+      "columns": {
+        "project_name": "string",
+        "project_address": "string",
+        "project_state": "string",
+        "project_city": "string",
+        "project_zip": "string",
+        "point_of_contact": "string",
+        "contact_phone_number": "string",
+        "status": "string",
+        "date_received": "date",
+        "date_needed": "date",
+        "start_date": "date",
+        "engineer_name": "string",
+        "architect_name": "string",
+        "is_active": "bool",
+        "bid_completion": "float",
+        "bid_number": "string",
+        "priority_number": "int",
+        "builder_name": "string",
+        "builder_plan_date": "date",
+        "engineer_plan_date": "date",
+        "architect_plan_date": "date",
+        "bid_schedule_comments": "string"
+      }
+    },
+    "proposal_amounts": {
+      "rows": 0,
+      "bytes": 16384,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "proposal_id": "int",
+        "description": "string",
+        "amount": "float"
+      }
+    },
+    "proposal_component_lines": {
+      "rows": 2071,
+      "bytes": 630784,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "component_id": "int",
+        "name": "string",
+        "value": "float",
+        "display_order": "int"
+      }
+    },
+    "proposal_components": {
+      "rows": 443,
+      "bytes": 163840,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "proposal_id": "int",
+        "type": "string",
+        "name": "string",
+        "display_order": "int"
+      }
+    },
+    "proposal_options": {
+      "rows": 577,
+      "bytes": 204800,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "proposal_id": "int",
+        "description": "string",
+        "amount": "float"
+      }
+    },
+    "proposal_recipients": {
+      "rows": 2,
+      "bytes": 49152,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "proposal_id": "int",
+        "customer_name": "string",
+        "customer_address": "string",
+        "customer_city": "string",
+        "customer_state": "string",
+        "customer_zip": "string",
+        "is_selected": "bool",
+        "created_at": "datetime",
+        "content": "string"
+      }
+    },
+    "proposals": {
+      "rows": 396,
+      "bytes": 1171456,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "bid_id": "string",
+        "customer_name": "string",
+        "project_name": "string",
+        "total_budget": "float",
+        "created_at": "datetime",
+        "updated_at": "datetime",
+        "special_notes": "string",
+        "terms_conditions": "string",
+        "revision_number": "int",
+        "exclusions": "string",
+        "point_of_contact": "string",
+        "architect_name": "string",
+        "architect_specifications": "string",
+        "architect_dated": "string",
+        "architect_sheets": "string",
+        "engineer_name": "string",
+        "engineer_specifications": "string",
+        "engineer_dated": "string",
+        "engineer_sheets": "string",
+        "display_id": "string",
+        "proposal_date": "date",
+        "poc_phone_number": "string",
+        "prepared_by": "string",
+        "prepared_by_title": "string",
+        "signature_name": "string",
+        "signature_title": "string",
+        "status": "string",
+        "completed_at": "datetime",
+        "bid_type": "string"
+      }
+    },
+    "purchase_order_items": {
+      "rows": 45665,
+      "bytes": 55615488,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "po_number": "string",
+        "part_number": "string",
+        "description": "string",
+        "quantity": "float",
+        "unit_cost": "float",
+        "total_cost": "float",
+        "created_at": "datetime",
+        "vendor_id": "int",
+        "is_taxable": "bool",
+        "additional_description": "string",
+        "misc_vendor": "bool",
+        "misc_company": "string",
+        "misc_address": "string",
+        "misc_phone": "string",
+        "misc_poc": "string"
+      }
+    },
+    "purchase_orders": {
+      "rows": 3950,
+      "bytes": 1908736,
+      "status": "exported",
+      "columns": {
+        "po_number": "string",
+        "job_id": "string",
+        "category": "string",
+        "vendor": "string",
+        "date_created": "datetime",
+        "amount": "float",
+        "items_count": "int",
+        "status": "string",
+        "date_needed": "datetime",
+        "finalized_at": "datetime",
+        "last_updated": "datetime",
+        "jobsite_contact": "string",
+        "jobsite_phone_primary": "string",
+        "jobsite_phone_secondary": "string",
+        "jobsite_phone_alternate": "string",
+        "deleted_at": "datetime",
+        "ship_to_job": "string",
+        "vendor_ship_to_overrides": "string",
+        "vendor_date_needed_overrides": "string",
+        "is_migrated_from_access": "bool",
+        "legacy_release_num": "int",
+        "delivery_cost": "float"
+      }
+    },
+    "sub_bid": {
+      "rows": 1273,
+      "bytes": 294912,
+      "status": "exported",
+      "columns": {
+        "sub_bid_id": "int",
+        "name": "string",
+        "cost": "float",
+        "labor_hours": "float",
+        "bid_id": "string",
+        "category": "string",
+        "total_cost": "float",
+        "sort_order": "int"
+      }
+    },
+    "sub_bid_item": {
+      "rows": 0,
+      "bytes": 16384,
+      "status": "not in spec (ignored)",
+      "columns": {
+        "id": "int",
+        "sub_bid_id": "int",
+        "part_number": "string",
+        "factor_code": "string",
+        "quantity": "float",
+        "cost": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "description": "string",
+        "additional_description": "string"
+      }
+    },
+    "sub_bid_items": {
+      "rows": 9302,
+      "bytes": 2916352,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "sub_bid_id": "int",
+        "part_number": "string",
+        "description": "string",
+        "additional_description": "string",
+        "factor_code": "string",
+        "quantity": "float",
+        "cost": "float",
+        "labor_hours": "float",
+        "line_ext_cost": "float",
+        "unit": "string",
+        "sale_price": "float"
+      }
+    },
+    "tax": {
+      "rows": 18,
+      "bytes": 24576,
+      "status": "exported",
+      "columns": {
+        "zip_code": "string",
+        "tax_rate": "float",
+        "last_updated": "datetime"
+      }
+    },
+    "user": {
+      "rows": 26,
+      "bytes": 98304,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "username": "string",
+        "password_hash": "string",
+        "is_admin": "bool",
+        "is_super_admin": "bool",
+        "last_login": "datetime",
+        "created_at": "datetime",
+        "email": "string",
+        "reset_token": "string",
+        "reset_token_expiration": "datetime"
+      }
+    },
+    "vendor_category_assignments": {
+      "rows": 109,
+      "bytes": 73728,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "job_id": "string",
+        "category": "string",
+        "vendor_id": "int",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "vendor_item_prices": {
+      "rows": 2358,
+      "bytes": 1032192,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "job_id": "string",
+        "category": "string",
+        "vendor_id": "int",
+        "part_number": "string",
+        "vendor_price": "float",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "vendors": {
+      "rows": 423,
+      "bytes": 131072,
+      "status": "exported",
+      "columns": {
+        "id": "int",
+        "name": "string",
+        "company": "string",
+        "address1": "string",
+        "address2": "string",
+        "city": "string",
+        "state": "string",
+        "zip_code": "string",
+        "phone_number": "string",
+        "fax_number": "string",
+        "email": "string",
+        "contact_person": "string"
+      }
+    }
+  },
+  "missingFromSource": [
+    "app_settings"
+  ],
+  "inventoryTypes": [
+    {
+      "type": null,
+      "n": 8064
+    },
+    {
+      "type": "L",
+      "n": 2951
+    },
+    {
+      "type": "SH",
+      "n": 1767
+    },
+    {
+      "type": "TR",
+      "n": 1559
+    },
+    {
+      "type": "GCC",
+      "n": 1371
+    },
+    {
+      "type": "CV",
+      "n": 463
+    },
+    {
+      "type": "M",
+      "n": 463
+    },
+    {
+      "type": "POC",
+      "n": 462
+    },
+    {
+      "type": "S",
+      "n": 102
+    },
+    {
+      "type": "GRAV",
+      "n": 94
+    },
+    {
+      "type": "SD",
+      "n": 68
+    },
+    {
+      "type": "AGG",
+      "n": 67
+    },
+    {
+      "type": "TRSTK",
+      "n": 42
+    },
+    {
+      "type": "PMP",
+      "n": 37
+    },
+    {
+      "type": "HDR",
+      "n": 33
+    },
+    {
+      "type": "AMM",
+      "n": 32
+    },
+    {
+      "type": "FERT",
+      "n": 31
+    },
+    {
+      "type": "FFAB",
+      "n": 19
+    },
+    {
+      "type": "BOL",
+      "n": 11
+    },
+    {
+      "type": "SP",
+      "n": 3
+    }
+  ]
+}

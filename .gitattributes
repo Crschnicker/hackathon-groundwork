@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Scrubbed data snapshot: byte-exact, no line-ending conversion
+data/** -text

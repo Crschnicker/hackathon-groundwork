@@ -12,7 +12,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "dev": "node scripts/dev.mjs",
     "probe": "npm run probe -w packages/graph",
     "extract": "npm run extract -w packages/graph",
     "load": "npm run load -w packages/graph --",
@@ -21,7 +21,6 @@
     "lint": "npm run lint --workspaces --if-present"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1",
     "typescript": "^5.9.2"
   }
 }

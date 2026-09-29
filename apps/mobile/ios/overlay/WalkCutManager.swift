@@ -319,6 +319,7 @@ final class WalkCutManager {
                     $0.walkId = walkId
                     $0.message = self.message("Starting the recording.", .progress)
                 }
+                WalkDiagnostics.follow(walkId: walkId)
                 self.log("Walk \(walkId) created, cutting every \(cutSeconds)s")
                 self.sendStart()
             }

@@ -146,11 +146,14 @@ edit('project.yml', [
   // Signing is set by the release lane at build time; nobody's team id lives in the project.
   { why: 'no committed team', find: `    DEVELOPMENT_TEAM: W8JQQJQR29\n`, replace: `    DEVELOPMENT_TEAM: ""\n` },
   {
-    why: 'bundle id and icon',
+    why: 'bundle id, icon and iPhone only',
     find: `        PRODUCT_BUNDLE_IDENTIFIER: com.plaud.PlaudTemplateApp1\n`,
     replace:
       `        PRODUCT_BUNDLE_IDENTIFIER: ${bundleId}\n` +
-      `        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon\n`,
+      `        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon\n` +
+      // The starter is portrait-only, and App Store Connect refuses an app that runs on
+      // iPad unless it supports all four orientations.
+      `        TARGETED_DEVICE_FAMILY: "1"\n`,
   },
   {
     // Both entitlements are for WiFi fast transfer, which a walk does not use: chunks sync
@@ -172,6 +175,13 @@ edit('project.yml', [
     replace:
       `        PlaudApiKey: $(PLAUD_API_KEY)\n` +
       `        CFBundleDisplayName: Groundwork Walk\n` +
+      `        UIRequiresFullScreen: true\n` +
+      // Plaud's library contains camera, photo and microphone code. Apple invalidates a build
+      // that references those APIs without a purpose string, whether or not they are called.
+      `        NSCameraUsageDescription: Not used by this app. Plaud's device library includes camera features that Groundwork Walk never opens.\n` +
+      `        NSPhotoLibraryUsageDescription: Not used by this app. Plaud's device library includes photo features that Groundwork Walk never opens.\n` +
+      `        NSPhotoLibraryAddUsageDescription: Not used by this app. Plaud's device library includes photo features that Groundwork Walk never opens.\n` +
+      `        NSMicrophoneUsageDescription: Not used by this app. Audio is recorded by the Plaud device, not by the phone.\n` +
       `        GroundworkApiURL: $(GROUNDWORK_API_URL)\n` +
       `        GroundworkApiToken: $(GROUNDWORK_API_TOKEN)\n` +
       `        GroundworkCutSeconds: $(GROUNDWORK_CUT_SECONDS)\n` +

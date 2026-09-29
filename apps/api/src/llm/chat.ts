@@ -13,6 +13,8 @@ export interface ChatOptions {
   messages: ChatMessage[];
   /** Force one provider (no fallback). Default: LLM_PROVIDER, falling back to the other. */
   provider?: ProviderName;
+  /** Try this provider first, falling back to the other. Ignored when `provider` is set. */
+  prefer?: ProviderName;
   /** Provider-specific model id; only honoured together with `provider`. */
   model?: string;
   temperature?: number;
@@ -103,13 +105,13 @@ async function callWithFormatRetry(p: Provider, opts: ChatOptions, model: string
   }
 }
 
-function candidates(opts: Pick<ChatOptions, 'provider'>): Provider[] {
+function candidates(opts: Pick<ChatOptions, 'provider' | 'prefer'>): Provider[] {
   if (opts.provider) {
     const p = PROVIDERS[opts.provider];
     if (!isConfigured(p)) throw new HttpError(503, `${p.label} is not configured — set ${p.keyVar} in .env`);
     return [p];
   }
-  const order = providerOrder();
+  const order = providerOrder(opts.prefer);
   if (order.length === 0) throw new HttpError(503, 'No LLM provider configured — set OPENROUTER_API_KEY or CRUSOE_API_KEY in .env');
   return order;
 }

@@ -1,10 +1,11 @@
 // Per-chunk processing for a walk: upload → transcribe → poll, then re-extract the site model
 // from everything transcribed so far. Runs in the background; progress is read from the store.
 import { HttpError } from '../http.ts';
+import type { ProviderName } from '../llm/providers.ts';
 import { logger } from '../logger.ts';
 import { getTranscription, isTerminalFailure, submitTranscription, uploadAudio } from '../plaud/client.ts';
 import { extractSiteModel } from '../site-model/extract.ts';
-import { listWalks, save, stitchTranscript, type Walk, type WalkChunk } from './store.ts';
+import { listWalks, save, siteModelCovers, stitchTranscript, type SiteModelPass, type Walk, type WalkChunk } from './store.ts';
 
 const POLL_INTERVAL_MS = 5_000;
 /** 20 min, the same headroom Plaud's own starter app allows for a backed-up queue. */
@@ -12,6 +13,14 @@ const MAX_POLLS = 240;
 const MAX_CONSECUTIVE_POLL_ERRORS = 5;
 /** extractSiteModel needs something to work with; shorter than this is a cough or a greeting. */
 const MIN_TRANSCRIPT_CHARS = 20;
+/**
+ * Live extractions rerun on the whole transcript after every chunk and are overwritten by the
+ * next one, so they go to the fast, inexpensive provider first. The final extraction feeds
+ * review and the quote, so it goes to the stronger model with strict structured output.
+ * Either falls back to the other provider.
+ */
+const LIVE_PROVIDER: ProviderName = 'crusoe';
+const FINAL_PROVIDER: ProviderName = 'openrouter';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -25,6 +34,8 @@ function fail(walk: Walk, chunk: WalkChunk, err: unknown): void {
   chunk.error = describe(err);
   logger.error({ walkId: walk.id, chunk: chunk.key, err: chunk.error }, 'Walk chunk failed');
   save();
+  // This may have been the last chunk the final extraction was waiting on.
+  if (walk.status === 'finished') extractIfComplete(walk);
 }
 
 /** Start processing a chunk that was just received. Returns immediately. */
@@ -97,6 +108,18 @@ export function isExtracting(walkId: string): boolean {
   return extracting.has(walkId);
 }
 
+function hasChunksInFlight(walk: Walk): boolean {
+  return walk.chunks.some((c) => c.status !== 'done' && c.status !== 'failed');
+}
+
+/**
+ * For a finished walk: run the final extraction if every chunk is in. Otherwise the last chunk
+ * to finish transcribing, or to fail, triggers it.
+ */
+export function extractIfComplete(walk: Walk): void {
+  if (!hasChunksInFlight(walk)) scheduleExtraction(walk);
+}
+
 export function scheduleExtraction(walk: Walk): void {
   const running = extracting.get(walk.id);
   if (running) {
@@ -112,14 +135,23 @@ export function scheduleExtraction(walk: Walk): void {
         state.dirty = false;
         const { transcript, chunkKeys } = stitchTranscript(walk);
         if (transcript.length < MIN_TRANSCRIPT_CHARS) continue;
+        const pass: SiteModelPass = walk.status === 'finished' && !hasChunksInFlight(walk) ? 'final' : 'live';
+        // Duplicate schedules (finish racing a live run, a restart) would otherwise redo the same work.
+        if (walk.siteModelPass === pass && siteModelCovers(walk, chunkKeys)) continue;
         try {
-          const { siteModel, meta } = await extractSiteModel(transcript);
+          const { siteModel, meta } = await extractSiteModel(transcript, {
+            prefer: pass === 'final' ? FINAL_PROVIDER : LIVE_PROVIDER,
+          });
           walk.siteModel = siteModel;
           walk.siteModelMeta = meta;
           walk.siteModelError = null;
           walk.siteModelChunkKeys = chunkKeys;
           walk.siteModelUpdatedAt = Date.now();
-          logger.info({ walkId: walk.id, chunks: chunkKeys.length, areas: siteModel.areas.length, ms: meta.latencyMs }, 'Walk site model updated');
+          walk.siteModelPass = pass;
+          logger.info(
+            { walkId: walk.id, pass, provider: meta.provider, chunks: chunkKeys.length, areas: siteModel.areas.length, ms: meta.latencyMs },
+            'Walk site model updated',
+          );
         } catch (err) {
           // Keep the previous model: a stale one is more use to the architect than none.
           walk.siteModelError = describe(err);
@@ -143,5 +175,7 @@ export function resumeWalks(): void {
         fail(walk, chunk, 'The server restarted before this chunk was uploaded; send it again');
       }
     }
+    // A restart can interrupt the final extraction; walks from before there was one are left alone.
+    if (walk.status === 'finished' && walk.siteModelPass !== undefined) extractIfComplete(walk);
   }
 }

@@ -50,6 +50,9 @@ Both providers speak the OpenAI chat-completions protocol, so there is one clien
 
 - `LLM_PROVIDER` picks the default. If it fails or has no key, the other one is tried.
 - A request can force a provider with `"provider": "openrouter"` or `"crusoe"`; then there is no fallback.
+- Walks override the default order. The live extractions that rerun after every chunk try Crusoe
+  first; the final extraction, once the walk is finished and every chunk is in, tries OpenRouter
+  first. Both still fall back. `siteModelPass` on a walk says which one produced its site model.
 - Structured calls (`chatJson`) validate the reply against a zod schema and ask the model to
   repair it once if validation fails. Callers never receive unvalidated data.
 

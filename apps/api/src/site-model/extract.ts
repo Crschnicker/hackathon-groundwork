@@ -13,12 +13,13 @@ Rules:
 
 export async function extractSiteModel(
   transcript: string,
-  opts: { provider?: ProviderName; model?: string } = {},
+  opts: { provider?: ProviderName; prefer?: ProviderName; model?: string } = {},
 ): Promise<{ siteModel: SiteModel; meta: Omit<ChatResult, 'content'> }> {
   const { data, meta } = await chatJson({
     schema: siteModelSchema,
     schemaName: 'site_model',
     provider: opts.provider,
+    prefer: opts.prefer,
     model: opts.model,
     temperature: 0,
     messages: [

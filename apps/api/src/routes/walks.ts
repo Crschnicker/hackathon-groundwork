@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { env } from '../env.ts';
 import { HttpError, parse } from '../http.ts';
 import { plaudConfigured, plaudTranscriptionConfigured } from '../plaud/client.ts';
-import { isExtracting, processChunk } from '../walks/pipeline.ts';
+import { extractIfComplete, isExtracting, processChunk } from '../walks/pipeline.ts';
 import {
   DEFAULT_CUT_SECONDS,
   createWalk,
@@ -15,6 +15,7 @@ import {
   listWalks,
   orderedChunks,
   save,
+  siteModelCovers,
   stitchTranscript,
   type Walk,
   type WalkChunk,
@@ -71,8 +72,15 @@ function walkView(walk: Walk, withSegments = false) {
     siteModelMeta: walk.siteModelMeta,
     siteModelError: walk.siteModelError,
     siteModelUpdatedAt: walk.siteModelUpdatedAt,
-    /** False while newer transcripts exist than the ones the site model was extracted from. */
-    siteModelCurrent: !isExtracting(walk.id) && chunkKeys.length === walk.siteModelChunkKeys.length,
+    siteModelPass: walk.siteModelPass ?? null,
+    /**
+     * False while newer transcripts exist than the ones the site model was extracted from, or while
+     * a finished walk still has only a live model (its final extraction is pending or failed).
+     */
+    siteModelCurrent:
+      !isExtracting(walk.id) &&
+      siteModelCovers(walk, chunkKeys) &&
+      !(walk.status === 'finished' && inFlight === 0 && walk.siteModelPass === 'live'),
     chunks: chunks.map((c) => chunkView(c, withSegments)),
   };
 }
@@ -167,6 +175,7 @@ walksRouter.post('/walks/:id/finish', (req, res) => {
     walk.status = 'finished';
     walk.finishedAt = Date.now();
     save();
+    extractIfComplete(walk);
   }
   res.json(walkView(walk));
 });

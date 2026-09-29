@@ -36,6 +36,8 @@ export interface WalkChunk {
   timings: { receivedAt: number; uploadedAt: number | null; submittedAt: number | null; transcribedAt: number | null };
 }
 
+export type SiteModelPass = 'live' | 'final';
+
 export interface Walk {
   id: string;
   userId: string;
@@ -53,6 +55,11 @@ export interface Walk {
   /** Keys of the chunks whose transcripts the current site model was extracted from. */
   siteModelChunkKeys: string[];
   siteModelUpdatedAt: number | null;
+  /**
+   * 'live' while the walk is in progress; 'final' once extracted from the finished walk's full
+   * transcript. Missing on walks saved before there was a final pass.
+   */
+  siteModelPass?: SiteModelPass | null;
 }
 
 const file = path.join(repoRoot, '.groundwork', 'walks.json');
@@ -102,6 +109,7 @@ export function createWalk(init: Pick<Walk, 'userId' | 'cutSeconds' | 'language'
     siteModelError: null,
     siteModelChunkKeys: [],
     siteModelUpdatedAt: null,
+    siteModelPass: null,
   };
   walks.set(walk.id, walk);
   save();
@@ -129,6 +137,11 @@ export const GAP_MARKER = '[part of the recording is not transcribed yet]';
  * The walk so far as one transcript. Chunks are joined with a space so a sentence split by a
  * cut reads straight through; a chunk that has not finished leaves a marker in its place.
  */
+/** Whether the site model was extracted from exactly these chunks (as returned by stitchTranscript). */
+export function siteModelCovers(walk: Walk, chunkKeys: string[]): boolean {
+  return chunkKeys.length === walk.siteModelChunkKeys.length && chunkKeys.every((k, i) => k === walk.siteModelChunkKeys[i]);
+}
+
 export function stitchTranscript(walk: Walk): { transcript: string; chunkKeys: string[] } {
   const parts: string[] = [];
   const chunkKeys: string[] = [];

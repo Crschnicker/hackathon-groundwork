@@ -149,11 +149,37 @@ platform :ios do
       set_spaceship_token: false
     )
 
-    upload_to_testflight(
-      api_key: upload_key,
-      skip_waiting_for_build_processing: true,
-      distribute_external: false,
-      changelog: ENV["BUILD_CHANGELOG"] || "Automated build."
-    )
+    # Apple's upload service answers 502 now and then. Try again rather than fail a run that
+    # has already signed and archived. Anything else, a validation error above all, is final.
+    attempts = 0
+    begin
+      attempts += 1
+      upload_to_testflight(
+        api_key: upload_key,
+        skip_waiting_for_build_processing: true,
+        distribute_external: false,
+        changelog: ENV["BUILD_CHANGELOG"] || "Automated build."
+      )
+    rescue StandardError => e
+      transient = e.message =~ /\b50[234]\b|bad gateway|unexpected content|timed out|connection (was )?(lost|reset)/i
+      raise if !transient || attempts >= 3
+      UI.important("Upload attempt #{attempts} failed on Apple's side. Waiting before trying again.")
+      sleep(60)
+
+      # The error can arrive after the build did. Sending it twice would be refused as a
+      # duplicate build number, so look first.
+      arrived = begin
+        app = Spaceship::ConnectAPI::App.find(app_id)
+        !app.nil? && !Spaceship::ConnectAPI::Build.all(app_id: app.id, build_number: ENV["BUILD_NUMBER"]).empty?
+      rescue StandardError => lookup_error
+        UI.important("Could not check whether the build arrived (#{lookup_error.message}).")
+        false
+      end
+      if arrived
+        UI.success("Build #{ENV['BUILD_NUMBER']} is in App Store Connect; the upload had succeeded.")
+      else
+        retry
+      end
+    end
   end
 end

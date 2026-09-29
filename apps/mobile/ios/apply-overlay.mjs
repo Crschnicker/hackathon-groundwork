@@ -144,6 +144,32 @@ edit('PlaudTemplateApp/Common/AppLog.swift', [
   },
 ]);
 
+// The starter streams each recording live from the moment it starts, for its waveform. The
+// recorder has one transfer channel, so during a walk that stream would cut off the transfer
+// of the recording that just closed, and no recording would reach the phone.
+edit('PlaudTemplateApp/Managers/DeviceManager.swift', [
+  {
+    why: 'no live stream when a walk recording starts',
+    find:
+      `        if status == 0 {\n` +
+      `            PlaudDeviceAgent.shared.syncFile(sessionId: sessionId, start: start, end: 0)\n`,
+    replace:
+      `        if status == 0, !WalkCutManager.shared.snapshot.isActive {\n` +
+      `            PlaudDeviceAgent.shared.syncFile(sessionId: sessionId, start: start, end: 0)\n`,
+  },
+  {
+    why: 'no live stream when a walk recording is found running',
+    find:
+      `            RecordingManager.shared.handleRecordStart(sessionId: sessionId, startTime: sessionId)\n` +
+      `            PlaudDeviceAgent.shared.syncFile(sessionId: sessionId, start: 0, end: 0)\n`,
+    replace:
+      `            RecordingManager.shared.handleRecordStart(sessionId: sessionId, startTime: sessionId)\n` +
+      `            if !WalkCutManager.shared.snapshot.isActive {\n` +
+      `                PlaudDeviceAgent.shared.syncFile(sessionId: sessionId, start: 0, end: 0)\n` +
+      `            }\n`,
+  },
+]);
+
 // 5. The starter talks to Plaud's test servers; our credentials belong to production.
 edit('PlaudTemplateApp/Storage/RecordingStore.swift', [
   {

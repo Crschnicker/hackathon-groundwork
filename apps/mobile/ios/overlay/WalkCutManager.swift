@@ -828,14 +828,26 @@ final class WalkCutManager {
 
     /// The starter app syncs once after each stop and ignores the request if a sync is already
     /// running, so a chunk closed during a sync would wait for the next stop. Ask again.
+    private static let stalledSyncAfter: TimeInterval = 12
+
     private func scheduleSyncKick() {
         syncKick?.cancel()
         guard state.walkId != nil, state.chunks.contains(where: { $0.stage == .waitingForSync }) else { return }
         let work = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
+            // A transfer that is cut off (a recording starting takes over the channel) never
+            // ends by itself, and the starter refuses to begin another while it thinks one is
+            // running. One that has reported nothing for a while is stopped so it can start again.
+            if self.deviceIsConnected, self.syncIsActive,
+               Date().timeIntervalSince(self.lastSyncEventAt) > Self.stalledSyncAfter {
+                self.log("The transfer from the recorder has gone quiet; starting it again")
+                SyncManager.shared.stopSync()
+                self.syncIsActive = false
+            }
             // Asking a device that is out of reach leaves the starter waiting for an answer.
             if self.deviceIsConnected, !self.syncIsActive,
                self.state.chunks.contains(where: { $0.stage == .waitingForSync }) {
+                self.log("Asking the recorder for its recordings")
                 SyncManager.shared.startSync()
             }
             self.scheduleSyncKick()

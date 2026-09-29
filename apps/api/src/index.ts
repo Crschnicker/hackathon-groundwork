@@ -13,6 +13,8 @@ import { itemsRouter } from './routes/items.ts';
 import { llmRouter } from './routes/llm.ts';
 import { plaudRouter } from './routes/plaud.ts';
 import { siteModelRouter } from './routes/siteModel.ts';
+import { walksRouter } from './routes/walks.ts';
+import { resumeWalks } from './walks/pipeline.ts';
 
 const app = express();
 
@@ -35,7 +37,7 @@ app.get('/health', async (_req, res) => {
   }
 });
 
-app.use('/api', itemsRouter, llmRouter, siteModelRouter, plaudRouter);
+app.use('/api', itemsRouter, llmRouter, siteModelRouter, plaudRouter, walksRouter);
 
 app.use((_req, res) => sendError(res, 404, 'Not found'));
 
@@ -51,6 +53,7 @@ app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
 
 const server = app.listen(env.API_PORT, () => {
   logger.info(`Groundwork API listening on http://localhost:${env.API_PORT}`);
+  resumeWalks();
 });
 
 async function shutdown(signal: string): Promise<void> {

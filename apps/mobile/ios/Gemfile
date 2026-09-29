@@ -1,0 +1,5 @@
+# fastlane from Bundler rather than the one Homebrew put on the runner: that build's OpenSSL
+# cannot parse Apple's .p8 keys ("invalid curve name").
+source "https://rubygems.org"
+
+gem "fastlane", ">= 2.238.0"

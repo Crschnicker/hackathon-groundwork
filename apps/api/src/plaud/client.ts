@@ -68,6 +68,26 @@ export async function issueUserToken(userId: string, expiresIn = 86_400): Promis
   return { accessToken: body.access_token, expiresIn: body.expires_in };
 }
 
+const userTokens = new Map<string, Promise<{ token: string; expiresAt: number }>>();
+
+/**
+ * User token for our own server-side calls, shared between callers. Plaud answers 500 when the
+ * same user's token is requested several times at once, which a walk's chunks otherwise do.
+ */
+async function getUserToken(userId: string): Promise<string> {
+  const cached = await userTokens.get(userId)?.catch(() => undefined);
+  if (cached && cached.expiresAt > Date.now() + 60_000) return cached.token;
+
+  const pending = issueUserToken(userId).then((t) => ({ token: t.accessToken, expiresAt: Date.now() + t.expiresIn * 1000 }));
+  userTokens.set(userId, pending);
+  try {
+    return (await pending).token;
+  } catch (err) {
+    if (userTokens.get(userId) === pending) userTokens.delete(userId);
+    throw err;
+  }
+}
+
 // ---------- file upload ----------
 
 interface PresignedResponse {
@@ -88,7 +108,7 @@ export type AudioFileType = 'mp3' | 'm4a' | 'wav' | 'opus';
 
 /** Upload audio bytes to Plaud storage; returns a download URL valid for ~24h. */
 export async function uploadAudio(userId: string, bytes: Buffer, filetype: AudioFileType): Promise<{ fileId: string; downloadUrl: string }> {
-  const { accessToken } = await issueUserToken(userId);
+  const accessToken = await getUserToken(userId);
   const auth = { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' };
 
   const presigned = await request<PresignedResponse>('/open/partner/files/upload/generate-presigned-urls', {
@@ -157,18 +177,26 @@ function transcriptionHeaders(): Record<string, string> {
 
 /** Start an async transcription of an M4A / MP3 / WAV file reachable at `fileUrl`. */
 export async function submitTranscription(fileUrl: string, params: TranscriptionParams = {}): Promise<Transcription> {
-  return request<Transcription>('/open/partner/ai/transcriptions/', {
-    method: 'POST',
-    headers: transcriptionHeaders(),
-    body: JSON.stringify({
-      file_url: fileUrl,
-      params: {
-        transcribe: { language: params.language ?? 'auto' },
-        diarization: { enabled: params.diarization ?? false },
-        ...(params.hotwords ? { hotwords: params.hotwords } : {}),
-      },
-    }),
-  });
+  try {
+    return await request<Transcription>('/open/partner/ai/transcriptions/', {
+      method: 'POST',
+      headers: transcriptionHeaders(),
+      body: JSON.stringify({
+        file_url: fileUrl,
+        params: {
+          transcribe: { language: params.language ?? 'auto' },
+          diarization: { enabled: params.diarization ?? false },
+          ...(params.hotwords ? { hotwords: params.hotwords } : {}),
+        },
+      }),
+    });
+  } catch (err) {
+    // Plaud keeps the Transcription API locked until the app has bound a device through the SDK.
+    if (err instanceof HttpError && typeof err.details === 'string' && err.details.includes('DEVICE_MISSING')) {
+      throw new HttpError(409, 'Plaud will not transcribe until a Plaud device has been bound through the mobile app (DEVICE_MISSING)');
+    }
+    throw err;
+  }
 }
 
 export async function getTranscription(id: string): Promise<Transcription> {

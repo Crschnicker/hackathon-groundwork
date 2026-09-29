@@ -15,6 +15,7 @@ import {
   uploadAudio,
 } from '../plaud/client.ts';
 import { extractSiteModel } from '../site-model/extract.ts';
+import { requireWalkToken } from './walks.ts';
 
 export const plaudRouter = Router();
 
@@ -41,8 +42,11 @@ plaudRouter.get('/plaud/status', async (_req, res) => {
   }
 });
 
-/** The mobile app (Embedded SDK) calls this to get the token it binds a device with. */
-plaudRouter.post('/plaud/user-token', async (req, res) => {
+/**
+ * The mobile app (Embedded SDK) calls this to get the token it binds a device with.
+ * It hands out Plaud credentials, so it takes the walk token whenever one is set.
+ */
+plaudRouter.post('/plaud/user-token', requireWalkToken, async (req, res) => {
   const body = parse(z.object({ userId }), req.body);
   res.json(await issueUserToken(body.userId));
 });

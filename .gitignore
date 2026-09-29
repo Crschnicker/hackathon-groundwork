@@ -15,6 +15,9 @@ out/
 # raw (unscrubbed) extracts are never committed; only data/*.csv (scrubbed) is
 data/raw/
 
+# local walk state written by the API
+.groundwork/
+
 # OS / editor
 .DS_Store
 Thumbs.db

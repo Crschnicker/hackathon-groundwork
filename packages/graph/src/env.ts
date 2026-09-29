@@ -36,6 +36,9 @@ const schema = z.object({
   PLAUD_SECRET_KEY: z.string().optional(),
   PLAUD_API_KEY: z.string().optional(),
   PLAUD_BASE_URL: z.string().default('https://platform-us.plaud.ai/developer/api'),
+
+  // Shared secret for /api/walks, which the recorder reaches through a public tunnel. Unset = open.
+  WALK_API_TOKEN: z.string().min(16).optional(),
 });
 
 // "KEY=" in .env means unset, so defaults apply.

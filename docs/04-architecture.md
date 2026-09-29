@@ -72,6 +72,47 @@ to pair the device, sync the recording, and hand the audio to the API. The refer
 
 Supported devices: **Plaud Note Pro** and **Plaud NotePin S** only.
 
+Three things Plaud does not make obvious:
+
+- **Transcription is locked until a device is bound.** Until the phone app has bound a Plaud
+  device under our client ID, the Transcription API answers `403 DEVICE_MISSING`. Upload works
+  before that; transcription does not.
+- **A user token lasts 24 hours at most.** Asking for longer is refused. The phone app renews
+  its own from `POST /api/plaud/user-token`.
+- **Transcription is batch only.** No streaming and no partial results, which is why a walk is
+  recorded in chunks (below).
+
+## Walks: recording in chunks
+
+A 30-minute walk recorded as one file is transcribed only after the walk is over. A walk is
+instead cut into chunks, 90 seconds by default, and each chunk is transcribed while the
+architect keeps walking.
+
+```
+ phone                                       server (apps/api/src/walks)
+ ─────                                       ───────────────────────────
+ every 90 s: stop the device's recording,
+ start the next one straight away
+ sync the closed recording over Bluetooth
+ POST /api/walks/:id/chunks  ──────────────► upload to Plaud ──► transcribe ──► poll
+                                             stitch every finished chunk, in recording order
+                                             re-extract the site model from the whole transcript
+ GET /api/walks/:id  ◄────────────────────── transcript and site model so far
+```
+
+- Chunks are joined with a space, so a sentence split by a cut reads straight through.
+- A chunk that has not finished leaves `[part of the recording is not transcribed yet]` in its
+  place, so the model does not join the text either side of it.
+- One extraction runs per walk at a time; chunks that finish meanwhile share the next run.
+- Walk state is kept in memory and mirrored to `.groundwork/walks.json` (gitignored), so a
+  dev-server restart does not lose a walk in progress.
+- `/api/walks` and `POST /api/plaud/user-token` require `Authorization: Bearer <WALK_API_TOKEN>`
+  when `WALK_API_TOKEN` is set. Set it before opening a tunnel.
+
+`npm run walk:simulate -- <audio file>` plays the phone's part from a file: it cuts the audio
+with ffmpeg, posts the chunks, and prints how long each took. The phone app is described in
+[apps/mobile/ios/README.md](../apps/mobile/ios/README.md).
+
 ## API
 
 Built:
@@ -90,6 +131,11 @@ Built:
 | `GET /api/plaud/transcriptions/:id` | 3 | Poll; `done` tells the client when to stop |
 | `POST /api/plaud/transcriptions/:id/site-model` | 3 → 4 | Finished transcript straight to a site model |
 | `POST /api/site-model/extract` | 4 | Transcript text → site model |
+| `POST /api/walks` | 3 | Start a walk (`userId`, optional `cutSeconds`, `language`, `hotwords`) |
+| `POST /api/walks/:id/chunks?key=&startedAt=&filetype=` | 3 | One chunk of raw audio; answers at once, processes in the background |
+| `GET /api/walks/:id` | 3 → 4 | Transcript and site model so far, and each chunk's state and timings |
+| `POST /api/walks/:id/finish` | 3 | The recorder has stopped; chunks in flight still finish |
+| `GET /api/walks` | — | Walks, newest first |
 | `GET /api/llm/providers` | — | Which LLM providers are configured |
 | `POST /api/llm/chat` | — | Raw chat passthrough, for testing prompts |
 
@@ -110,6 +156,7 @@ so a quote is a query that joins what was said on site to the catalog.
 
 ## Before this goes anywhere public
 
-The API has no authentication yet. `POST /api/plaud/user-token`, the recording upload and
-`POST /api/llm/chat` spend money or issue credentials and must sit behind a login first. CORS is
+The API has no login yet. The walk endpoints and `POST /api/plaud/user-token` take a shared
+token (`WALK_API_TOKEN`), which is enough for a test and not for users. The recording upload and
+`POST /api/llm/chat` spend money and are still open; they must sit behind a login first. CORS is
 limited to `WEB_ORIGIN` (default `http://localhost:3000`).

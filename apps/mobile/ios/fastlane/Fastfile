@@ -1,0 +1,159 @@
+# Groundwork Walk — iOS release lane. Runs inside the patched starter app (see
+# ../apply-overlay.mjs), on a GitHub macOS runner.
+#
+# Signing follows the lane in the LumenearsWidgets repo, which is known to work for this
+# Apple team: fastlane asks the developer portal for a distribution certificate and an
+# App Store profile through the App Store Connect API key and tells Xcode exactly which ones
+# to use. Nothing is committed and no Mac is needed.
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload a build to TestFlight"
+  lane :beta do
+    # A path rather than the secret itself: the workflow rewrites Apple's PKCS#8 .p8 to SEC1
+    # first, because some OpenSSL 3 builds reject the PKCS#8 form of a valid key.
+    api_key = app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_filepath: ENV.fetch("ASC_KEY_PATH"),
+      in_house: false
+    )
+
+    team_id = ENV.fetch("APPLE_TEAM_ID")
+    app_id  = ENV.fetch("IOS_BUNDLE_ID")
+
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.create(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      filepath: File.expand_path(ENV.fetch("ASC_KEY_PATH"))
+    )
+
+    # The bundle id has to exist in the developer portal before a profile can be made for it.
+    # Advisory: if this cannot be checked, carry on and let the profile step report it.
+    begin
+      if Spaceship::ConnectAPI::BundleId.find(app_id).nil?
+        Spaceship::ConnectAPI::BundleId.create(
+          name: "Groundwork Walk",
+          platform: Spaceship::ConnectAPI::BundleIdPlatform::IOS,
+          identifier: app_id
+        )
+        UI.success("Registered the bundle id #{app_id}")
+      end
+    rescue StandardError => e
+      UI.important("Could not check or register the bundle id (#{e.message}) - continuing.")
+    end
+
+    # A registered bundle id is not an app record, and nothing here can create one. Ask now
+    # rather than after the archive. Only a definite "no such app" stops the lane.
+    begin
+      if Spaceship::ConnectAPI::App.find(app_id).nil?
+        UI.user_error!(
+          "No app record for #{app_id} in App Store Connect. Create it, then run again:\n" \
+          "  App Store Connect -> Apps -> + -> New App\n" \
+          "  Platform: iOS\n" \
+          "  Bundle ID: #{app_id}   (pick it from the dropdown)\n" \
+          "  Name: unique across the whole App Store\n" \
+          "  SKU: any unique string"
+        )
+      end
+      UI.success("App record found for #{app_id}")
+    rescue FastlaneCore::Interface::FastlaneError
+      raise
+    rescue StandardError => e
+      UI.important("Could not pre-check the app record (#{e.message}) - continuing.")
+    end
+
+    # A throwaway keychain, unlocked and gone with the runner. get_certificates and
+    # import_certificate do not use the default keychain unless told to.
+    setup_ci(force: true)
+    keychain_path = File.expand_path("~/Library/Keychains/#{ENV.fetch('MATCH_KEYCHAIN_NAME')}-db")
+    keychain_password = ENV.fetch("MATCH_KEYCHAIN_PASSWORD")
+
+    # Apple allows a team very few distribution certificates, and one made on a runner is
+    # unusable once the runner is gone. With DIST_P12_BASE64 set, every run reuses one.
+    if !ENV["DIST_P12_BASE64"].to_s.strip.empty?
+      require "base64"
+      p12 = File.join(ENV["RUNNER_TEMP"] || Dir.tmpdir, "dist.p12")
+      File.binwrite(p12, Base64.decode64(ENV.fetch("DIST_P12_BASE64")))
+      import_certificate(
+        certificate_path: p12,
+        certificate_password: ENV["DIST_P12_PASSWORD"].to_s,
+        keychain_path: keychain_path,
+        keychain_password: keychain_password
+      )
+      File.delete(p12) rescue nil
+    else
+      UI.important(
+        "DIST_P12_BASE64 is not set, so this run will CREATE a distribution certificate " \
+        "that nothing can reuse. Apple caps these per team, and the cap is shared with " \
+        "every other app on the team. See apps/mobile/ios/README.md."
+      )
+      get_certificates(
+        api_key: api_key,
+        team_id: team_id,
+        development: false,
+        generate_apple_certs: true,
+        keychain_path: keychain_path,
+        keychain_password: keychain_password,
+        output_path: "build/certs"
+      )
+    end
+
+    # `force` regenerates the profile rather than trusting one in the portal that may have
+    # been made against a certificate whose key is gone.
+    get_provisioning_profile(
+      api_key: api_key,
+      team_id: team_id,
+      app_identifier: app_id,
+      force: true,
+      output_path: "build/profiles"
+    )
+    profile_name = lane_context[SharedValues::SIGH_NAME]
+    profile_uuid = lane_context[SharedValues::SIGH_UUID]
+
+    update_code_signing_settings(
+      path: "PlaudTemplateApp.xcodeproj",
+      targets: ["PlaudTemplateApp"],
+      use_automatic_signing: false,
+      team_id: team_id,
+      code_sign_identity: "Apple Distribution",
+      bundle_identifier: app_id,
+      profile_name: profile_name,
+      profile_uuid: profile_uuid
+    )
+
+    build_app(
+      project: "PlaudTemplateApp.xcodeproj",
+      scheme: "PlaudTemplateApp",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        teamID: team_id,
+        signingStyle: "manual",
+        provisioningProfiles: { app_id => profile_name },
+        uploadSymbols: true
+      },
+      output_directory: "output",
+      output_name: "GroundworkWalk.ipa",
+      clean: true
+    )
+
+    # The upload goes through Apple's altool, which accepts only the PKCS#8 form Apple
+    # issued. set_spaceship_token is off so Ruby never parses this copy of the key.
+    upload_key = app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_filepath: ENV.fetch("ASC_KEY_P8_PATH"),
+      in_house: false,
+      set_spaceship_token: false
+    )
+
+    upload_to_testflight(
+      api_key: upload_key,
+      skip_waiting_for_build_processing: true,
+      distribute_external: false,
+      changelog: ENV["BUILD_CHANGELOG"] || "Automated build."
+    )
+  end
+end

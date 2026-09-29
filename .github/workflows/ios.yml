@@ -1,0 +1,221 @@
+# Build the iOS walk recorder.
+#
+# The app is Plaud's starter app at a pinned commit plus the files in apps/mobile/ios, put
+# together on the runner by apply-overlay.mjs. The repo is developed on Windows, so this
+# workflow is the only place the Swift is ever compiled.
+#
+# Two jobs:
+#   check       compiles without signing. Needs no secrets. Runs when the iOS files change.
+#   testflight  signs and uploads to TestFlight. Run by hand from the Actions tab.
+#
+# This repository is public, so no job uploads the app as an artifact: the build carries a
+# Plaud user token, and artifacts of a public repository can be downloaded by any GitHub user.
+
+name: iOS
+
+on:
+  push:
+    paths:
+      - "apps/mobile/ios/**"
+      - ".github/workflows/ios.yml"
+  workflow_dispatch:
+    inputs:
+      testflight:
+        description: "Sign and upload to TestFlight"
+        type: boolean
+        default: true
+      api_url:
+        description: "Groundwork API address to build in (can be changed in the app)"
+        required: false
+        default: ""
+      cut_seconds:
+        description: "Seconds between cuts"
+        required: false
+        default: "90"
+      changelog:
+        description: "What testers should see in TestFlight"
+        required: false
+        default: "Automated build."
+
+permissions:
+  contents: read
+
+concurrency:
+  # Two archives racing would both claim a build number and one would be rejected at upload.
+  group: ios-${{ github.event_name == 'workflow_dispatch' && 'release' || github.ref }}
+  cancel-in-progress: false
+
+env:
+  IOS_BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID || 'com.groundwork.walkrecorder' }}
+  # Monotonic and never reused, which is what TestFlight requires of a build number.
+  BUILD_NUMBER: ${{ github.run_number }}
+
+jobs:
+  check:
+    name: Compile
+    if: github.event_name != 'workflow_dispatch' || !inputs.testflight
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the pinned starter app commit
+        id: sdk
+        run: echo "commit=$(cat apps/mobile/ios/plaud-sdk.commit)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Plaud-AI/plaud-sdk-public
+          ref: ${{ steps.sdk.outputs.commit }}
+          path: plaud-sdk
+
+      - name: Select Xcode
+        run: |
+          latest=$(ls -d /Applications/Xcode_[0-9]*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$latest" ]; then sudo xcode-select -s "$latest"; fi
+          xcodebuild -version
+
+      - name: Apply the Groundwork overlay
+        run: node apps/mobile/ios/apply-overlay.mjs plaud-sdk
+
+      - name: Generate the Xcode project
+        working-directory: plaud-sdk/ios
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Compile
+        working-directory: plaud-sdk/ios
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project PlaudTemplateApp.xcodeproj \
+            -scheme PlaudTemplateApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            | tee "$RUNNER_TEMP/xcodebuild.log" | grep -E "error:|warning: unre|BUILD (SUCCEEDED|FAILED)|\*\* " || true
+          grep -q "BUILD SUCCEEDED" "$RUNNER_TEMP/xcodebuild.log"
+
+      # xcodebuild buries the first real error a long way up a very long log.
+      - name: Show the first errors
+        if: failure()
+        run: grep -m 40 -E "error:" "$RUNNER_TEMP/xcodebuild.log" || tail -60 "$RUNNER_TEMP/xcodebuild.log" || true
+
+  testflight:
+    name: Archive and upload
+    if: github.event_name == 'workflow_dispatch' && inputs.testflight
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the pinned starter app commit
+        id: sdk
+        run: echo "commit=$(cat apps/mobile/ios/plaud-sdk.commit)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Plaud-AI/plaud-sdk-public
+          ref: ${{ steps.sdk.outputs.commit }}
+          path: plaud-sdk
+
+      # App Store Connect refuses anything not built with the current-year SDK, and that floor
+      # moves every autumn, so take the newest Xcode on the image rather than pinning one.
+      - name: Select Xcode
+        run: |
+          latest=$(ls -d /Applications/Xcode_[0-9]*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$latest" ]; then sudo xcode-select -s "$latest"; fi
+          xcodebuild -version
+
+      # The device binds with this token. Plaud caps it at 24 hours, so bind within a day of
+      # the build; after that the app's Walk tab renews it from the Groundwork API.
+      - name: Mint the Plaud user token
+        env:
+          PLAUD_CLIENT_ID: ${{ secrets.PLAUD_CLIENT_ID }}
+          PLAUD_SECRET_KEY: ${{ secrets.PLAUD_SECRET_KEY }}
+          PLAUD_USER_ID: ${{ vars.PLAUD_USER_ID || 'groundwork-architect-01' }}
+        run: |
+          token=$(node apps/mobile/ios/mint-user-token.mjs)
+          echo "::add-mask::$token"
+          echo "PLAUD_USER_ACCESS_TOKEN=$token" >> "$GITHUB_ENV"
+
+      - name: Apply the Groundwork overlay
+        env:
+          GROUNDWORK_API_URL: ${{ inputs.api_url || vars.GROUNDWORK_API_URL }}
+          GROUNDWORK_API_TOKEN: ${{ secrets.WALK_API_TOKEN }}
+          GROUNDWORK_CUT_SECONDS: ${{ inputs.cut_seconds }}
+        run: node apps/mobile/ios/apply-overlay.mjs plaud-sdk
+
+      - name: Generate the Xcode project
+        working-directory: plaud-sdk/ios
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          working-directory: plaud-sdk/ios
+          bundler-cache: true
+
+      # Apple issues the key as PKCS#8. fastlane's Ruby may only parse the SEC1 form of the
+      # same key, while the altool that uploads accepts only PKCS#8, so keep both. Written
+      # under a 077 umask into RUNNER_TEMP, which is destroyed with the runner.
+      - name: Prepare the App Store Connect key
+        env:
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        run: |
+          umask 077
+          src="$RUNNER_TEMP/asc-pkcs8.p8"
+          sec1="$RUNNER_TEMP/asc-sec1.pem"
+          raw="$RUNNER_TEMP/asc-raw"
+          printf %s "$ASC_PRIVATE_KEY" > "$raw"
+          if [ ! -s "$raw" ]; then
+            echo "::error::ASC_PRIVATE_KEY is empty or not set. It is the CONTENTS of the AuthKey_XXXXXXXXXX.p8 file. See apps/mobile/ios/README.md."
+            exit 1
+          fi
+          # A key copied on Windows brings CRLFs; one stored base64 is a common convention.
+          tr -d "\r" < "$raw" > "$src"
+          if ! grep -q "BEGIN .*PRIVATE KEY" "$src"; then
+            if base64 --decode < "$src" 2>/dev/null | grep -q "BEGIN .*PRIVATE KEY"; then
+              base64 --decode < "$raw" | tr -d "\r" > "$src"
+            fi
+          fi
+          rm -f "$raw"
+          if ! openssl pkey -in "$src" -noout 2>/dev/null; then
+            echo "::error::ASC_PRIVATE_KEY is not a readable private key. It must be the whole .p8, BEGIN and END lines included ($(wc -l < "$src" | tr -d ' ') lines arrived; a healthy key is 6)."
+            exit 1
+          fi
+          echo "ASC_KEY_P8_PATH=$src" >> "$GITHUB_ENV"
+          if openssl ec -in "$src" -out "$sec1" 2>/dev/null; then
+            echo "ASC_KEY_PATH=$sec1" >> "$GITHUB_ENV"
+          else
+            echo "ASC_KEY_PATH=$src" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build and upload to TestFlight
+        working-directory: plaud-sdk/ios
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          # Optional. Set both and every run reuses one distribution certificate instead of
+          # creating one, which Apple caps per team.
+          DIST_P12_BASE64: ${{ secrets.DIST_P12_BASE64 }}
+          DIST_P12_PASSWORD: ${{ secrets.DIST_P12_PASSWORD }}
+          BUILD_CHANGELOG: ${{ inputs.changelog }}
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: "120"
+        run: bundle exec fastlane beta
+
+      # Printed rather than uploaded: the full log can carry the build's Plaud token, this
+      # repository's artifacts are public, and only console output is masked.
+      - name: Show the first errors
+        if: failure()
+        run: |
+          grep -rh -m 20 -E "error:|error " "$HOME/Library/Logs/gym" 2>/dev/null || echo "No build log errors found; the failure is in the steps above."

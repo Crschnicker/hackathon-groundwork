@@ -66,6 +66,7 @@ docs/             User journey, site model, data foundation, architecture, plan
 |---|---|
 | `npm run dev` | API and web together |
 | `npm run tunnel` | Temporary public https URL for the running app, to open it on a phone (needs `cloudflared`) |
+| `npm run walk:simulate -- <audio file>` | Send an audio file through the chunked walk pipeline as the phone would (needs `ffmpeg`) |
 | `npm run load -- --reset` | Wipe the database and load the snapshot |
 | `npm run load -- --catalog-only` | Items, kits, vendors and tax tables only |
 | `npm run load -- --max-bids 200` | Catalog plus the 200 most recent bids |

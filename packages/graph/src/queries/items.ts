@@ -1,7 +1,7 @@
 // Typed read queries used by the API. Property names follow graph/model.md
 // (every Postgres column → camelCase; Item key is partNumber).
 import neo4j from 'neo4j-driver';
-import { run } from '../driver.ts';
+import { run, runOne } from '../driver.ts';
 
 export interface ItemRow {
   partNumber: string;
@@ -23,12 +23,15 @@ export interface SearchItemsInput {
   limit?: number;
 }
 
-export async function searchItems({ q = '', type, limit = 25 }: SearchItemsInput): Promise<ItemRow[]> {
-  return run<ItemRow>(
-    `MATCH (i:Item)
+// The items a search matches; searchItems and countItems must agree on it.
+const MATCH_ITEMS = `MATCH (i:Item)
      WHERE i.partNumber <> '__CUSTOM__'
        AND ($q = '' OR toLower(coalesce(i.description, '')) CONTAINS $q OR toLower(i.partNumber) CONTAINS $q)
-       AND ($type IS NULL OR i.type = $type)
+       AND ($type IS NULL OR i.type = $type)`;
+
+export async function searchItems({ q = '', type, limit = 25 }: SearchItemsInput): Promise<ItemRow[]> {
+  return run<ItemRow>(
+    `${MATCH_ITEMS}
      OPTIONAL MATCH (i)-[:OF_TYPE]->(t:ItemType)
      OPTIONAL MATCH (i)-[:DEFAULT_FACTOR]->(f:FactorCode)-[:INCLUDES]->()
      // only offer a factor code that actually has a kit (the legacy data uses the text "None")
@@ -42,6 +45,15 @@ export async function searchItems({ q = '', type, limit = 25 }: SearchItemsInput
             i.unit AS unit, i.size AS size, i.cost AS cost, i.salePrice AS salePrice, factorCode`,
     { q: q.trim().toLowerCase(), type: type ?? null, limit: neo4j.int(Math.min(Math.max(limit, 1), 200)) },
   );
+}
+
+/** How many items a search matches in all, whatever the limit of the page being shown. */
+export async function countItems({ q = '', type }: Omit<SearchItemsInput, 'limit'>): Promise<number> {
+  const row = await runOne<{ total: number }>(`${MATCH_ITEMS} RETURN count(i) AS total`, {
+    q: q.trim().toLowerCase(),
+    type: type ?? null,
+  });
+  return row?.total ?? 0;
 }
 
 export interface FactorCodeKitRow {

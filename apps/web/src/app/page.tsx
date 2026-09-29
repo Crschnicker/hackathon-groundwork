@@ -1,40 +1,33 @@
-import { ItemSearch } from "@/components/ItemSearch";
-import { SiteModelDemo } from "@/components/SiteModelDemo";
-import { StatusBar } from "@/components/StatusBar";
+import { SectionHeading } from "@/components/ui";
+import { WalkList } from "@/components/walks/WalkList";
+import { WalkthroughTry } from "@/components/WalkthroughTry";
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-5xl flex-1 space-y-12 px-4 py-10 sm:px-6">
+    <div className="space-y-14">
       <header className="space-y-3">
-        <h1 className="text-3xl font-semibold tracking-tight text-stone-900">Groundwork</h1>
-        <p className="max-w-2xl text-stone-600">
-          Walk the site, talk it through, get a quote. This page exercises the foundation: the item catalog in
-          Neo4j and the transcript extraction that turns a walkthrough into a site model.
+        <h1 className="text-3xl font-semibold tracking-tight text-ink">Site walks</h1>
+        <p className="max-w-[62ch] text-lg text-ink-2">
+          Talk through the site as you walk it. Groundwork turns what you said into areas, measurements and the
+          questions a quote still needs.
         </p>
-        <StatusBar />
       </header>
 
-      <div className="space-y-4">
-        <div>
-          <h2 className="text-xl font-semibold text-stone-900">Item catalog</h2>
-          <p className="text-sm text-stone-600">
-            Plants, irrigation, drainage and materials with cost and sale price. Open a kit to see what a factor
-            code pulls in.
-          </p>
-        </div>
-        <ItemSearch />
-      </div>
+      <section aria-labelledby="walks" className="space-y-4">
+        <SectionHeading id="walks" title="Walks">
+          Recorded with the Groundwork Walk app on the phone. A walk in progress fills in here while the architect
+          is still talking.
+        </SectionHeading>
+        <WalkList />
+      </section>
 
-      <div className="space-y-4">
-        <div>
-          <h2 className="text-xl font-semibold text-stone-900">Walkthrough to site model</h2>
-          <p className="text-sm text-stone-600">
-            Paste what the architect said on site. Gaps the quote needs are flagged for review rather than
-            guessed.
-          </p>
-        </div>
-        <SiteModelDemo />
-      </div>
-    </main>
+      <section aria-labelledby="try" className="space-y-4">
+        <SectionHeading id="try" title="Try it with a walkthrough">
+          No recording to hand? Type or paste what was said on site. Anything the quote needs that was not said is
+          listed to confirm, never guessed.
+        </SectionHeading>
+        <WalkthroughTry />
+      </section>
+    </div>
   );
 }

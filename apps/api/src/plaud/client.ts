@@ -200,10 +200,20 @@ export async function submitTranscription(fileUrl: string, params: Transcription
 }
 
 export async function getTranscription(id: string): Promise<Transcription> {
-  return request<Transcription>(`/open/partner/ai/transcriptions/${encodeURIComponent(id)}`, {
+  const task = await request<Transcription>(`/open/partner/ai/transcriptions/${encodeURIComponent(id)}`, {
     method: 'GET',
     headers: transcriptionHeaders(),
   });
+
+  // Plaud documents `text`, `language` and `duration` beside the segments but in practice sends
+  // only the segments. Fill in whatever is missing from them so callers can rely on all three.
+  const segments = task.data?.results ?? [];
+  if (task.data && segments.length > 0) {
+    task.data.text ??= segments.map((s) => s.text.trim()).filter(Boolean).join(' ');
+    task.data.language ??= segments.find((s) => s.language)?.language;
+    task.data.duration ??= Math.max(...segments.map((s) => s.end));
+  }
+  return task;
 }
 
 export function isTerminalFailure(status: TranscriptionStatus): boolean {

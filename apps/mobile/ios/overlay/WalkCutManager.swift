@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import UIKit
+import PlaudDeviceBasicSDK
 
 /// Records a site walk as a series of short recordings instead of one long one, so each part
 /// can be transcribed while the walk is still going.
@@ -75,8 +76,14 @@ final class WalkCutManager {
     private var ackRetried = false
     private var finishSent = false
     private var syncIsActive = false
+    private var connectedDevice: PlaudDevice?
 
     private init() {
+        DeviceManager.shared.connectedDevicePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.connectedDevice = $0 }
+            .store(in: &cancellables)
+
         RecordingManager.shared.stateSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.recorderChanged($0) }
@@ -97,6 +104,14 @@ final class WalkCutManager {
             .store(in: &cancellables)
     }
 
+    /// The starter reports `.connected` only when the device answers a bind. Home shows a device
+    /// as connected from `connectedDevicePublisher`, which is also set when the device reports its
+    /// state, so after a reconnect the device can be in use while the state still says otherwise.
+    private var deviceIsConnected: Bool {
+        if case .connected = DeviceManager.shared.currentConnectionState { return true }
+        return connectedDevice != nil || PlaudDeviceAgent.shared.isConnected()
+    }
+
     /// The session the device is recording right now, which must not be synced or deleted.
     var sessionInProgress: Int? {
         RecordingManager.shared.stateSubject.value.currentSessionId
@@ -106,8 +121,8 @@ final class WalkCutManager {
 
     func startWalk() {
         guard state.phase == .idle else { return }
-        guard case .connected = DeviceManager.shared.currentConnectionState else {
-            return fail("Connect the Plaud device first.")
+        guard deviceIsConnected else {
+            return fail("Connect the Plaud device first. (The app reports it as \(DeviceManager.shared.currentConnectionState).)")
         }
         guard !RecordingManager.shared.stateSubject.value.isActive else {
             return fail("The device is already recording. Stop that recording, then start the walk.")

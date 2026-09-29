@@ -1,7 +1,7 @@
 // Catalog read endpoints over the Neo4j item graph.
 import { Router } from 'express';
 import { z } from 'zod';
-import { getFactorCodeKit, listCategories, listItemTypes, searchItems } from '@groundwork/graph';
+import { countItems, getFactorCodeKit, listCategories, listItemTypes, searchItems } from '@groundwork/graph';
 import { HttpError, parse } from '../http.ts';
 
 export const itemsRouter = Router();
@@ -14,8 +14,9 @@ const searchQuery = z.object({
 
 itemsRouter.get('/items', async (req, res) => {
   const { q, type, limit } = parse(searchQuery, req.query);
-  const items = await searchItems({ q, type: type || undefined, limit });
-  res.json({ count: items.length, items });
+  const search = { q, type: type || undefined };
+  const [items, total] = await Promise.all([searchItems({ ...search, limit }), countItems(search)]);
+  res.json({ count: items.length, total, items });
 });
 
 itemsRouter.get('/item-types', async (_req, res) => {

@@ -303,6 +303,8 @@ final class WalkViewController: UIViewController {
     // What Groundwork heard.
     /// The sections of this walk, each with its photos to take; it hides itself when there are none.
     private let guideView = WalkGuideView()
+    /// Take photo, how this walk's photos stand, and the last few taken.
+    private lazy var photosView = WalkPhotosView(presenter: self, walkId: { [weak self] in self?.manager.snapshot.walkId })
     private let heardCard = WalkCard(spacing: 8)
     private let areasStack = UIStackView()
     private let confirmLabel = WalkStyle.label(WalkStyle.font(16, .semibold), PlaudTheme.labelPrimary)
@@ -368,6 +370,15 @@ final class WalkViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.appendLog($0) }
             .store(in: &cancellables)
+
+        // A guide prompt ticks off the moment its photo is taken, before the server has it.
+        WalkPhotoQueue.shared.stateSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.renderGuide(self.manager.snapshot)
+            }
+            .store(in: &cancellables)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -420,7 +431,7 @@ final class WalkViewController: UIViewController {
         setupRecordingsCard()
         setupDetailsCard()
 
-        [titleLabel, recorderCard, readinessCard, guideView, heardCard, recordingsCard, detailsCard]
+        [titleLabel, recorderCard, readinessCard, guideView, photosView, heardCard, recordingsCard, detailsCard]
             .forEach { contentStack.addArrangedSubview($0) }
         contentStack.setCustomSpacing(40, after: titleLabel)
         heardCard.isHidden = true
@@ -1147,9 +1158,15 @@ final class WalkViewController: UIViewController {
     /// hidden until it has sections to show.
     private func renderGuide(_ snapshot: WalkCutManager.Snapshot) {
         let guide = lastProgress?.guide
+        var taken = lastProgress?.takenPrompts ?? []
+        if let walkId = snapshot.walkId {
+            for prompt in WalkPhotoQueue.shared.takenPrompts(walkId: walkId) {
+                taken.insert(WalkGuide.promptKey(sectionId: prompt.sectionId, promptId: prompt.promptId))
+            }
+        }
         guideView.update(
             guide: guide,
-            taken: lastProgress?.takenPrompts ?? [],
+            taken: taken,
             isWalkActive: guide != nil && snapshot.isActive
         )
     }

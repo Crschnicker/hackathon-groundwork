@@ -385,6 +385,8 @@ final class WalkPhotoQueue {
         var saveError: String?
         /// The last few photos taken since the app started, oldest first.
         var recent: [Thumbnail] = []
+        /// Per walk, the guide prompts photographed on this phone since the app started.
+        var prompts: [String: Set<WalkPhotoPrompt>] = [:]
 
         func counts(for walkId: String?) -> Counts {
             guard let walkId = walkId else { return Counts() }
@@ -437,6 +439,7 @@ final class WalkPhotoQueue {
     private var items: [Item] = []
     private var sentCounts: [String: Int] = [:]
     private var thumbnails: [Thumbnail] = []
+    private var prompts: [String: Set<WalkPhotoPrompt>] = [:]
     private var lastError: String?
     private var saveError: String?
     /// The photo being sent now; one at a time.
@@ -513,6 +516,9 @@ final class WalkPhotoQueue {
                 return
             }
             self.saveError = nil
+            if let sectionId = sectionId, let promptId = promptId {
+                self.prompts[walkId, default: []].insert(WalkPhotoPrompt(sectionId: sectionId, promptId: promptId))
+            }
             self.items.append(item)
             self.save()
             if let small = WalkPhotoQueue.thumbnail(from: image) {
@@ -849,8 +855,19 @@ final class WalkPhotoQueue {
             return shown
         }
 
-        stateSubject.send(State(walks: walks, lastError: lastError, saveError: saveError, recent: recent))
+        stateSubject.send(State(walks: walks, lastError: lastError, saveError: saveError, recent: recent, prompts: prompts))
     }
+
+    /// The guide prompts this phone has taken a photo for on a walk, whether sent yet or not.
+    func takenPrompts(walkId: String) -> [WalkPhotoPrompt] {
+        Array(state.prompts[walkId] ?? [])
+    }
+}
+
+/// A walk guide section and photo prompt that a photo answers.
+struct WalkPhotoPrompt: Hashable {
+    let sectionId: String
+    let promptId: String
 }
 
 // MARK: - The card

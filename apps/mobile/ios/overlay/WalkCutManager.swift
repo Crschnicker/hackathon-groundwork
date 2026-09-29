@@ -347,6 +347,7 @@ final class WalkCutManager {
                         self?.log("Could not tell the server the walk has stopped: \(error.localizedDescription)")
                     }
                 }
+                WalkDiagnostics.sendNow()
             }
             if RecordingManager.shared.stateSubject.value.isActive {
                 sendStop()

@@ -3,6 +3,9 @@
 // device closes it, and anyone can poll the walk for the transcript and site model so far.
 // Site photos taken on the walk are posted here too, and matched to the site model's areas.
 import { timingSafeEqual } from 'node:crypto';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { repoRoot } from '@groundwork/graph/env';
 import express, { Router, type NextFunction, type Request, type Response } from 'express';
 import { z } from 'zod';
 import { env } from '../env.ts';
@@ -209,6 +212,19 @@ walksRouter.post('/walks/:id/chunks', express.raw({ type: () => true, limit: '10
   save();
   processChunk(walk, chunk, req.body);
   res.status(202).json(chunkView(chunk, false));
+});
+
+/**
+ * The phone app's own log for this walk, as plain text; each post replaces the last. Kept in
+ * .groundwork/logs/<walk id>.log so a walk whose recordings never arrive can be diagnosed.
+ */
+walksRouter.post('/walks/:id/log', express.text({ type: () => true, limit: '2mb' }), (req, res) => {
+  const walk = requireWalk(req.params.id);
+  if (typeof req.body !== 'string') throw new HttpError(400, 'Request body must be the log as text');
+  const dir = path.join(repoRoot, '.groundwork', 'logs');
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(path.join(dir, `${walk.id}.log`), req.body);
+  res.json({ saved: true, bytes: Buffer.byteLength(req.body) });
 });
 
 /** The recorder has stopped for good. Chunks still in flight finish as usual. */

@@ -132,6 +132,18 @@ edit('PlaudTemplateApp/Managers/SyncManager.swift', [
   },
 ]);
 
+// The log the starter exports is encrypted for Plaud's support. Keep a readable copy of every
+// line too, which the Walk tab sends to the Groundwork server during a walk.
+edit('PlaudTemplateApp/Common/AppLog.swift', [
+  {
+    why: 'readable copy of the log',
+    find: `        PlaudLogRedirect.addLog(message, level: level)\n`,
+    replace:
+      `        PlaudLogRedirect.addLog(message, level: level)\n` +
+      `        WalkDiagnostics.record(message)\n`,
+  },
+]);
+
 // 5. The starter talks to Plaud's test servers; our credentials belong to production.
 edit('PlaudTemplateApp/Storage/RecordingStore.swift', [
   {

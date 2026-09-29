@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",
+    "tunnel": "node scripts/tunnel.mjs",
     "probe": "npm run probe -w packages/graph",
     "extract": "npm run extract -w packages/graph",
     "load": "npm run load -w packages/graph --",

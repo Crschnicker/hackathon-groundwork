@@ -1,6 +1,5 @@
 // Typed fetch wrapper for the Groundwork API (apps/api).
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+// Requests go to this page's own origin; next.config.ts forwards /api/* and /health to the API.
 
 export class ApiError extends Error {
   constructor(
@@ -15,12 +14,12 @@ export class ApiError extends Error {
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(`${API_URL}${path}`, {
+    res = await fetch(path, {
       ...init,
       headers: { "Content-Type": "application/json", ...init?.headers },
     });
   } catch {
-    throw new ApiError(0, `Can't reach the API at ${API_URL}. Is \`npm run dev\` running?`);
+    throw new ApiError(0, "Can't reach the server. Is `npm run dev` running?");
   }
   const body: unknown = await res.json().catch(() => null);
   // /health answers 503 with a useful body when Neo4j is down — let the caller read it.

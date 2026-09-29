@@ -65,6 +65,7 @@ docs/             User journey, site model, data foundation, architecture, plan
 | Command | Does |
 |---|---|
 | `npm run dev` | API and web together |
+| `npm run tunnel` | Temporary public https URL for the running app, to open it on a phone (needs `cloudflared`) |
 | `npm run load -- --reset` | Wipe the database and load the snapshot |
 | `npm run load -- --catalog-only` | Items, kits, vendors and tax tables only |
 | `npm run load -- --max-bids 200` | Catalog plus the 200 most recent bids |
@@ -96,3 +97,5 @@ titled "data" without quoting the value, or contact the maintainer directly.
 - **AuraDB Free pauses after 72 hours without use** and is deleted after 30 days paused. Resume it
   in the Aura console. If it is gone, create a new instance and run `npm run load -- --reset`.
 - The API has no authentication yet. Run it locally; do not deploy it as it is.
+- `npm run tunnel` makes the app reachable by anyone who has the URL, including the endpoints that
+  spend LLM credits. Stop it (Ctrl+C) when you are done.

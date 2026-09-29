@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "plaud-embedded-android-sdk-skill": {
+      "source": "Plaud-AI/plaud-embedded-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pe-android-sdk-skill/SKILL.md",
+      "computedHash": "8239a44fe4a5a0999eb27f31feae9aad2a44ad774c25c6acae1e1651e5184331"
+    },
+    "plaud-embedded-ios-sdk-skill": {
+      "source": "Plaud-AI/plaud-embedded-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pe-ios-sdk-skill/SKILL.md",
+      "computedHash": "43a958fe2d7503e45995370b666b4f9e0b9815edce79579ddaa931db5d1496e8"
+    },
+    "plaud-embedded-project-setup-skill": {
+      "source": "Plaud-AI/plaud-embedded-skills",
+      "sourceType": "github",
+      "skillPath": "skills/PE-setup-skill/SKILL.md",
+      "computedHash": "11dba462346e2777caa49ef6541bf1d633978b6965b0b3014989b0854ac5cb65"
+    },
+    "plaud-embedded-transcription-api-skill": {
+      "source": "Plaud-AI/plaud-embedded-skills",
+      "sourceType": "github",
+      "skillPath": "skills/PE-transcription-api-skill/SKILL.md",
+      "computedHash": "78bdf236d691f268bd78c7e6ddaa38b2f1cc3c3e66825943a12dd69db7fc06b2"
+    }
+  }
+}

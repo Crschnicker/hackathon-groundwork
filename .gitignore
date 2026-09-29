@@ -1,0 +1,22 @@
+# secrets — never commit
+.env
+.env.*
+!.env.example
+*.local
+aura-db
+
+# dependencies / builds
+node_modules/
+dist/
+.next/
+out/
+*.tsbuildinfo
+
+# raw (unscrubbed) extracts are never committed; only data/*.csv (scrubbed) is
+data/raw/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

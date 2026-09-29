@@ -6,11 +6,13 @@
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { ApiError, api, type Walk } from "@/lib/api";
+import { sampleGuideAt, sampleTakenAt } from "@/lib/sampleGuide";
 import { SAMPLE_SECONDS, SAMPLE_WALK_ID, sampleWalk } from "@/lib/sampleWalk";
 import { useServer } from "@/lib/server";
 import { SiteModelSkeleton, SiteModelView, summarizeSiteModel } from "@/components/SiteModelView";
 import { Button, Notice, StatusLine, buttonClass, formatDuration, formatWhen } from "@/components/ui";
 import { usePolling } from "./usePolling";
+import { WalkGuide, type Taken } from "./WalkGuide";
 import { WalkRecordings } from "./WalkRecordings";
 import { WalkTokenForm } from "./WalkTokenForm";
 import { WalkTranscript, readableTranscript } from "./WalkTranscript";
@@ -174,7 +176,7 @@ function FailedRecordings({ walk }: { walk: Walk }) {
 function SiteModelSection({ walk }: { walk: Walk }) {
   const model = walk.siteModel;
   return (
-    <section aria-labelledby="understood" className="min-w-0 space-y-4 lg:col-span-2">
+    <section aria-labelledby="understood" className="min-w-0 space-y-4">
       <div className="space-y-1">
         <h2 id="understood" className="text-xl font-semibold tracking-tight text-ink">
           What Groundwork understood
@@ -295,6 +297,7 @@ function WalkView({
   walk,
   now,
   announcement,
+  taken,
   sample = false,
   plays = 0,
   onPlayAgain,
@@ -303,6 +306,8 @@ function WalkView({
   walk: Walk;
   now: number;
   announcement: string;
+  /** Photos that answer the guide; the walk's own photos when not given. */
+  taken?: Taken[];
   sample?: boolean;
   /** How many times the sample has been started again. */
   plays?: number;
@@ -336,7 +341,13 @@ function WalkView({
       <FailedRecordings walk={walk} />
 
       <div className="grid gap-10 lg:grid-cols-3 lg:items-start lg:gap-8">
-        <SiteModelSection walk={walk} />
+        <div className="min-w-0 space-y-12 lg:col-span-2">
+          {/* What to photograph and ask comes first: it is what the architect acts on during the walk. */}
+          {(walk.guide || !walk.settled) && (
+            <WalkGuide guide={walk.guide ?? null} taken={taken ?? walk.photos ?? []} live={!walk.settled} />
+          )}
+          <SiteModelSection walk={walk} />
+        </div>
         {/* A fresh walkthrough for each play of the sample, so it starts at its first words again. */}
         <TranscriptSection key={plays} walk={walk} sample={sample} />
       </div>
@@ -347,13 +358,15 @@ function WalkView({
 function SampleWalk() {
   const { walk, now, announcement, accept, restart } = useWalk();
   const [plays, setPlays] = useState(0);
+  const [taken, setTaken] = useState<Taken[]>([]);
 
   useEffect(() => {
     const started = Date.now();
     let timer: ReturnType<typeof setTimeout> | undefined;
     function step() {
       const elapsed = (Date.now() - started) / 1000;
-      accept(sampleWalk(elapsed));
+      accept({ ...sampleWalk(elapsed), guide: sampleGuideAt(elapsed) });
+      setTaken(sampleTakenAt(elapsed));
       if (elapsed < SAMPLE_SECONDS) timer = setTimeout(step, SAMPLE_STEP_MS);
     }
     timer = setTimeout(step, 0);
@@ -366,10 +379,11 @@ function SampleWalk() {
       walk={walk}
       now={now}
       announcement={announcement}
+      taken={taken}
       sample
       plays={plays}
       onPlayAgain={() => {
-        restart(sampleWalk(0));
+        restart({ ...sampleWalk(0), guide: sampleGuideAt(0) });
         setPlays((n) => n + 1);
       }}
     />

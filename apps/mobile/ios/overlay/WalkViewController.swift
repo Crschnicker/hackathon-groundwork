@@ -301,6 +301,8 @@ final class WalkViewController: UIViewController {
     private let plaudRow = WalkCheckRow(name: "Plaud sign-in")
 
     // What Groundwork heard.
+    /// The sections of this walk, each with its photos to take; it hides itself when there are none.
+    private let guideView = WalkGuideView()
     private let heardCard = WalkCard(spacing: 8)
     private let areasStack = UIStackView()
     private let confirmLabel = WalkStyle.label(WalkStyle.font(16, .semibold), PlaudTheme.labelPrimary)
@@ -346,6 +348,13 @@ final class WalkViewController: UIViewController {
 
         setupLayout()
         setupControls()
+        guideView.onTakePhoto = { [weak self] section, photo in
+            guard let self = self, let walkId = self.manager.snapshot.walkId else { return }
+            WalkPhotos.present(
+                from: self, walkId: walkId,
+                sectionId: section.id, promptId: photo.id, prompt: photo.prompt
+            )
+        }
         loadSettings()
         setDetailsOpen(UserDefaults.standard.bool(forKey: Self.detailsOpenKey), animated: false)
         observeKeyboard()
@@ -411,7 +420,7 @@ final class WalkViewController: UIViewController {
         setupRecordingsCard()
         setupDetailsCard()
 
-        [titleLabel, recorderCard, readinessCard, heardCard, recordingsCard, detailsCard]
+        [titleLabel, recorderCard, readinessCard, guideView, heardCard, recordingsCard, detailsCard]
             .forEach { contentStack.addArrangedSubview($0) }
         contentStack.setCustomSpacing(40, after: titleLabel)
         heardCard.isHidden = true
@@ -1134,7 +1143,19 @@ final class WalkViewController: UIViewController {
         return "\(seconds) seconds"
     }
 
+    /// Before there is a guide the card below says the app is listening, so the guide stays
+    /// hidden until it has sections to show.
+    private func renderGuide(_ snapshot: WalkCutManager.Snapshot) {
+        let guide = lastProgress?.guide
+        guideView.update(
+            guide: guide,
+            taken: lastProgress?.takenPrompts ?? [],
+            isWalkActive: guide != nil && snapshot.isActive
+        )
+    }
+
     private func renderHeard(_ snapshot: WalkCutManager.Snapshot) {
+        renderGuide(snapshot)
         setHidden(heardCard, snapshot.walkId == nil)
         guard snapshot.walkId != nil else { return }
         openWebButton.isEnabled = true

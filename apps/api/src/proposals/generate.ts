@@ -65,7 +65,7 @@ You get the structured site model and the walk's transcript. Reply with:
   - needs: one per thing to supply, install or remove.
     - description: the line as the homeowner will read it, e.g. "Flagstone patio, dry-laid on a gravel base".
     - category: one of removal, hardscape, plants, irrigation, drainage, lighting, other.
-    - searchTerms: 1 to 3 short catalog search words for the material, e.g. "flagstone", "lavender 1 gal", "drip line". Empty for a removal.
+    - searchTerms: 1 to 3 catalog search terms for the material. Each is matched as one phrase inside a catalog item's description, so use one word or a common two-word name: the material or plant, e.g. "flagstone", "lavender", "drip line", "gravel", "podocarpus". No sizes, verbs or adjectives. Empty for a removal.
     - quantity and unit: only from what was said. Measurements become sq ft, linear ft or a count ("20 by 15 patio" -> 300, "sq ft"). If the quantity was not said, use null for both quantity and basis and say what is missing in toConfirm.
     - basis: how the quantity follows from what was said, e.g. "20 x 15 ft patio". Null when there is no quantity.
     - toConfirm: what the architect must check before sending, or null.
@@ -115,11 +115,11 @@ interface PlannedNeed {
   candidates: ItemRow[];
 }
 
-/** Step 2: candidate catalog items per need, by its search terms. Throws if the catalog is unreachable. */
-async function findCandidates(needs: PlannedNeed[]): Promise<void> {
-  const searches = needs
-    .filter((n) => n.need.category !== 'removal')
-    .flatMap((n) => [...new Set(n.need.searchTerms.map((t) => clip(t, 100)).filter(Boolean))].slice(0, 3).map((term) => ({ n, term })));
+/** Words too general to find a catalog item by on their own. */
+const GENERIC_WORDS = new Set(['install', 'new', 'with', 'and', 'for', 'the', 'gal', 'gallon', 'size', 'type', 'set', 'kit']);
+
+/** Run the searches and add each result to its need's candidates, deduped by part number and capped. */
+async function runSearches(searches: { n: PlannedNeed; term: string }[]): Promise<void> {
   const results = await mapPool(searches, CATALOG_CONCURRENCY, ({ term }) => searchItems({ q: term, limit: SEARCH_LIMIT }));
   searches.forEach(({ n }, i) => {
     for (const item of results[i]!) {
@@ -127,6 +127,28 @@ async function findCandidates(needs: PlannedNeed[]): Promise<void> {
       if (!n.candidates.some((c) => c.partNumber === item.partNumber)) n.candidates.push(item);
     }
   });
+}
+
+/**
+ * Step 2: candidate catalog items per need, by its search terms. The catalog search matches a
+ * term as one phrase ("path light" finds nothing), so a need whose terms found little is searched
+ * again word by word. Throws if the catalog is unreachable.
+ */
+async function findCandidates(needs: PlannedNeed[]): Promise<void> {
+  const priced = needs.filter((n) => n.need.category !== 'removal');
+  const termsOf = (n: PlannedNeed) => [...new Set(n.need.searchTerms.map((t) => clip(t, 100).toLowerCase()).filter(Boolean))].slice(0, 3);
+  await runSearches(priced.flatMap((n) => termsOf(n).map((term) => ({ n, term }))));
+
+  const retry = priced
+    .filter((n) => n.candidates.length < 3)
+    .flatMap((n) => {
+      const terms = new Set(termsOf(n));
+      const words = termsOf(n)
+        .flatMap((t) => t.split(/[^a-z0-9'-]+/))
+        .filter((w) => w.length >= 4 && !GENERIC_WORDS.has(w) && !terms.has(w));
+      return [...new Set(words)].slice(0, 3).map((term) => ({ n, term }));
+    });
+  if (retry.length > 0) await runSearches(retry);
 }
 
 /** Step 3: one catalog item (or none) per need. Only partNumbers from the need's own candidates survive. */
@@ -201,6 +223,27 @@ function laborLookups() {
 
 const quantityNote = (quantity: number | null) => (quantity === null ? 'Enter a quantity.' : null);
 
+/**
+ * What a unit measures, so a quantity from the walk is only priced against a catalog item sold
+ * by the same measure. Anything the walk counted ("3 beds", "1 gate") is a count, like EA.
+ */
+function unitKind(unit: string | null | undefined): string {
+  const u = (unit ?? '').trim().toLowerCase().replace(/\.$/, '');
+  if (/^(sq\.? ?ft|sf|sqft|square f(ee|oo)t)$/.test(u)) return 'area';
+  if (/^(lf|ft|feet|foot|linear f(ee|oo)t|lin\.? ?ft|l\.f)$/.test(u)) return 'length';
+  if (/^(tn|ton|tons)$/.test(u)) return 'ton';
+  if (/^(cy|yd3|cu\.? ?yd|cubic yards?)$/.test(u)) return 'cubic yard';
+  if (/^(gal|gallons?)$/.test(u)) return 'gallon';
+  if (/^(hr|hrs|hours?)$/.test(u)) return 'hour';
+  return 'count';
+}
+
+/** A price the catalog actually gives: the sale price, else the cost; zero is a placeholder, not a price. */
+function catalogPrice(item: ItemRow): number | null {
+  for (const p of [item.salePrice, item.cost]) if (p !== null && p > 0) return p;
+  return null;
+}
+
 function customLine(need: Need): ProposalLine {
   const removal = need.category === 'removal';
   let description = clip(need.description, 500) || 'Work to be described';
@@ -228,9 +271,16 @@ function customLine(need: Need): ProposalLine {
 async function linesFor(need: Need, item: ItemRow | undefined, labor: ReturnType<typeof laborLookups>): Promise<ProposalLine[]> {
   if (!item || need.category === 'removal') return [customLine(need)];
 
-  const quantity = cleanQuantity(need.quantity);
-  const price = item.salePrice ?? item.cost;
+  const measured = cleanQuantity(need.quantity);
+  // "600 sq ft" of pavers sold per EA, or "60 linear ft" of screening plants, is not 600 or 60 of
+  // the item: the quantity waits for the architect instead of pricing the wrong thing.
+  const unitMismatch = measured !== null && item.unit !== null && unitKind(need.unit) !== unitKind(item.unit);
+  const quantity = unitMismatch ? null : measured;
+  const price = catalogPrice(item);
   const catalogNote = `Catalog: ${item.description ?? item.partNumber}${item.size ? ` (${item.size})` : ''}`;
+  const mismatchNote = unitMismatch
+    ? `The walk gave ${measured} ${need.unit ?? ''}`.trim() + `; the catalog sells this per ${item.unit}. Enter the quantity in ${item.unit}.`
+    : null;
   const lines: ProposalLine[] = [
     {
       id: randomUUID(),
@@ -239,11 +289,14 @@ async function linesFor(need: Need, item: ItemRow | undefined, labor: ReturnType
       partNumber: clip(item.partNumber, 80),
       description: clip(need.description, 500) || clip(item.description, 500) || item.partNumber,
       quantity,
-      unit: clipOrNull(need.unit ?? item.unit, 20),
+      unit: clipOrNull(unitMismatch ? item.unit : (need.unit ?? item.unit), 20),
       unitPrice: price === null ? null : cents(price),
       priceSource: price === null ? null : 'catalog',
       basis: clipOrNull(joinNotes(need.basis ? `${need.basis.trim().replace(/\.$/, '')}.` : null, catalogNote), 300),
-      toConfirm: clipOrNull(joinNotes(price === null ? 'No catalog price.' : null, need.toConfirm ?? quantityNote(quantity)), 300),
+      toConfirm: clipOrNull(
+        joinNotes(price === null ? 'No catalog price.' : null, mismatchNote, need.toConfirm ?? (unitMismatch ? null : quantityNote(quantity))),
+        300,
+      ),
     },
   ];
 
@@ -260,7 +313,7 @@ async function linesFor(need: Need, item: ItemRow | undefined, labor: ReturnType
       unit: 'hr',
       unitPrice: rate === null ? null : cents(rate),
       priceSource: rate === null ? null : 'labor_rate',
-      basis: clip(`${hours} hr per unit installed (factor code ${item.factorCode})${quantity === null ? '' : ` × ${quantity}`}`, 300),
+      basis: clip(`${hours} hr per ${item.unit ?? 'unit'} installed (factor code ${item.factorCode})${quantity === null ? '' : ` × ${quantity}`}`, 300),
       toConfirm: clipOrNull(
         joinNotes(
           quantity === null ? 'Hours follow once the quantity is known.' : null,

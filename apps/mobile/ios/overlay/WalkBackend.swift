@@ -103,6 +103,10 @@ struct WalkProgress {
     let openQuestions: Int
     let slowestLatencyMs: Int?
     let failures: [String]
+    /// What to photograph, measure and ask on this walk; nil until the server has written one.
+    let guide: WalkGuide?
+    /// The guide's photos the server already has, as keys from WalkGuide.promptKey.
+    let takenPrompts: Set<String>
 }
 
 /// The few Groundwork API calls the recorder needs.
@@ -259,7 +263,9 @@ final class WalkBackend {
                         areaNames: areas.compactMap { $0["name"] as? String },
                         openQuestions: (model?["missing"] as? [Any])?.count ?? 0,
                         slowestLatencyMs: chunks.compactMap { $0["latencyMs"] as? Int }.max(),
-                        failures: chunks.compactMap { $0["error"] as? String }
+                        failures: chunks.compactMap { $0["error"] as? String },
+                        guide: WalkGuide.parse(json["guide"]),
+                        takenPrompts: WalkGuide.takenKeys(fromPhotos: json["photos"])
                     )
                 })
             }

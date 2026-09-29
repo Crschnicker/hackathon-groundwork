@@ -5,8 +5,8 @@ added. Pairing, binding, syncing and settings are the starter's own and work as 
 them.
 
 The repo is developed on Windows, so the app is only ever built by GitHub Actions
-([.github/workflows/ios.yml](../../../.github/workflows/ios.yml)). Nothing here has been run on
-a phone yet; see [What is not proven](#what-is-not-proven).
+([.github/workflows/ios.yml](../../../.github/workflows/ios.yml)). The rebuilt Walk tab and the
+walk guide have not been run on a phone yet; see [What is not proven](#what-is-not-proven).
 
 ## How it is put together
 
@@ -155,7 +155,8 @@ The point of the first tests is to find out how well cutting works. The numbers 
 
 ## What is not proven
 
-- **The Swift has never been compiled.** The first workflow run is its first compile.
+- **The rebuilt Walk tab and the walk guide have not been compiled.** The first workflow run
+  after they were written is their first compile.
 - **Syncing while recording.** Plaud does not document whether the device will transfer a
   closed recording while it is recording the next. If it will not, every chunk waits until the
   walk ends: nothing is lost, and nothing is gained over one long recording.
